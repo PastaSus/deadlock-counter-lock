@@ -1,0 +1,10 @@
+{
+  "slug": "seven",
+  "name": "Seven",
+  "abilities": [
+    { "slug": "seven-lightning-ball", "name": "Lightning Ball" },
+    { "slug": "seven-static-charge", "name": "Static Charge" },
+    { "slug": "seven-power-surge", "name": "Power Surge" },
+    { "slug": "seven-storm-cloud", "name": "Storm Cloud" }
+  ]
+}

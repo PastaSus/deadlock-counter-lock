@@ -1,0 +1,17 @@
+{
+  "slug": "suppressor-vs-wraith",
+  "kind": "interaction",
+  "title": "Suppressor blunts fire-rate M1 heroes",
+  "sourceRef": "suppressor",
+  "targetRef": "wraith",
+  "effects": ["block"],
+  "conditions": "Suppressor must be active before Wraith starts Full Auto. The fire-rate slow applies to the whole burst if applied during the spin-up.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "0.8",
+      "note": "Suppressor no longer stacks with Slowing Hex on fire rate.",
+      "effectChange": "stacking removed"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "vindicta-stake-vs-lash-death-slam",
+  "kind": "interaction",
+  "title": "Stake interrupts Lash's Death Slam",
+  "sourceRef": "vindicta-stake",
+  "targetRef": "lash-death-slam",
+  "effects": ["interrupt"],
+  "conditions": "Stake must root Lash before the slam's grab box activates. A Lash already moving through the air can still be staked.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

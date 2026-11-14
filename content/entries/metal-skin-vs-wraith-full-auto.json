@@ -1,0 +1,11 @@
+{
+  "slug": "metal-skin-vs-wraith-full-auto",
+  "kind": "interaction",
+  "title": "Metal Skin walks through Wraith's Full Auto",
+  "sourceRef": "metal-skin",
+  "targetRef": "wraith-full-auto",
+  "effects": ["block"],
+  "conditions": "Activate Metal Skin before Full Auto's first shot. The immunity window covers the burst only if it is not spent on earlier chip damage.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

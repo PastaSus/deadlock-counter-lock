@@ -1,0 +1,11 @@
+{
+  "slug": "solomon-vs-danny",
+  "kind": "matchup",
+  "title": "Solomon into Danny: hold your escape until Crash commits",
+  "sourceRef": "solomon",
+  "targetRef": "danny",
+  "effects": [],
+  "conditions": "Danny wants to Crash onto Solomon's cage follow-up. Keep Grave Shift available and leave the cage before the crash lands.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

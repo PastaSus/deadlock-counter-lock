@@ -1,0 +1,23 @@
+{
+  "slug": "apollo-riposte-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Riposte no longer cancels Seven's Storm Cloud",
+  "sourceRef": "apollo-riposte",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["block"],
+  "conditions": "Riposte reflects direct projectiles, but Storm Cloud no longer counts as a reflectable cast. Parrying the initial cast does not cancel the channel.",
+  "verifiedPatch": "0.8",
+  "patchHistory": [
+    {
+      "patch": "0.8",
+      "note": "Riposte reflected Storm Cloud and ended the channel.",
+      "effectChange": "block active"
+    },
+    {
+      "patch": "0.9",
+      "note": "Storm Cloud reclassified as a persistent area effect. Riposte no longer cancels it.",
+      "effectChange": "block removed"
+    }
+  ],
+  "deprecated": true
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "curse-vs-abrams-siphon-life",
+  "kind": "interaction",
+  "title": "Curse silences Abrams before Siphon Life",
+  "sourceRef": "curse",
+  "targetRef": "abrams-siphon-life",
+  "effects": ["silence"],
+  "conditions": "Curse must land before Siphon Life starts. Silence prevents new casts but does not remove an active heal.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

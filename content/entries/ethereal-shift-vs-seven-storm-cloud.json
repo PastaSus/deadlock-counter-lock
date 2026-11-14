@@ -1,0 +1,11 @@
+{
+  "slug": "ethereal-shift-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Ethereal Shift dodges Storm Cloud's damage",
+  "sourceRef": "ethereal-shift",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["block"],
+  "conditions": "Shift before the storm's damage tick. The storm keeps tracking the last visible position while the shift is active.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

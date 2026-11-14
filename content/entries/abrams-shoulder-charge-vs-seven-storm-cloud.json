@@ -1,0 +1,11 @@
+{
+  "slug": "abrams-shoulder-charge-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Shoulder Charge interrupts Seven's Storm Cloud",
+  "sourceRef": "abrams-shoulder-charge",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["interrupt"],
+  "conditions": "Charge must connect during Storm Cloud's wind-up. Once the channel completes, the storm follows Seven and the charge only repositions him.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

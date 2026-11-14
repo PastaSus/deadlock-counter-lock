@@ -1,0 +1,11 @@
+{
+  "slug": "grey-talon-spirit-snare-vs-lash-death-slam",
+  "kind": "interaction",
+  "title": "Spirit Snare traps Lash mid-slam",
+  "sourceRef": "grey-talon-spirit-snare",
+  "targetRef": "lash-death-slam",
+  "effects": ["interrupt"],
+  "conditions": "The snare must arm before Lash enters the slam's grab radius. Lash can still cancel the slam manually while snared.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

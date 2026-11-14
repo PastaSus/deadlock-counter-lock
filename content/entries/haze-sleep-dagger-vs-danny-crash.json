@@ -1,0 +1,17 @@
+{
+  "slug": "haze-sleep-dagger-vs-danny-crash",
+  "kind": "interaction",
+  "title": "Sleep Dagger catches Danny at the top of Crash",
+  "sourceRef": "haze-sleep-dagger",
+  "targetRef": "danny-crash",
+  "effects": ["interrupt"],
+  "conditions": "The dagger must hit during Crash's hover window. Sleeping Danny after the descent begins does not stop the explosion.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "1.0",
+      "note": "Crash hover window reduced from 1.2 seconds to 0.8 seconds.",
+      "effectChange": "interrupt window narrowed"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  { "slug": "knockdown", "name": "Knockdown" },
+  { "slug": "slowing-hex", "name": "Slowing Hex" },
+  { "slug": "suppressor", "name": "Suppressor" },
+  { "slug": "disarm", "name": "Disarm" },
+  { "slug": "counterspell", "name": "Counterspell" },
+  { "slug": "silence-glyph", "name": "Silence Glyph" },
+  { "slug": "curse", "name": "Curse" },
+  { "slug": "metal-skin", "name": "Metal Skin" },
+  { "slug": "debuff-remover", "name": "Debuff Remover" },
+  { "slug": "ethereal-shift", "name": "Ethereal Shift" }
+]

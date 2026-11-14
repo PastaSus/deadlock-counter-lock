@@ -1,0 +1,17 @@
+{
+  "slug": "knockdown-vs-vindicta-flight",
+  "kind": "interaction",
+  "title": "Knockdown extends stuns on airborne targets",
+  "sourceRef": "knockdown",
+  "targetRef": "vindicta-flight",
+  "effects": ["extend"],
+  "conditions": "Cast Knockdown while Vindicta is in Flight and already stunned. The stun extension does not apply to grounded targets.",
+  "verifiedPatch": "0.9",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Knockdown cast time increased, narrowing the follow-up window.",
+      "effectChange": "extend window narrowed"
+    }
+  ]
+}

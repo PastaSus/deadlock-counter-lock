@@ -1,0 +1,11 @@
+{
+  "slug": "seven-static-charge-vs-lash-death-slam",
+  "kind": "interaction",
+  "title": "Static Charge stuns Lash during Death Slam",
+  "sourceRef": "seven-static-charge",
+  "targetRef": "lash-death-slam",
+  "effects": ["interrupt"],
+  "conditions": "The charge must detonate after Lash commits to the slam. The stun cancels the grab but not the landing damage.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

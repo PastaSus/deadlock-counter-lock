@@ -1,0 +1,10 @@
+{
+  "slug": "grey-talon",
+  "name": "Grey Talon",
+  "abilities": [
+    { "slug": "grey-talon-charged-shot", "name": "Charged Shot" },
+    { "slug": "grey-talon-rain-of-arrows", "name": "Rain of Arrows" },
+    { "slug": "grey-talon-spirit-snare", "name": "Spirit Snare" },
+    { "slug": "grey-talon-guided-owl", "name": "Guided Owl" }
+  ]
+}

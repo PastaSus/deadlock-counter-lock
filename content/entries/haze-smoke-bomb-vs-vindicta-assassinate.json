@@ -1,0 +1,11 @@
+{
+  "slug": "haze-smoke-bomb-vs-vindicta-assassinate",
+  "kind": "interaction",
+  "title": "Smoke Bomb obscures Vindicta's Assassinate",
+  "sourceRef": "haze-smoke-bomb",
+  "targetRef": "vindicta-assassinate",
+  "effects": ["block"],
+  "conditions": "Stand inside the smoke when Assassinate locks on. The shot can still fire, but the target outline is lost if Vindicta has no other vision.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

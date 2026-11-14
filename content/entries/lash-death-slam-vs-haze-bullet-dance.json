@@ -1,0 +1,11 @@
+{
+  "slug": "lash-death-slam-vs-haze-bullet-dance",
+  "kind": "interaction",
+  "title": "Death Slam grabs Haze out of Bullet Dance",
+  "sourceRef": "lash-death-slam",
+  "targetRef": "haze-bullet-dance",
+  "effects": ["interrupt"],
+  "conditions": "Lash must connect the grab before Bullet Dance's final volley. A Haze with Metal Skin active cannot be grabbed.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

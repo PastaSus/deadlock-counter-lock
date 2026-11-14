@@ -1,0 +1,17 @@
+{
+  "slug": "paradox-swap-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Paradoxical Swap drags Seven out of Storm Cloud",
+  "sourceRef": "paradox-paradoxical-swap",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["interrupt"],
+  "conditions": "Swap cancels the channel only if it lands before Seven reaches maximum storm radius. The swap carries the storm's current damage zone with Seven.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Swap no longer cancels Storm Cloud after the radius cap is reached.",
+      "effectChange": "interrupt window narrowed"
+    }
+  ]
+}

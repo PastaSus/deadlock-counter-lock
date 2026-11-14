@@ -1,0 +1,10 @@
+{
+  "slug": "vindicta",
+  "name": "Vindicta",
+  "abilities": [
+    { "slug": "vindicta-stake", "name": "Stake" },
+    { "slug": "vindicta-flight", "name": "Flight" },
+    { "slug": "vindicta-crow-familiar", "name": "Crow Familiar" },
+    { "slug": "vindicta-assassinate", "name": "Assassinate" }
+  ]
+}

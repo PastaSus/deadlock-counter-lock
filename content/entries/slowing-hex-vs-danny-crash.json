@@ -1,0 +1,22 @@
+{
+  "slug": "slowing-hex-vs-danny-crash",
+  "kind": "interaction",
+  "title": "Early Slowing Hex grounds Deadman Danny mid-crash",
+  "sourceRef": "slowing-hex",
+  "targetRef": "danny-crash",
+  "effects": ["ground"],
+  "conditions": "Hex must hit before Danny reaches the top of Crash. If the crash has already started its descent, the explosion still resolves.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Slowing Hex ground duration reduced to 2 seconds.",
+      "effectChange": "ground duration reduced"
+    },
+    {
+      "patch": "1.0",
+      "note": "Crash can no longer be recast while grounded.",
+      "effectChange": "ground lockout added"
+    }
+  ]
+}

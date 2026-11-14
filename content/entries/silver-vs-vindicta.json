@@ -1,0 +1,11 @@
+{
+  "slug": "silver-vs-vindicta",
+  "kind": "matchup",
+  "title": "Silver into Vindicta: force the fight under the roof",
+  "sourceRef": "silver",
+  "targetRef": "vindicta",
+  "effects": [],
+  "conditions": "Vindicta wins the open lane. Play around cover, trade with Quickdraw only after Stake is baited, and take the all-in when Flight is down.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

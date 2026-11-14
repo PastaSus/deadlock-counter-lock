@@ -1,0 +1,11 @@
+{
+  "slug": "paradox-pulse-grenade-vs-abrams-siphon-life",
+  "kind": "interaction",
+  "title": "Pulse Grenade cuts Abrams's Siphon Life healing",
+  "sourceRef": "paradox-pulse-grenade",
+  "targetRef": "abrams-siphon-life",
+  "effects": ["block"],
+  "conditions": "The grenade must detonate while Siphon Life is active. The healing reduction applies to the remaining duration, not to healing already resolved.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

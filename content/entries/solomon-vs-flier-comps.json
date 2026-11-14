@@ -1,0 +1,11 @@
+{
+  "slug": "solomon-vs-flier-comps",
+  "kind": "archetype-warning",
+  "title": "Avoid flier comps as Solomon",
+  "sourceRef": "solomon",
+  "targetRef": "flier-comps",
+  "effects": [],
+  "conditions": "Solomon's cage and ground effects do little to flying targets. Pick Solomon only when the enemy comp is forced to fight on the ground.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

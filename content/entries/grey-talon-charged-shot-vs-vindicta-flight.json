@@ -1,0 +1,11 @@
+{
+  "slug": "grey-talon-charged-shot-vs-vindicta-flight",
+  "kind": "interaction",
+  "title": "Charged Shot punishes Vindicta's Flight",
+  "sourceRef": "grey-talon-charged-shot",
+  "targetRef": "vindicta-flight",
+  "effects": ["extend"],
+  "conditions": "Fully charge the shot while Vindicta is airborne. The slow extends her landing window and leaves her exposed.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

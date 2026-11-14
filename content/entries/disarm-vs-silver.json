@@ -1,0 +1,11 @@
+{
+  "slug": "disarm-vs-silver",
+  "kind": "interaction",
+  "title": "Disarm shuts down Silver's gun pressure",
+  "sourceRef": "disarm",
+  "targetRef": "silver",
+  "effects": ["block"],
+  "conditions": "Apply Disarm before Silver activates Showdown. Disarm blocks the initial shots but does not stop Showdown's damage if it is already firing.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

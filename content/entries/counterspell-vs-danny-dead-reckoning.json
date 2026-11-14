@@ -1,0 +1,11 @@
+{
+  "slug": "counterspell-vs-danny-dead-reckoning",
+  "kind": "interaction",
+  "title": "Counterspell blocks Danny's Dead Reckoning",
+  "sourceRef": "counterspell",
+  "targetRef": "danny-dead-reckoning",
+  "effects": ["block"],
+  "conditions": "Counterspell must be active when Dead Reckoning is cast. The block consumes the counterspell even if Danny cancels the cast early.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

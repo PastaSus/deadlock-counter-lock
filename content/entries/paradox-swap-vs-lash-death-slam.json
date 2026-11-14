@@ -1,0 +1,11 @@
+{
+  "slug": "paradox-swap-vs-lash-death-slam",
+  "kind": "interaction",
+  "title": "Paradoxical Swap cancels Lash's Death Slam",
+  "sourceRef": "paradox-paradoxical-swap",
+  "targetRef": "lash-death-slam",
+  "effects": ["interrupt"],
+  "conditions": "Swap must connect after Lash commits to the slam but before the damage lands. Swapping a Lash who has already slammed moves the damage to the new location.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

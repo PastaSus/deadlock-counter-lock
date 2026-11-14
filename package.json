@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "tsx scripts/validate-content.ts",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:content": "tsx scripts/test-content.ts"
   },
   "dependencies": {
     "@types/node": "^26.6.6",
@@ -16,12 +18,14 @@
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.3",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
-    "tailwindcss": "4.3.3"
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15"
   }
 }
