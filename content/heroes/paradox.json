@@ -1,0 +1,10 @@
+{
+  "slug": "paradox",
+  "name": "Paradox",
+  "abilities": [
+    { "slug": "paradox-pulse-grenade", "name": "Pulse Grenade" },
+    { "slug": "paradox-time-wall", "name": "Time Wall" },
+    { "slug": "paradox-kinetic-carbine", "name": "Kinetic Carbine" },
+    { "slug": "paradox-paradoxical-swap", "name": "Paradoxical Swap" }
+  ]
+}

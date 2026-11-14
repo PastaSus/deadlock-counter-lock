@@ -1,0 +1,11 @@
+{
+  "slug": "paradox-time-wall-vs-vindicta-assassinate",
+  "kind": "interaction",
+  "title": "Time Wall blocks Vindicta's Assassinate",
+  "sourceRef": "paradox-time-wall",
+  "targetRef": "vindicta-assassinate",
+  "effects": ["block"],
+  "conditions": "The wall must cross the line between Vindicta and the target. Assassinate is stopped only if the shot passes through the wall's plane.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

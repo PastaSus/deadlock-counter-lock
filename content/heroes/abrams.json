@@ -1,0 +1,10 @@
+{
+  "slug": "abrams",
+  "name": "Abrams",
+  "abilities": [
+    { "slug": "abrams-siphon-life", "name": "Siphon Life" },
+    { "slug": "abrams-shoulder-charge", "name": "Shoulder Charge" },
+    { "slug": "abrams-infernal-resilience", "name": "Infernal Resilience" },
+    { "slug": "abrams-seismic-impact", "name": "Seismic Impact" }
+  ]
+}

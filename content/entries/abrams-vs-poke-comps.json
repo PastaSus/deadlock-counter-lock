@@ -1,0 +1,11 @@
+{
+  "slug": "abrams-vs-poke-comps",
+  "kind": "archetype-warning",
+  "title": "Abrams wants to avoid poke comps",
+  "sourceRef": "abrams",
+  "targetRef": "poke-comps",
+  "effects": [],
+  "conditions": "Poke comps chip Abrams before Shoulder Charge connects. Take short trades behind cover and only commit when Siphon Life is ready.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

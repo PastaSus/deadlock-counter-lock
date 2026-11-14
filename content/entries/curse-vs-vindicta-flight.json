@@ -1,0 +1,17 @@
+{
+  "slug": "curse-vs-vindicta-flight",
+  "kind": "interaction",
+  "title": "Curse grounds Vindicta out of Flight",
+  "sourceRef": "curse",
+  "targetRef": "vindicta-flight",
+  "effects": ["silence"],
+  "conditions": "Curse must land while Vindicta is airborne. Silence ends Flight's steering but the glide continues until she lands.",
+  "verifiedPatch": "0.9",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Flight now glides when silenced instead of dropping instantly.",
+      "effectChange": "silence changed to glide"
+    }
+  ]
+}

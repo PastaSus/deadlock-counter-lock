@@ -1,0 +1,10 @@
+{
+  "slug": "doorman",
+  "name": "Doorman",
+  "abilities": [
+    { "slug": "doorman-doorway", "name": "Doorway" },
+    { "slug": "doorman-luggage-cart", "name": "Luggage Cart" },
+    { "slug": "doorman-guest-list", "name": "Guest List" },
+    { "slug": "doorman-check-out", "name": "Check Out" }
+  ]
+}

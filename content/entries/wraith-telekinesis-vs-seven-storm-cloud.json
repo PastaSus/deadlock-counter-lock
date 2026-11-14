@@ -1,0 +1,17 @@
+{
+  "slug": "wraith-telekinesis-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Telekinesis interrupts Seven's Storm Cloud",
+  "sourceRef": "wraith-telekinesis",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["interrupt"],
+  "conditions": "Telekinesis must land during the channel's wind-up. Once the storm has fully formed, the lift only repositions Seven.",
+  "verifiedPatch": "0.9",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Storm Cloud wind-up shortened, tightening the interrupt window.",
+      "effectChange": "interrupt window tightened"
+    }
+  ]
+}

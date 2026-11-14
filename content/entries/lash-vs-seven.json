@@ -1,0 +1,17 @@
+{
+  "slug": "lash-vs-seven",
+  "kind": "matchup",
+  "title": "Lash into Seven: respect the storm timing",
+  "sourceRef": "lash",
+  "targetRef": "seven",
+  "effects": [],
+  "conditions": "Seven's Storm Cloud punishes Lash's predictable Death Slam path. Bait the storm, then re-engage with Grapple once the channel ends.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Storm Cloud cooldown increased by 10 seconds.",
+      "effectChange": "punish window widened"
+    }
+  ]
+}

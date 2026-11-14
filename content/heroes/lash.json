@@ -1,0 +1,10 @@
+{
+  "slug": "lash",
+  "name": "Lash",
+  "abilities": [
+    { "slug": "lash-ground-strike", "name": "Ground Strike" },
+    { "slug": "lash-flog", "name": "Flog" },
+    { "slug": "lash-grapple", "name": "Grapple" },
+    { "slug": "lash-death-slam", "name": "Death Slam" }
+  ]
+}

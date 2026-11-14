@@ -1,0 +1,11 @@
+{
+  "slug": "knockdown-vs-danny-crash",
+  "kind": "interaction",
+  "title": "Knockdown grounds Danny before Crash connects",
+  "sourceRef": "knockdown",
+  "targetRef": "danny-crash",
+  "effects": ["ground"],
+  "conditions": "Cast Knockdown during Crash's ascent. Grounding Danny cancels the explosion only if he has not started the descent.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

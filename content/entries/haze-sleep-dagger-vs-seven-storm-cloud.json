@@ -1,0 +1,11 @@
+{
+  "slug": "haze-sleep-dagger-vs-seven-storm-cloud",
+  "kind": "interaction",
+  "title": "Sleep Dagger interrupts Seven's Storm Cloud",
+  "sourceRef": "haze-sleep-dagger",
+  "targetRef": "seven-storm-cloud",
+  "effects": ["interrupt"],
+  "conditions": "Land the dagger during the Storm Cloud channel, before Seven gains the channel shield. Damage over time continues for one tick after the sleep lands.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "lash-ground-strike-vs-vindicta-flight",
+  "kind": "interaction",
+  "title": "Ground Strike knocks Vindicta out of Flight",
+  "sourceRef": "lash-ground-strike",
+  "targetRef": "vindicta-flight",
+  "effects": ["ground"],
+  "conditions": "The strike must hit Vindicta while she is airborne. If Flight is already ending, the ground state applies after landing.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "silence-glyph-vs-paradox-paradoxical-swap",
+  "kind": "interaction",
+  "title": "Silence Glyph locks out Paradoxical Swap",
+  "sourceRef": "silence-glyph",
+  "targetRef": "paradox-paradoxical-swap",
+  "effects": ["silence"],
+  "conditions": "The glyph must trigger while Paradox is in swap range. A swap already in flight still resolves.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

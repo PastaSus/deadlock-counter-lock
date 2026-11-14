@@ -1,0 +1,11 @@
+{
+  "slug": "debuff-remover-vs-slowing-hex",
+  "kind": "interaction",
+  "title": "Debuff Remover clears Slowing Hex",
+  "sourceRef": "debuff-remover",
+  "targetRef": "slowing-hex",
+  "effects": ["block"],
+  "conditions": "Use Debuff Remover after the hex lands. The ground effect is removed, but the item's cooldown is not refunded.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

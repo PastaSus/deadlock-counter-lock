@@ -1,0 +1,17 @@
+{
+  "slug": "haze-sleep-dagger-vs-lash-death-slam",
+  "kind": "interaction",
+  "title": "Sleep Dagger interrupts Lash's Death Slam",
+  "sourceRef": "haze-sleep-dagger",
+  "targetRef": "lash-death-slam",
+  "effects": ["interrupt"],
+  "conditions": "The dagger must land while Lash is airborne or charging Death Slam. A grounded Lash can still be slept, but the slam wind-up is not cancelled.",
+  "verifiedPatch": "1.0",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Sleep Dagger now cancels Death Slam during the grab window.",
+      "effectChange": "interrupt window extended"
+    }
+  ]
+}

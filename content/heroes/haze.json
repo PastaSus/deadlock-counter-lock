@@ -1,0 +1,10 @@
+{
+  "slug": "haze",
+  "name": "Haze",
+  "abilities": [
+    { "slug": "haze-sleep-dagger", "name": "Sleep Dagger" },
+    { "slug": "haze-smoke-bomb", "name": "Smoke Bomb" },
+    { "slug": "haze-fixation", "name": "Fixation" },
+    { "slug": "haze-bullet-dance", "name": "Bullet Dance" }
+  ]
+}

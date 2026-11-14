@@ -1,0 +1,10 @@
+{
+  "slug": "wraith",
+  "name": "Wraith",
+  "abilities": [
+    { "slug": "wraith-card-trick", "name": "Card Trick" },
+    { "slug": "wraith-project-mind", "name": "Project Mind" },
+    { "slug": "wraith-full-auto", "name": "Full Auto" },
+    { "slug": "wraith-telekinesis", "name": "Telekinesis" }
+  ]
+}

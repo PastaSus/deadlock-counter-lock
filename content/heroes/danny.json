@@ -1,0 +1,9 @@
+{
+  "slug": "danny",
+  "name": "Deadman Danny",
+  "abilities": [
+    { "slug": "danny-crash", "name": "Crash" },
+    { "slug": "danny-grave-shift", "name": "Grave Shift" },
+    { "slug": "danny-dead-reckoning", "name": "Dead Reckoning" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "haze-vs-dive-comps",
+  "kind": "archetype-warning",
+  "title": "Haze struggles into dive comps",
+  "sourceRef": "haze",
+  "targetRef": "dive-comps",
+  "effects": [],
+  "conditions": "Dive comps collapse on Haze before Fixation ramps. Keep Smoke Bomb for the first engage and avoid opening with Sleep Dagger.",
+  "verifiedPatch": "0.9",
+  "patchHistory": [
+    {
+      "patch": "0.9",
+      "note": "Smoke Bomb duration reduced by 0.5 seconds.",
+      "effectChange": "disengage window narrowed"
+    }
+  ]
+}

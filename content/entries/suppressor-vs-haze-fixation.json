@@ -1,0 +1,11 @@
+{
+  "slug": "suppressor-vs-haze-fixation",
+  "kind": "interaction",
+  "title": "Suppressor blunts Haze's Fixation stacks",
+  "sourceRef": "suppressor",
+  "targetRef": "haze-fixation",
+  "effects": ["block"],
+  "conditions": "Suppressor must be applied before Fixation reaches max stacks. The fire-rate slow does not remove stacks already applied.",
+  "verifiedPatch": "1.0",
+  "patchHistory": []
+}

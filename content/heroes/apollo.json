@@ -1,0 +1,10 @@
+{
+  "slug": "apollo",
+  "name": "Apollo",
+  "abilities": [
+    { "slug": "apollo-riposte", "name": "Riposte" },
+    { "slug": "apollo-sun-charge", "name": "Sun Charge" },
+    { "slug": "apollo-chariot", "name": "Chariot" },
+    { "slug": "apollo-divine-intervention", "name": "Divine Intervention" }
+  ]
+}

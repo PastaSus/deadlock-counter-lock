@@ -1,0 +1,9 @@
+{
+  "slug": "silver",
+  "name": "Silver",
+  "abilities": [
+    { "slug": "silver-quickdraw", "name": "Quickdraw" },
+    { "slug": "silver-ricochet", "name": "Ricochet" },
+    { "slug": "silver-showdown", "name": "Showdown" }
+  ]
+}
