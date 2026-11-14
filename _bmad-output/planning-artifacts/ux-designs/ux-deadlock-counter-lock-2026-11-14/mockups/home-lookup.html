@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counterlock — Home / Lookup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #101112;
+    --surface: #181A19;
+    --surface-raised: #212423;
+    --surface-sunken: #0B0C0B;
+    --border: #2E322F;
+    --border-strong: #444A45;
+    --border-input: #6A716B;
+    --text: #F0EADB;
+    --text-secondary: #B5B1A3;
+    --text-muted: #8E8B7F;
+    --accent: #57C7AE;
+    --accent-foreground: #06130F;
+    --accent-dim: #0F2E28;
+    --status-verified: #4ADE80;
+    --status-verified-surface: #0E2A1C;
+    --status-flagged: #FBBF24;
+    --status-flagged-surface: #2B2109;
+    --status-deprecated: #E38B8B;
+    --status-deprecated-surface: #2A1518;
+
+    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-full: 9999px;
+
+    --max-content: 1120px;
+    --gutter-desktop: 24px;
+    --section-gap: 40px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------- Navigation ---------- */
+  .nav {
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 var(--gutter-desktop);
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .nav-links {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    flex: 1;
+  }
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    min-height: 56px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .patch-stamp {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+  }
+  .icon-btn:hover { background: var(--surface-raised); color: var(--text); }
+
+  /* ---------- Layout ---------- */
+  .wrap {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 48px var(--gutter-desktop) 64px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-secondary);
+  }
+
+  .headline {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  /* ---------- Above the fold: co-equal intro + roster ---------- */
+  .fold {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .display {
+    margin: 0 0 16px;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .lede {
+    margin: 0 0 24px;
+    color: var(--text-secondary);
+    max-width: 46ch;
+  }
+
+  /* Search field */
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-md);
+    padding: 0 14px;
+    min-height: 52px;
+  }
+  .search:focus-within { border-color: var(--accent); }
+  .search svg { flex: none; color: var(--text-secondary); }
+  .search input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 14px 0;
+  }
+  .search input::placeholder { color: var(--text-muted); }
+  .search-hint {
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
+  /* Roster */
+  .roster-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .roster-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+  .roster {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .tile {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    min-height: 44px;
+  }
+  .tile:hover { background: var(--surface-raised); border-color: var(--border-strong); }
+  .tile.selected {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+  }
+  .tile.selected:hover { background: var(--accent-dim); }
+  .tile-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .tile-meta {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Featured interactions ---------- */
+  .cards {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+  .entry:hover { border-color: var(--border-strong); }
+  .chip {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 3px 8px;
+  }
+  .route {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .route .arrow { color: var(--text-muted); font-weight: 400; padding: 0 4px; }
+  .cond {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .cond-note {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+  }
+  .card-footer {
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  /* ---------- Badges ---------- */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 24px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .badge .glyph { font-size: 11px; line-height: 1; }
+  .badge-verified {
+    background: var(--status-verified-surface);
+    color: var(--status-verified);
+  }
+  .badge-stale {
+    background: var(--status-verified-surface);
+    color: var(--status-verified);
+    border: 1px dashed var(--status-verified);
+  }
+  .badge-flagged {
+    background: var(--status-flagged-surface);
+    color: var(--status-flagged);
+  }
+  .badge-deprecated {
+    background: var(--status-deprecated-surface);
+    color: var(--status-deprecated);
+  }
+
+  /* ---------- Archetype warning ---------- */
+  .archetype {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 720px;
+  }
+  .archetype:hover { border-color: var(--border-strong); }
+  .archetype .headline { font-size: 24px; }
+  .archetype .cond { color: var(--text-secondary); }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--background);
+  }
+  .footer-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 24px var(--gutter-desktop) 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-note {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    max-width: 72ch;
+  }
+  .footer-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .footer-links a {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-secondary);
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ---------- Responsive (mock only) ---------- */
+  @media (max-width: 1023px) {
+    .fold { grid-template-columns: minmax(0, 1fr); }
+    .cards { grid-template-columns: minmax(0, 1fr); }
+    .roster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .display { font-size: 32px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="/">Counterlock</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/heroes" class="active" aria-current="page">Heroes</a>
+      <a href="/interactions">Interactions</a>
+      <a href="/matchups">Matchups</a>
+    </nav>
+    <div class="nav-right">
+      <span class="patch-stamp">PATCH 7.2</span>
+      <button class="icon-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Above the fold: headline + search AND hero roster, co-equal -->
+  <section class="fold" aria-label="Lookup">
+    <div class="fold-intro">
+      <h1 class="display">Is that counter still true this patch?</h1>
+      <p class="lede">Curated interactions and matchup guidance, each stamped with the patch it was verified against. Search a hero, an ability, or an item — or pick from the roster.</p>
+
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <label class="sr-only" for="q">Search interactions, heroes, and items</label>
+        <input id="q" type="search" placeholder="Search Knockdown, flyers, items…" autocomplete="off">
+      </div>
+      <p class="search-hint">Matches heroes, abilities, items, and effect terms across interactions and matchup guidance.</p>
+    </div>
+
+    <div class="fold-roster">
+      <div class="roster-head">
+        <span class="section-label">Browse by hero</span>
+        <span class="roster-count">10 / 27 TRACKED</span>
+      </div>
+      <ul class="roster">
+        <li><a class="tile selected" href="/heroes/solomon" aria-current="page"><span class="tile-name">Solomon</span><span class="tile-meta">14 entries</span></a></li>
+        <li><a class="tile" href="/heroes/haze"><span class="tile-name">Haze</span><span class="tile-meta">22 entries</span></a></li>
+        <li><a class="tile" href="/heroes/lash"><span class="tile-name">Lash</span><span class="tile-meta">17 entries</span></a></li>
+        <li><a class="tile" href="/heroes/seven"><span class="tile-name">Seven</span><span class="tile-meta">19 entries</span></a></li>
+        <li><a class="tile" href="/heroes/paradox"><span class="tile-name">Paradox</span><span class="tile-meta">11 entries</span></a></li>
+        <li><a class="tile" href="/heroes/doorman"><span class="tile-name">Doorman</span><span class="tile-meta">No entries yet</span></a></li>
+        <li><a class="tile" href="/heroes/abrams"><span class="tile-name">Abrams</span><span class="tile-meta">15 entries</span></a></li>
+        <li><a class="tile" href="/heroes/vindicta"><span class="tile-name">Vindicta</span><span class="tile-meta">13 entries</span></a></li>
+        <li><a class="tile" href="/heroes/grey-talon"><span class="tile-name">Grey Talon</span><span class="tile-meta">9 entries</span></a></li>
+        <li><a class="tile" href="/heroes/wraith"><span class="tile-name">Wraith</span><span class="tile-meta">16 entries</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Featured interactions -->
+  <section aria-labelledby="featured-heading">
+    <h2 class="headline" id="featured-heading">Featured interactions</h2>
+    <div class="cards">
+
+      <article class="entry">
+        <span class="chip">INTERRUPT</span>
+        <p class="route">Solomon <span class="arrow" aria-hidden="true">→</span> Haze</p>
+        <p class="cond">Runic Pulse cancels Bullet Dance if it lands within the first 0.4s of the channel.</p>
+        <div class="card-footer">
+          <span class="badge badge-verified"><span class="glyph" aria-hidden="true">✓</span> VERIFIED · 7.2</span>
+        </div>
+      </article>
+
+      <article class="entry">
+        <span class="chip">GROUND</span>
+        <p class="route">Lash <span class="arrow" aria-hidden="true">→</span> Vindicta</p>
+        <p class="cond">Grapple yanks Vindicta out of flight and grounds her for 1.5s.</p>
+        <div class="card-footer">
+          <span class="badge badge-stale"><span class="glyph" aria-hidden="true">✓</span> VERIFIED · 7.1 · STALE</span>
+        </div>
+      </article>
+
+      <article class="entry">
+        <span class="chip">SILENCE</span>
+        <p class="route">Paradox <span class="arrow" aria-hidden="true">→</span> Seven</p>
+        <p class="cond">Time Wall silences Seven for 2s, enough to shut out Static Storm.</p>
+        <p class="cond-note">Community-flagged outdated — in review.</p>
+        <div class="card-footer">
+          <span class="badge badge-flagged"><span class="glyph" aria-hidden="true">!</span> FLAGGED OUTDATED · 7.2</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Archetype warning -->
+  <section aria-labelledby="archetype-heading">
+    <h2 class="headline" id="archetype-heading">Matchup guidance</h2>
+    <div style="height:16px"></div>
+    <article class="archetype">
+      <p class="headline">Don't pick Solomon into flier comps</p>
+      <p class="cond">Vindicta and Grey Talon stay outside Runic Pulse range — Solomon burns cooldowns with no reliable interrupt and loses the lane by minute eight.</p>
+      <div class="card-footer">
+        <span class="badge badge-verified"><span class="glyph" aria-hidden="true">✓</span> VERIFIED · 7.2</span>
+      </div>
+    </article>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="patch-stamp">PATCH 7.2</span>
+    <p class="footer-note">Counterlock's corpus is verified against patch 7.2. A badge reading · STALE means the record was last checked on an earlier patch — re-read the conditions before you lock in. Flagged entries are community-reported and in review.</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/archetypes">Archetypes</a>
+      <a href="/heroes">Heroes</a>
+      <a href="/interactions">Interactions</a>
+      <a href="/matchups">Matchups</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
