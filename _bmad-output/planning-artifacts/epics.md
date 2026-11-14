@@ -18,29 +18,29 @@ This document provides the complete epic and story breakdown for Counterlock, de
 
 ### Functional Requirements
 
-- FR1: Hero-first browse — visitor selects a hero and browses Interaction Records involving that hero, filterable by counterpart (PRD FR-1).
-- FR2: Free-text search — keyword search across heroes, abilities, items, and effect terms returning matching records (PRD FR-2).
-- FR3: Interaction Record detail — full record: source, target, effect, conditions, Patch Verification Badge, Patch History, flag state (PRD FR-3).
-- FR4: Patch-aware freshness signals — every Entry shows badge and current verification state (current / flagged outdated / deprecated); old-patch vs current-patch visually distinguishable (PRD FR-4).
-- FR5: Archetype warnings — browse Archetype Warnings by hero and by archetype, with full trust signals (PRD FR-5).
-- FR6: Lane matchup guidance — lane matchup guidance for selected hero vs counterparts, reachable within two navigations (PRD FR-6).
-- FR7: Complete hero roster — all current heroes browsable; zero-entry heroes render "no entries yet" state, not 404 (PRD FR-7).
-- FR8: Patch Verification Badge — badge states "verified as of patch X.Y"; site tracks current Patch value (PRD FR-8).
-- FR9: Community flags (accountless) — submit "verified"/"outdated" + optional note without auth; enters Flag Backlog; sets visible flagged indicator; rate-limited/deduped (PRD FR-9).
-- FR10: Patch History / Deprecated Tech — per-entry history ordered by Patch; deprecated entries stay published and labeled, never deleted (PRD FR-10).
-- FR11: Curated content authoring — editor adds/edits entries via structured repo files; content-only change needs no DB migration; malformed entries fail build (PRD FR-11).
-- FR12: Verification Sweep support — editor reviews Flag Backlog and re-verifies entries per Patch; no flag older than one Patch Cycle unreviewed; backlog exposes flag age (PRD FR-12).
+- FR1: Hero-first browse. Visitor selects a hero and browses Interaction Records involving that hero, filterable by counterpart (PRD FR-1).
+- FR2: Free-text search. Keyword search across heroes, abilities, items, and effect terms returning matching records (PRD FR-2).
+- FR3: Interaction Record detail. Full record: source, target, effect, conditions, Patch Verification Badge, Patch History, flag state (PRD FR-3).
+- FR4: Patch-aware freshness signals. Every Entry shows badge and current verification state (current / flagged outdated / deprecated); old-patch vs current-patch visually distinguishable (PRD FR-4).
+- FR5: Archetype warnings. Browse Archetype Warnings by hero and by archetype, with full trust signals (PRD FR-5).
+- FR6: Lane matchup guidance. Lane matchup guidance for selected hero vs counterparts, reachable within two navigations (PRD FR-6).
+- FR7: Complete hero roster. All current heroes browsable; zero-entry heroes render "no entries yet" state, not 404 (PRD FR-7).
+- FR8: Patch Verification Badge. Badge states "verified as of patch X.Y"; site tracks current Patch value (PRD FR-8).
+- FR9: Community flags (accountless). Submit "verified" / "outdated" + optional note without auth; enters Flag Backlog; sets visible flagged indicator; rate-limited/deduped (PRD FR-9).
+- FR10: Patch History / Deprecated Tech. Per-entry history ordered by Patch; deprecated entries stay published and labeled, never deleted (PRD FR-10).
+- FR11: Curated content authoring. Editor adds/edits entries via structured repo files; content-only change needs no DB migration; malformed entries fail build (PRD FR-11).
+- FR12: Verification Sweep support. Editor reviews Flag Backlog and re-verifies entries per Patch; no flag older than one Patch Cycle unreviewed; backlog exposes flag age (PRD FR-12).
 
 ### NonFunctional Requirements
 
 - NFR1: SEO-first static/SSR routes for heroes and matchups; canonical shareable URLs per entry (PRD §6.1).
-- NFR2: Fast pre-game lookup — returning user reaches a specific interaction's effect + badge within ~10s; warm hero-browse data available promptly (PRD SM-3, FR-1).
+- NFR2: Fast pre-game lookup. Returning user reaches a specific interaction's effect + badge within ~10s; warm hero-browse data available promptly (PRD SM-3, FR-1).
 - NFR3: WCAG 2.1 AA across all pages/components; status never color-only (PRD §6.1, AD-11).
 - NFR4: Strict kebab-case file/folder naming (PRD §6.1, AD-10).
-- NFR5: Stack lock — Next.js 16 (TypeScript), Tailwind CSS 4, App Router; scaffold builds green (PRD §6.1, AD stack).
+- NFR5: Stack lock. Next.js 16 (TypeScript), Tailwind CSS 4, App Router; scaffold builds green (PRD §6.1, AD stack).
 - NFR6: No accounts/auth/profiles anywhere in visitor experience (PRD §5).
 - NFR7: Content-only changes ship via build/deploy pipeline with no migration; build-time schema validation fails fast on malformed content (PRD FR-11, AD-2).
-- NFR8: Flag endpoint security — server-side rate limiting and dedupe; errors never report success; backlog requires secret (AD-3, AD-9).
+- NFR8: Flag endpoint security. Server-side rate limiting and dedupe; errors never report success; backlog requires secret (AD-3, AD-9).
 
 ### Additional Requirements
 
@@ -53,27 +53,27 @@ This document provides the complete epic and story breakdown for Counterlock, de
 - Search index generated at build from the same loaders as pages; includes deprecated entries (AD-14).
 - Closed client-island list: search input/results, flag form, mobile menu, badge-flag overlay fetcher, copy-link (AD-6).
 - Design tokens shipped as CSS custom properties + Tailwind 4 `@theme` in `app/globals.css`; fonts via `next/font`; no component library; dark-only (AD-15).
-- Flag KV provider: Upstash Redis preferred (Vercel KV sunset — excluded); env vars for KV connection + `EDITOR_SECRET` (spine Deferred/Stack).
+- Flag KV provider: Upstash Redis preferred (Vercel KV sunset, excluded); env vars for KV connection + `EDITOR_SECRET` (spine Deferred/Stack).
 - Slug IDs mirrored in routes; no numeric IDs (AD-8).
 
 ### UX Design Requirements
 
 - UX-DR1: Implement DESIGN.md frontmatter tokens (colors, typography, rounded, spacing) as CSS custom properties mapped into Tailwind 4 `@theme`; dark-only palette exactly as specced (AD-15).
 - UX-DR2: Load fonts via `next/font`: Inter (UI/body), Space Grotesk (display/headline), JetBrains Mono (patches/badges/chips) with the specced roles.
-- UX-DR3: Entry card component — anatomy: mono effect chip → source → target → one-line condition preview (sentence-boundary truncation) → footer with badge + flag control; whole card links to detail; hover `border`→`border-strong`; deprecated variant never hidden.
-- UX-DR4: Badge component with four states (`badge-verified`, `badge-stale` dashed + `· STALE`, `badge-flagged`, `badge-deprecated`) — icon + word + color always; mono patch stamp; 44px hit area for linked badges.
-- UX-DR5: Search field — `surface` fill, `border-input` 3:1, accent focus border, `text-muted` placeholder, `aria-live` result count, results in `surface-sunken` well; `?q=` serialization on home.
-- UX-DR6: Hero roster tile — equal tiles, hover `surface-raised`, selected `accent-dim` + accent border; zero-entry tiles show "no entries yet" in `text-muted`, full opacity.
-- UX-DR7: Flag control — "Still correct" / "Outdated" ghost pair (44px min-height, `border-input`), optional one-line note on activate, in-place confirmation swap, dedupe notice "Already counted — thanks.", rate-limit notice "Slow down — you've already flagged this recently."; accepted outdated flips to flagged state via overlay.
-- UX-DR8: Copy-link control on detail pages — copies canonical URL, swaps label to patch-stamped citation line; `aria-live` announcement; 44px min-height.
-- UX-DR9: Patch History block — `surface-sunken` inset well, rows in mono ordered ascending by patch, explicit "No recorded changes" empty state.
-- UX-DR10: Navigation — flat top bar (wordmark, Heroes/Interactions/Matchups, search, current-patch mono stamp); active link accent underline; mobile search + menu glyphs with sheet; icon-only controls carry `aria-label`.
+- UX-DR3: Entry card component. Anatomy: mono effect chip → source → target → one-line condition preview (sentence-boundary truncation) → footer with badge + flag control; whole card links to detail; hover `border`→`border-strong`; deprecated variant never hidden.
+- UX-DR4: Badge component with four states (`badge-verified`, `badge-stale` dashed + `· STALE`, `badge-flagged`, `badge-deprecated`), icon + word + color always; mono patch stamp; 44px hit area for linked badges.
+- UX-DR5: Search field. `surface` fill, `border-input` 3:1, accent focus border, `text-muted` placeholder, `aria-live` result count, results in `surface-sunken` well; `?q=` serialization on home.
+- UX-DR6: Hero roster tile. Equal tiles, hover `surface-raised`, selected `accent-dim` + accent border; zero-entry tiles show "no entries yet" in `text-muted`, full opacity.
+- UX-DR7: Flag control. "Still correct" / "Outdated" ghost pair (44px min-height, `border-input`), optional one-line note on activate, in-place confirmation swap, dedupe notice "Already counted, thanks.", rate-limit notice "Slow down, you've already flagged this recently."; accepted outdated flips to flagged state via overlay.
+- UX-DR8: Copy-link control on detail pages. Copies canonical URL, swaps label to patch-stamped citation line; `aria-live` announcement; 44px min-height.
+- UX-DR9: Patch History block. `surface-sunken` inset well, rows in mono ordered ascending by patch, explicit "No recorded changes" empty state.
+- UX-DR10: Navigation. Flat top bar (wordmark, Heroes/Interactions/Matchups, search, current-patch mono stamp); active link accent underline; mobile search + menu glyphs with sheet; icon-only controls carry `aria-label`.
 - UX-DR11: Skeleton loading states for roster, hero page, search, and entry detail (badge → conditions → history blocks); no spinner-only screens; skeleton shimmer respects `prefers-reduced-motion`.
-- UX-DR12: Empty states per Voice and Tone table — "No entries yet for {hero}." / "No matches for '{q}'." with hint; never 404 or "coming soon" for tracked-but-empty heroes.
-- UX-DR13: Accessibility floor — focus order per surface, accent focus ring, badge phrases announced complete with glyphs `aria-hidden`, `aria-live` for flag confirmations/result counts, ≥44×44 touch targets, reduced-motion support, grayscale-distinguishable badge states.
-- UX-DR14: Responsive breakpoints — <640px single column (roster 2-col, stacked detail), 640–1023px (roster 3-col), ≥1024px (`max-content` 1120px, roster 4–6 col); mobile is first-class lookup surface.
-- UX-DR15: Microcopy voice per EXPERIENCE Voice and Tone table — trusted-scout tone; exact badge/flag/empty/error strings as specified (provisional wording, binding tone).
-- UX-DR16: Home layout — headline + full-width search and hero roster co-equal above the fold; featured entries + archetype warning card below.
+- UX-DR12: Empty states per Voice and Tone table. "No entries yet for {hero}." / "No matches for '{q}'." with hint; never 404 or "coming soon" for tracked-but-empty heroes.
+- UX-DR13: Accessibility floor. Focus order per surface, accent focus ring, badge phrases announced complete with glyphs `aria-hidden`, `aria-live` for flag confirmations/result counts, ≥44×44 touch targets, reduced-motion support, grayscale-distinguishable badge states.
+- UX-DR14: Responsive breakpoints. <640px single column (roster 2-col, stacked detail), 640–1023px (roster 3-col), ≥1024px (`max-content` 1120px, roster 4–6 col); mobile is first-class lookup surface.
+- UX-DR15: Microcopy voice per EXPERIENCE Voice and Tone table. Trusted-scout tone; exact badge/flag/empty/error strings as specified (provisional wording, binding tone).
+- UX-DR16: Home layout. Headline + full-width search and hero roster co-equal above the fold; featured entries + archetype warning card below.
 
 ### FR Coverage Map
 
@@ -92,21 +92,21 @@ FR12: Epic 3 - Verification Sweep support
 
 ## Epic List
 
-### Epic 1: Counterplay Lookup — the static site players use
-Players browse the full hero roster, open hero pages, and read interaction/matchup/archetype detail with trust badges and Patch History — the core "is this counterplay still true this patch?" experience. Includes the content pipeline (schema, loaders, build validation, seed content), design tokens/fonts, core components, and free-text search (consolidated: search shares the home surface and loaders with browse).
+### Epic 1: Counterplay Lookup: the static site players use
+Players browse the full hero roster, open hero pages, and read interaction/matchup/archetype detail with trust badges and Patch History, the core "is this counterplay still true this patch?" experience. Includes the content pipeline (schema, loaders, build validation, seed content), design tokens/fonts, core components, and free-text search (consolidated: search shares the home surface and loaders with browse).
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR7, FR8, FR10, FR11
 
-### Epic 2: Community Flagging — visitors police freshness
+### Epic 2: Community Flagging: visitors police freshness
 Accountless "Still correct" / "Outdated" flags, rate-limited/deduped API, public overlay so static badges upgrade to `flagged`, and the secret-guarded backlog. Completes the visitor trust loop on top of Epic 1.
 **FRs covered:** FR9
 
-### Epic 3: Patch Verification Sweep — editor keeps trust honest
+### Epic 3: Patch Verification Sweep: editor keeps trust honest
 Post-patch editorial workflow: review the flag backlog, re-verify entries, refresh badges/deprecations, ship content updates; no flag older than one Patch Cycle unreviewed.
 **FRs covered:** FR12
 
-## Epic 1: Counterplay Lookup — the static site players use
+## Epic 1: Counterplay Lookup: the static site players use
 
-Give players a complete static lookup: curated content rendered into browsable roster, hero, detail, and matchup views with trust badges — plus free-text search — standing alone with zero backend.
+Give players a complete static lookup: curated content rendered into browsable roster, hero, detail, and matchup views with trust badges, plus free-text search, standing alone with zero backend.
 
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR7, FR8, FR10, FR11 · **Relevant NFRs:** NFR1–NFR7 · **Relevant UX-DRs:** UX-DR1–6, UX-DR8–12, UX-DR14–16
 
@@ -121,7 +121,7 @@ So that editorial changes ship through the normal build with malformed content i
 **Given** the repo at build time
 **When** `npm run build` runs
 **Then** every file under `content/` validates against zod v4 schemas (`slug`, `kind`, `title`, `sourceRef`, `targetRef`, `effects[]`, `conditions`, `verifiedPatch`, `patchHistory[]`) and a malformed file fails the build with a clear path-specific error (FR11, AD-2)
-**And** `content/heroes/` contains one file per hero in the roster — including heroes with zero entries — and the roster enumerates this registry, never the entry set (FR7, AD-13)
+**And** `content/heroes/` contains one file per hero in the roster, including heroes with zero entries, and the roster enumerates this registry, never the entry set (FR7, AD-13)
 **And** `sourceRef`/`targetRef` that do not resolve against the hero/ability registry fail the build (AD-2)
 **And** a seed corpus of 25–40 high-value interaction records plus archetype/lane matchup guidance ships, including the brief's example set (Sleep Dagger/Swap vs Lash ult, Slowing Hex vs Danny, Knockdown stun extension, Disarm vs Silver, Suppressor vs fire-rate M1, Riposte vs Seven ult as deprecated, Solomon vs flier comps)
 **And** `content/config/` holds the single `currentPatch` constant consumed by badge derivation (FR8, AD-7)
@@ -136,10 +136,10 @@ So that trust signals are legible and the experience is consistent and accessibl
 
 **Given** the app shell
 **When** any page renders
-**Then** DESIGN.md tokens ship as CSS custom properties mapped into Tailwind 4 `@theme` in `app/globals.css` — exact specced dark palette, no light theme (UX-DR1, AD-15)
+**Then** DESIGN.md tokens ship as CSS custom properties mapped into Tailwind 4 `@theme` in `app/globals.css`, exact specced dark palette, no light theme (UX-DR1, AD-15)
 **And** fonts load via `next/font`: Inter, Space Grotesk, JetBrains Mono in their specced roles (UX-DR2)
 **And** the flat top navigation renders (wordmark, Heroes/Interactions/Matchups links, search affordance, current-patch mono stamp) with accent underline active state, and mobile collapses to search + menu glyphs opening a single-level sheet (UX-DR10)
-**And** the Badge component renders four states — `badge-verified`, `badge-stale` (dashed border + `· STALE` suffix when `verifiedPatch` < `currentPatch`), `badge-flagged`, `badge-deprecated` — always icon + word + color, mono patch stamp, 44px hit area for linked badges (UX-DR4, FR4, FR8)
+**And** the Badge component renders four states, `badge-verified`, `badge-stale` (dashed border + `· STALE` suffix when `verifiedPatch` < `currentPatch`), `badge-flagged`, `badge-deprecated`, always icon + word + color, mono patch stamp, 44px hit area for linked badges (UX-DR4, FR4, FR8)
 **And** the Entry card component renders the specced anatomy (mono effect chip → source → target → sentence-boundary condition preview → footer badge), links whole-card to detail, and shows deprecated entries unhidden (UX-DR3, FR10)
 **And** empty-state and skeleton components exist per EXPERIENCE (roster/hero/search/detail skeletons, "No entries yet" / "No matches" copy, reduced-motion honored) (UX-DR11, UX-DR12)
 **And** a WCAG 2.1 AA pass: focus rings, ≥44×44 targets, `text-muted` contrast ≥4.5:1, no color-only status (NFR3, UX-DR13, AD-11)
@@ -154,15 +154,15 @@ So that I start the lookup hero-first in seconds.
 
 **Given** the site
 **When** a visitor navigates to `/heroes`
-**Then** every hero in `content/heroes/` renders as a tile (2-col mobile, 3-col md, 4–6-col desktop) — zero-entry heroes render full-opacity with "no entries yet," never 404 or dimmed (FR7, UX-DR6, UX-DR14)
+**Then** every hero in `content/heroes/` renders as a tile (2-col mobile, 3-col md, 4–6-col desktop), zero-entry heroes render full-opacity with "no entries yet," never 404 or dimmed (FR7, UX-DR6, UX-DR14)
 **And** tapping a tile navigates to `/heroes/[slug]` where that hero's Interaction Records and Matchup Guidance list with counterpart filtering (FR1, FR6)
-**And** each listed entry shows its card footer badge — freshness visible without clicking (FR4)
+**And** each listed entry shows its card footer badge, freshness visible without clicking (FR4)
 **And** routes render statically via `generateStaticParams` with `cacheComponents` compliance (NFR1, AD-4)
 
 ### Story 1.4: Interaction detail with trust signals
 
 As a player,
-I want the full record — effect, exact conditions, verification badge, and patch history — on one page,
+I want the full record, effect, exact conditions, verification badge, and patch history, on one page,
 So that I can trust the counterplay without checking a second source.
 
 **Acceptance Criteria:**
@@ -170,7 +170,7 @@ So that I can trust the counterplay without checking a second source.
 **Given** an interaction entry
 **When** a visitor opens `/interactions/[slug]`
 **Then** source, target, effect, and full conditions render untruncated at `{typography.body}` (FR3, NFR7 sizing)
-**And** the badge shows its build-derived base state — verified / stale / deprecated — with "verified as of patch X.Y" text pattern (FR4, FR8, AD-7)
+**And** the badge shows its build-derived base state, verified / stale / deprecated, with "verified as of patch X.Y" text pattern (FR4, FR8, AD-7)
 **And** Patch History renders in the inset well ordered ascending by patch with an explicit "No recorded changes" empty state (FR10, UX-DR9)
 **And** a Copy-link control copies the canonical URL and swaps to the patch-stamped citation line with `aria-live` announcement (UX-DR8)
 **And** the page is static, canonical-URLed, shareable, and an entry detail is reachable from home within two navigations (NFR1, AD-4)
@@ -187,7 +187,7 @@ So that I can act on team-comp advice, not just ability pairs.
 **Given** matchup and archetype-warning content
 **When** a visitor browses `/matchups/[slug]` from a hero page, and `/archetypes` from the footer/home
 **Then** each guidance entry shows its badge and supports Patch History like an interaction (FR5, FR6, FR4)
-**And** the archetype index groups warnings by archetype with links to their detail pages — the "by archetype" browse axis (FR5)
+**And** the archetype index groups warnings by archetype with links to their detail pages, the "by archetype" browse axis (FR5)
 **And** every guidance detail is reachable from home within two navigations (FR6)
 **And** all listed routes render statically (AD-4)
 
@@ -202,12 +202,12 @@ So that I can jump straight to "Knockdown" or pick a hero, whichever fits my mom
 **Given** the home page
 **When** a visitor opens `/` or types a query
 **Then** headline + full-width search field and the hero roster both sit above the fold (UX-DR16)
-**And** a JSON search index generated at build from the same loaders as the pages covers heroes, abilities, items, and effect terms — including deprecated entries — and search runs entirely client-side (FR2, AD-5, AD-14)
+**And** a JSON search index generated at build from the same loaders as the pages covers heroes, abilities, items, and effect terms, including deprecated entries, and search runs entirely client-side (FR2, AD-5, AD-14)
 **And** results render in the `surface-sunken` well with `aria-live` count and serialize to `?q=` for shareable reload (UX-DR5)
 **And** selecting a hero or result navigates to the same routes as browse (FR1/FR3 paths converge)
 **And** featured entry cards and an archetype warning card render below the fold (UX-DR16)
 
-## Epic 2: Community Flagging — visitors police freshness
+## Epic 2: Community Flagging: visitors police freshness
 
 Let visitors report freshness with one tap and no account, and surface those reports on the static badges.
 
@@ -225,7 +225,7 @@ So that the backlog stays trustworthy without accounts.
 **When** a client sends `POST /api/flags` with `{entrySlug, verdict, note?}`
 **Then** a valid flag persists with `{ id, entrySlug, verdict, note?, createdAt, status: "pending" }` (AD-3)
 **And** responses use the `{ok, data?, error?}` envelope; failures never report success (AD-9, NFR8)
-**And** duplicate submissions dedupe on `entrySlug + visitorHash` within a rolling window and sustained attempts rate-limit — both server-side, returning distinguishable error codes the UI maps to copy (NFR8, FR9)
+**And** duplicate submissions dedupe on `entrySlug + visitorHash` within a rolling window and sustained attempts rate-limit, both server-side, returning distinguishable error codes the UI maps to copy (NFR8, FR9)
 **And** `GET /api/flags/overlay` returns `{flaggedSlugs: []}` publicly with no secret (AD-3, AD-12)
 **And** no visitor-facing auth exists anywhere (NFR6)
 
@@ -238,27 +238,27 @@ So that bad counterplay gets corrected without an account wall.
 **Acceptance Criteria:**
 
 **Given** an open entry detail page
-**When** a visitor taps "Outdated" (or "Still correct") on the flag control and submits — optionally with a one-line note
-**Then** submission succeeds without auth and swaps in place to "Flagged. Thanks — it's in the review queue." — no modal, no redirect, no celebration (FR9, UX-DR7)
-**And** a duplicate tap shows "Already counted — thanks."; sustained attempts show "Slow down — you've already flagged this recently."; failures show "Couldn't send. Try again." with the control enabled for retry (UX-DR7, UX-DR12)
+**When** a visitor taps "Outdated" (or "Still correct") on the flag control and submits, optionally with a one-line note
+**Then** submission succeeds without auth and swaps in place to "Flagged. Thanks, it's in the review queue.", no modal, no redirect, no celebration (FR9, UX-DR7)
+**And** a duplicate tap shows "Already counted, thanks."; sustained attempts show "Slow down, you've already flagged this recently."; failures show "Couldn't send. Try again." with the control enabled for retry (UX-DR7, UX-DR12)
 **And** the control meets 44px min-height with `border-input` boundary and is fully keyboard-operable (UX-DR13, NFR3)
 
 ### Story 2.3: Flag overlay on badges
 
 As a player,
-I want an entry flagged by the community to visibly upgrade to "flagged outdated — in review,"
+I want an entry flagged by the community to visibly upgrade to "flagged outdated, in review"
 So that I see fresh distrust signals on an otherwise static page.
 
 **Acceptance Criteria:**
 
 **Given** a statically rendered entry page with a base badge (verified/stale/deprecated)
 **When** the client island fetches `GET /api/flags/overlay` after hydration
-**Then** slugs in `flaggedSlugs` upgrade their badge to `badge-flagged` with the announced phrase "Community-flagged outdated — in review" (FR4, FR9, AD-12)
-**And** the build-derived base state remains the single source for freshness — the overlay never computes patch freshness (AD-7)
-**And** a failed overlay fetch leaves the base badge intact — render never blocks, never falsely claims flagged (AD-12)
+**Then** slugs in `flaggedSlugs` upgrade their badge to `badge-flagged` with the announced phrase "Community-flagged outdated, in review" (FR4, FR9, AD-12)
+**And** the build-derived base state remains the single source for freshness, the overlay never computes patch freshness (AD-7)
+**And** a failed overlay fetch leaves the base badge intact, render never blocks, never falsely claims flagged (AD-12)
 **And** the overlay fetcher is within the closed client-island list (AD-6)
 
-## Epic 3: Patch Verification Sweep — editor keeps trust honest
+## Epic 3: Patch Verification Sweep: editor keeps trust honest
 
 Give the editor a way to see pending flags with age and clear them, so no flag outlives a Patch Cycle.
 
@@ -275,10 +275,10 @@ So that I know exactly what needs re-verification this sweep.
 **Given** `EDITOR_SECRET` configured
 **When** an authorized request hits `GET /api/flags/backlog`
 **Then** pending flags return sorted oldest-first with `createdAt` age visible; requests without the secret are rejected (FR12, AD-3, NFR8)
-**And** the backlog lists entry slug, verdict, note, and age — enough to audit "no flag older than one Patch Cycle unreviewed" (FR12)
+**And** the backlog lists entry slug, verdict, note, and age, enough to audit "no flag older than one Patch Cycle unreviewed" (FR12)
 **And** responses use the standard envelope (AD-9)
 
-### Story 3.2: Sweep execution — re-verify and close flags
+### Story 3.2: Sweep execution: re-verify and close flags
 
 As the editor,
 I want to re-verify flagged and stale entries, ship the content update, and mark flags reviewed,

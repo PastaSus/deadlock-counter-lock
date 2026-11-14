@@ -1,4 +1,4 @@
-# Counterlock PRD — Addendum
+# Counterlock PRD: Addendum
 
 Supporting depth for architecture/UX. Captured during PRD creation, 2026-11-14.
 
@@ -21,10 +21,10 @@ Supporting depth for architecture/UX. Captured during PRD creation, 2026-11-14.
 
 ## Rejected Alternatives (rationale)
 
-- **Headless CMS / admin UI:** rejected for MVP — editorial load is one person, 25–40 records; CMS adds auth, hosting, and schema drift risk. Revisit if corpus exceeds ~100 records or a second editor joins.
-- **Open submissions:** rejected per brief — curated trust is the brand; flags cover demand sensing.
-- **Stat overlays (WR correlation):** rejected — cedes differentiation to Tracklock; dilutes counterplay-only filter.
-- **Automated game-file patch ingestion:** rejected for MVP — fragile reverse-engineering; manual sweep is the product promise ("hand-verified").
+- **Headless CMS / admin UI:** rejected for MVP, editorial load is one person, 25–40 records; CMS adds auth, hosting, and schema drift risk. Revisit if corpus exceeds ~100 records or a second editor joins.
+- **Open submissions:** rejected per brief, curated trust is the brand; flags cover demand sensing.
+- **Stat overlays (WR correlation):** rejected, cedes differentiation to Tracklock; dilutes counterplay-only filter.
+- **Automated game-file patch ingestion:** rejected for MVP, fragile reverse-engineering; manual sweep is the product promise ("hand-verified").
 
 ## Search Scope Note (for architecture)
 
@@ -33,5 +33,5 @@ At ~25–40 records + roster, client-side search over a bundled index is suffici
 ## UX Handoff Notes
 
 - Hero-first is primary path; free-text search is first-class (header-level), not buried.
-- Trust signal display (badge states: current / flagged-outdated / deprecated) needs consistent visual language across Views 1 and 2 — feed `bmad-ux`.
+- Trust signal display (badge states: current / flagged-outdated / deprecated) needs consistent visual language across Views 1 and 2, feed `bmad-ux`.
 - "No entries yet" roster states must be designed, not left to default 404s (FR-7).
