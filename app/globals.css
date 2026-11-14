@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Surfaces — warm charcoal from Deadlock's ink/graphite identity */
+  --background: #101112;
+  --surface: #181A19;
+  --surface-raised: #212423;
+  --surface-sunken: #0B0C0B;
+  /* Borders */
+  --border: #2E322F;
+  --border-strong: #444A45;
+  --border-input: #6A716B;
+  /* Text ramp — parchment cream */
+  --text: #F0EADB;
+  --text-secondary: #B5B1A3;
+  --text-muted: #8E8B7F;
+  /* Accent — verdigris (Deadlock sage brightened for interactivity) */
+  --accent: #57C7AE;
+  --accent-foreground: #06130F;
+  --accent-dim: #0F2E28;
+  /* Semantic badge states */
+  --status-verified: #4ADE80;
+  --status-verified-surface: #0E2A1C;
+  --status-flagged: #FBBF24;
+  --status-flagged-surface: #2B2109;
+  --status-deprecated: #E38B8B;
+  --status-deprecated-surface: #2A1518;
+  /* Error — text/border only, never a fill */
+  --error: #F28B82;
+  --error-surface: #2A1616;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  @theme inline {
+    --color-background: var(--background);
+    --color-surface: var(--surface);
+    --color-surface-raised: var(--surface-raised);
+    --color-surface-sunken: var(--surface-sunken);
+    --color-border: var(--border);
+    --color-border-strong: var(--border-strong);
+    --color-border-input: var(--border-input);
+    --color-text: var(--text);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent-dim: var(--accent-dim);
+    --color-status-verified: var(--status-verified);
+    --color-status-verified-surface: var(--status-verified-surface);
+    --color-status-flagged: var(--status-flagged);
+    --color-status-flagged-surface: var(--status-flagged-surface);
+    --color-status-deprecated: var(--status-deprecated);
+    --color-status-deprecated-surface: var(--status-deprecated-surface);
+    --color-error: var(--error);
+    --color-error-surface: var(--error-surface);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-space-grotesk: var(--font-space-grotesk);
+    --font-inter: var(--font-inter);
+    --font-jetbrains-mono: var(--font-jetbrains-mono);
+    --font-sans: var(--font-inter);
+    --font-display: var(--font-space-grotesk);
+    --font-mono: var(--font-jetbrains-mono);
+
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+    --radius-full: 9999px;
+
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 24px;
+    --spacing-6: 32px;
+    --spacing-7: 48px;
+    --spacing-gutter: 16px;
+    --spacing-gutter-desktop: 24px;
+    --spacing-card-padding: 16px;
+    --spacing-section-gap: 40px;
+    --spacing-max-content: 1120px;
+
+    --type-display-size: 40px;
+    --type-display-weight: 600;
+    --type-display-line-height: 1.1;
+    --type-display-letter-spacing: -0.02em;
+    --type-headline-size: 24px;
+    --type-headline-weight: 600;
+    --type-headline-line-height: 1.2;
+    --type-headline-letter-spacing: -0.01em;
+    --type-title-size: 16px;
+    --type-title-weight: 600;
+    --type-title-line-height: 1.4;
+    --type-body-size: 16px;
+    --type-body-weight: 400;
+    --type-body-line-height: 1.55;
+    --type-label-size: 13px;
+    --type-label-weight: 500;
+    --type-label-line-height: 1.4;
+    --type-caption-size: 12px;
+    --type-caption-weight: 400;
+    --type-caption-line-height: 1.4;
+    --type-mono-size: 13px;
+    --type-mono-weight: 500;
+    --type-mono-line-height: 1.4;
+    --type-mono-letter-spacing: 0.02em;
+    --type-mono-sm-size: 11px;
+    --type-mono-sm-weight: 500;
+    --type-mono-sm-line-height: 1.3;
+    --type-mono-sm-letter-spacing: 0.04em;
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line-height);
+  margin: 0;
 }
