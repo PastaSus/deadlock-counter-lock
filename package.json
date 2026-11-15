@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prebuild": "tsx scripts/validate-content.ts",
+    "prebuild": "tsx scripts/validate-content.ts && tsx scripts/build-search-index.ts",
     "start": "next start",
     "lint": "eslint",
     "test:content": "tsx scripts/test-content.ts",
