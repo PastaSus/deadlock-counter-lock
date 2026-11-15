@@ -13,7 +13,11 @@ export function HeroRosterTile({
   selected,
   className,
 }: HeroRosterTileProps) {
-  const hasEntries = (entryCount ?? 0) > 0;
+  const count = entryCount ?? 0;
+  const hasEntries = count > 0;
+  const ariaLabel = hasEntries
+    ? `${name}, ${count} ${count === 1 ? "entry" : "entries"}`
+    : `${name}, no entries yet`;
 
   return (
     <a
@@ -23,7 +27,7 @@ export function HeroRosterTile({
         selected && "border-accent bg-accent-dim",
         className,
       ].join(" ")}
-      aria-label={name}
+      aria-label={ariaLabel}
     >
       <span className="font-semibold text-text">{name}</span>
       {!hasEntries && (

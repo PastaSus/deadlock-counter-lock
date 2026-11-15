@@ -8,7 +8,8 @@
     "prebuild": "tsx scripts/validate-content.ts",
     "start": "next start",
     "lint": "eslint",
-    "test:content": "tsx scripts/test-content.ts"
+    "test:content": "tsx scripts/test-content.ts",
+    "test:heroes": "tsx scripts/test-heroes.ts"
   },
   "dependencies": {
     "@types/node": "^26.6.6",

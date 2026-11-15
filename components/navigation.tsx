@@ -53,7 +53,7 @@ export function Navigation({ currentPatch, className }: NavigationProps) {
             <Menu className="w-5 h-5" aria-hidden="true" />
           </button>
           {currentPatch && (
-            <span className="hidden md:flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface border border-border text-[11px] font-mono text-text-secondary">
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface border border-border text-[11px] font-mono text-text-secondary">
               {currentPatch}
             </span>
           )}

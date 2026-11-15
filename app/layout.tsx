@@ -5,6 +5,9 @@ import {
 } from "next/font/google";
 import "./globals.css";
 
+import { Navigation } from "../components/navigation";
+import { loadConfig } from "../lib/loaders";
+
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
@@ -25,16 +28,21 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata = {
   title: "Counterlock",
-  description: "Deadlock counterplay lookup — is this counterplay still true this patch?",
+  description: "Deadlock counterplay lookup: is this counterplay still true this patch?",
 };
 
 export default function RootLayout({ children }) {
+  const { currentPatch } = loadConfig();
+
   return (
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navigation currentPatch={currentPatch} />
+        {children}
+      </body>
     </html>
   );
 }
