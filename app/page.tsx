@@ -1,69 +1,197 @@
-import Image from "next/image";
+import { HeroRosterTile } from "../components/hero-roster-tile";
+import { HomeSearch } from "../components/home-search";
+import { EntryCard } from "../components/entry-card";
+import { deriveBadgeState } from "../lib/badges";
+import { loadAllContent } from "../lib/loaders";
+import type { Entry } from "../lib/schema";
+
+export const metadata = {
+  title: "Counterlock",
+  description: "Deadlock counterplay lookup: is this counterplay still true this patch?",
+};
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+  const content = loadAllContent();
+  const interactionEntries = content.entries.filter(
+    (entry) => entry.kind === "interaction",
   );
+  const archetypeEntries = content.entries.filter(
+    (entry) => entry.kind === "archetype-warning",
+  );
+  const featured = interactionEntries.slice(0, 3);
+  const archetypeCard = archetypeEntries[0];
+  return (
+    <main className="flex-1 w-full max-w-[1120px] mx-auto px-4 md:px-6 py-8 md:py-12">
+      <header className="mb-10">
+        <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.02em] text-text">
+          Counterlock
+        </h1>
+        <p className="mt-2 text-text-secondary">
+          Deadlock counterplay lookup: is this counterplay still true this patch?
+        </p>
+      </header>
+
+      <HomeSearch index={buildSearchIndex(content)} />
+      <section className="mt-12">
+        <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] text-text mb-4">
+          Heroes
+        </h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {content.heroes.map((hero) => {
+            const entryCount = interactionEntries.filter(
+              (entry) =>
+                entry.sourceRef === hero.slug ||
+                entry.targetRef === hero.slug ||
+                hero.abilities.some(
+                  (ability) =>
+                    entry.sourceRef === ability.slug ||
+                    entry.targetRef === ability.slug,
+                ),
+            ).length;
+            return (
+              <HeroRosterTile
+                key={hero.slug}
+                href={`/heroes/${hero.slug}`}
+                name={hero.name}
+                entryCount={entryCount}
+              />
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] text-text mb-4">
+          Featured
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {featured.map((entry) => {
+            const source =
+              content.registry[entry.sourceRef]?.name ?? entry.sourceRef;
+            const target =
+              content.registry[entry.targetRef]?.name ?? entry.targetRef;
+            const badgeVariant = deriveBadgeState(
+              entry,
+              content.config.currentPatch,
+            );
+            return (
+              <EntryCard
+                key={entry.slug}
+                href={
+                  entry.kind === "interaction"
+                    ? `/interactions/${entry.slug}`
+                    : `/matchups/${entry.slug}`
+                }
+                effectChip={
+                  entry.effects.length > 0
+                    ? entry.effects.join(" + ").toUpperCase()
+                    : entry.kind === "matchup"
+                      ? "MATCHUP"
+                      : "ARCHETYPE WARNING"
+                }
+                source={source}
+                target={target}
+                condition={entry.conditions}
+                badgeVariant={badgeVariant}
+                patch={entry.verifiedPatch}
+              />
+            );
+          })}
+        </div>
+      </section>
+
+      {archetypeCard && (
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold tracking-[-0.01em] text-text mb-4">
+            Archetype Warning
+          </h2>
+          <EntryCard
+            href={`/matchups/${archetypeCard.slug}`}
+            effectChip="ARCHETYPE WARNING"
+            source={
+              content.registry[archetypeCard.sourceRef]?.name ??
+              archetypeCard.sourceRef
+            }
+            target={
+              content.registry[archetypeCard.targetRef]?.name ??
+              archetypeCard.targetRef
+            }
+            condition={archetypeCard.conditions}
+            badgeVariant={deriveBadgeState(
+              archetypeCard,
+              content.config.currentPatch,
+            )}
+            patch={archetypeCard.verifiedPatch}
+          />
+        </section>
+      )}
+    </main>
+  );
+}
+
+function buildSearchIndex(content: ReturnType<typeof loadAllContent>) {
+  const heroes = content.heroes.map((hero) => ({
+    slug: hero.slug,
+    kind: "hero" as const,
+    title: hero.name,
+    label: hero.name,
+    href: `/heroes/${hero.slug}`,
+    terms: tokenize(hero.name),
+  }));
+
+  const abilities: Array<{
+    slug: string;
+    kind: "ability";
+    title: string;
+    label: string;
+    href: string;
+    terms: string[];
+  }> = [];
+  for (const hero of content.heroes) {
+    for (const ability of hero.abilities) {
+      abilities.push({
+        slug: ability.slug,
+        kind: "ability",
+        title: ability.name,
+        label: `${ability.name} (${hero.name})`,
+        href: `/heroes/${hero.slug}`,
+        terms: tokenize(ability.name),
+      });
+    }
+  }
+
+  const items = content.items.map((item) => ({
+    slug: item.slug,
+    kind: "item" as const,
+    title: item.name,
+    label: item.name,
+    href: `/items/${item.slug}`,
+    terms: tokenize(item.name),
+  }));
+
+  const entries = content.entries.map((entry) => {
+    const source = content.registry[entry.sourceRef]?.name ?? entry.sourceRef;
+    const target = content.registry[entry.targetRef]?.name ?? entry.targetRef;
+    const href =
+      entry.kind === "interaction"
+        ? `/interactions/${entry.slug}`
+        : `/matchups/${entry.slug}`;
+    const terms = tokenize(
+      `${entry.title} ${source} ${target} ${entry.conditions} ${entry.effects.join(" ")}`,
+    );
+    return {
+      slug: entry.slug,
+      kind: "entry" as const,
+      title: entry.title,
+      label: `${source} vs ${target}`,
+      href,
+      terms,
+    };
+  });
+
+  return { heroes, abilities, items, entries };
+}
+
+function tokenize(text: string): string[] {
+  return text.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
 }
