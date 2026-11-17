@@ -2,7 +2,7 @@
 title: "DESIGN.md: Counterlock"
 status: final
 created: 2026-11-14
-updated: 2026-11-14
+updated: 2026-11-16
 name: Counterlock
 description: Dark-first precision-tool design system for a Deadlock counterplay lookup, Deadlock-derived warm charcoal and parchment neutrals, verdigris accent, freshness stamps, scan-first cards, semantic badge states.
 colors:
@@ -29,6 +29,14 @@ colors:
   status-flagged-surface: '#2B2109'
   status-deprecated: '#E38B8B'
   status-deprecated-surface: '#2A1518'
+  # Item tier borders (functional exception: tier encoding only, never status)
+  tier-1: '#9CA3AF'
+  tier-2: '#6EE7B7'
+  tier-3: '#7DD3FC'
+  tier-4: '#C4B5FD'
+  # Media legibility scrim (the only permitted gradient; see Official Assets & Media)
+  media-scrim-strong: 'rgba(16, 17, 18, 0.92)'
+  media-scrim-soft: 'rgba(16, 17, 18, 0.55)'
   # Error text/border only, never a fill (see Colors · Avoid)
   error: '#F28B82'
   error-surface: '#2A1616'
@@ -111,6 +119,8 @@ components:
   badge-verified:
     background: '{colors.status-verified-surface}'
     foreground: '{colors.status-verified}'
+    label: 'PATCH-VERIFIED'
+    accessible-phrase: 'Patch-verified as of patch X.Y'
   badge-stale:
     background: '{colors.status-verified-surface}'
     foreground: '{colors.status-verified}'
@@ -133,6 +143,27 @@ components:
     border: '1px solid {colors.border}'
     radius: '{rounded.md}'
     hover-background: '{colors.surface-raised}'
+  hero-artwork-tile:
+    background: '{colors.surface}'
+    border: '1px solid {colors.border}'
+    radius: '{rounded.md}'
+    scrim: 'linear-gradient(to top, {colors.media-scrim-strong}, {colors.media-scrim-soft})'
+    text-shadow: '0 1px 2px rgba(0, 0, 0, 0.85)'
+    min-height: 132px
+  asset-tooltip:
+    background: '{colors.surface-raised}'
+    border: '1px solid {colors.border-strong}'
+    radius: '{rounded.md}'
+    padding: '{spacing.3}'
+    typography: '{typography.caption}'
+    max-width: 280px
+  deprecated-callout:
+    background: '{colors.status-deprecated-surface}'
+    border: '1px solid {colors.status-deprecated}'
+    radius: '{rounded.md}'
+    padding: '{spacing.3}'
+    foreground: '{colors.status-deprecated}'
+    typography: '{typography.label}'
   flag-control:
     background: 'transparent'
     foreground: '{colors.text-secondary}'
@@ -174,7 +205,19 @@ The palette is one neutral ramp, one accent, three semantic status colors.
 - **`{colors.status-verified}` `#4ADE80` (green) / `{colors.status-flagged}` `#FBBF24` (amber) / `{colors.status-deprecated}` `#E38B8B` (soft rose)**, reserved exclusively for trust-signal badge states (FR-4, FR-8, FR-10). Each ships as tinted surface + matching foreground, all passing WCAG 2.1 AA on both `background` and `surface`. Color never carries the state alone: every badge also renders its word ("verified", "flagged outdated", "deprecated") in `{typography.mono-sm}` plus a distinct glyph. Green/amber/rose appear nowhere else, not on buttons, not as accents, not decoratively.
 - **Border (`{colors.border}` `#2E322F`, `{colors.border-strong}` `#444A45`, `{colors.border-input}` `#6A716B`)**, hairline separation in the same warm charcoal family. `border-strong` is for hover/focus-adjacent edges. `border-input` passes 3:1 against `surface`/`background` (WCAG 1.4.11) and is mandatory on any control whose boundary is how you identify it: search field, flag buttons, note field.
 
-Avoid: gradients, glows, neon washes, more than one accent hue, status colors outside badges, red-as-error fills (error copy uses `{colors.error}` as text + border only, per EXPERIENCE.md · State Patterns).
+Avoid: decorative gradients, glows, neon washes, more than one accent hue, status colors outside badges, red-as-error fills (error copy uses `{colors.error}` as text + border only, per EXPERIENCE.md · State Patterns).
+
+## Official Assets & Media
+
+Official Deadlock artwork is a functional layer, not decoration: it helps a player recognize a hero, ability, or shop item in under a second. Assets are synced from the Deadlock Assets API at build time or by a local sync script, stored with the repo, and served statically. The browser never calls the assets API.
+
+- **Hero artwork tiles:** use the official hero card or background image as the tile background, cropped to the tile. Apply `{components.hero-artwork-tile}.scrim` over the image, then render the hero name in `{colors.text}` with the tile's text shadow. The scrim is the only permitted gradient; it exists to keep overlay text at or above 4.5:1, not to decorate. Verify the final text/background pair with a contrast checker on the busiest area of the portrait.
+- **Counter card media row:** a 32px hero portrait, then 24px ability and shop-item icons. Each item icon carries a 2px border in its tier color (`{colors.tier-1}` through `{colors.tier-4}`). The tier color appears only on item icon borders, never on badges, text, or status. The tooltip always states the tier in words, so tier is never color-only.
+- **Asset tooltips:** hover or keyboard focus opens a small `surface-raised` panel with the entity name, type or tier, and a one-line effect summary. Tooltips are dismissible with `Esc`, hoverable, and persistent per WCAG 1.4.13. They are a client island because of the dismissal behavior; content is still build-time data.
+- **Patch-Verified badge:** the visible label is `PATCH-VERIFIED · X.Y`; the accessible phrase is "Patch-verified as of patch X.Y". The green tint and glyph are unchanged.
+- **Community flags:** pending outdated flags upgrade the badge to `badge-flagged` through the existing overlay. Community verified flags do not add a second public count at MVP; the Patch-Verified badge is the editor's verification. If a public verified count ships later, it must not compete with the badge.
+- **Deprecated Tech / Patch Note callout:** deprecated entries keep the rose `status-deprecated` family, but the callout is a distinct block below the record body, not just the badge. It states "Deprecated Tech / Patch Note", the patch number, and the note. Content stays fully rendered (FR-10).
+- **Fallbacks and attribution:** if an asset is missing, render a neutral placeholder with the entity initial, never a broken image. The generated manifest records the source URL, fetch date, and attribution or license note for each asset family.
 
 ## Typography
 
@@ -202,12 +245,14 @@ Tight and instrumental: `{rounded.sm}` (3px) for badges and chips, `{rounded.md}
 
 ## Components
 
-- **Entry card** (`components.entry-card`), the core unit for Interaction Records and Matchup Guidance in lists. `surface` + hairline `border` + `{rounded.md}` + `{spacing.card-padding}`. Anatomy top-to-bottom: effect-type mono chip → source → target → one-line condition preview (truncated at sentence boundary only) → footer row with Patch Verification Badge (left) and flag control (right). Whole card is the tap target to detail (FR-3). Hover: `border-strong`. Deprecated variant shows badge-deprecated and never visually hides the card (FR-10, history stays visible).
-- **Badge / chip** (`components.badge*`), four states, one shape. `badge-verified` (green tint): "✓ VERIFIED · X.Y". `badge-stale` (green tint, dashed border, `· STALE` suffix): shown when the verified Patch is older than the site's current Patch, visually distinguishable at a glance (FR-4), same green so freshness reads as the axis, not correctness. `badge-flagged` (amber tint):"! FLAGGED OUTDATED · X.Y", shown when community flags are pending review (FR-9). `badge-deprecated` (rose tint):"✕ DEPRECATED · X.Y". Patch number always in `{typography.mono-sm}`. Icon + word + color, all three, always (AA + color-independence). Badge on `surface` or tinted own background, never on accent. Linked badges keep a 44px hit area (hit-area rule in frontmatter).
+- **Entry card** (`components.entry-card`), the core unit for Interaction Records and Matchup Guidance in lists. `surface` + hairline `border` + `{rounded.md}` + `{spacing.card-padding}`. Anatomy top-to-bottom: media row (32px hero portrait, then 24px ability and shop-item icons with tier borders and tooltips) → effect-type mono chip → source → target → one-line condition preview (truncated at sentence boundary only) → footer row with Patch-Verified Badge (left) and community flag state (right). Whole card is the tap target to detail (FR-3). Hover: `border-strong`. Deprecated variant shows badge-deprecated plus the Deprecated Tech / Patch Note callout and never visually hides the card (FR-10, history stays visible).
+- **Badge / chip** (`components.badge*`), four states, one shape. `badge-verified` (green tint): "✓ PATCH-VERIFIED · X.Y". `badge-stale` (green tint, dashed border, `· STALE` suffix): shown when the verified Patch is older than the site's current Patch, visually distinguishable at a glance (FR-4), same green so freshness reads as the axis, not correctness. `badge-flagged` (amber tint):"! FLAGGED OUTDATED · X.Y", shown when community flags are pending review (FR-9). `badge-deprecated` (rose tint):"✕ DEPRECATED · X.Y". Patch number always in `{typography.mono-sm}`. Icon + word + color, all three, always (AA + color-independence). Badge on `surface` or tinted own background, never on accent. Linked badges keep a 44px hit area (hit-area rule in frontmatter). Accessible phrase: "Patch-verified as of patch X.Y".
 - **Patch History block** (`components.patch-history`), inset well on detail pages below the record body (FR-10): `surface-sunken` + border + `{rounded.md}` + `{spacing.card-padding}`. Rows in `{typography.mono}` ordered by Patch ascending; empty state reads "No recorded changes" in `{colors.text-secondary}`, never blank.
 - **Copy link** (`components.copy-link`), quiet control on detail pages next to the flag control: copies the canonical URL; on copy, swaps label to a patch-stamped citation line ("Counterlock · <entry title> · verified as of patch X.Y") for content creators (PRD §2.1 social JTBD). `{typography.label}`, `text-secondary`, 44px min-height.
 - **Search field** (`components.search-field`), full-width on home, collapses into nav icon on scroll for desktop (see navigation). `surface` fill, `border-input` (3:1), `{rounded.md}`, left search glyph in `text-secondary`, placeholder in `text-muted`. Focus: `border` → `{colors.accent}`. Results render below in a `surface-sunken` well with `aria-live` count ("12 matches").
-- **Hero roster grid** (`components.hero-roster-tile`), equal tiles, `surface` + border + `{rounded.md}`; hero name in `{typography.title}`; hover/selected uses `surface-raised` / `accent-dim` + accent border. Heroes with zero curated entries render identically but carry a `text-muted` "no entries yet" line (FR-7, full roster, honest depth, no 404s, no dimming that implies broken).
+- **Hero roster grid** (`components.hero-roster-tile` / `components.hero-artwork-tile`), equal tiles with official hero artwork as the background, `surface` + border + `{rounded.md}`; the `{components.hero-artwork-tile}.scrim` sits over the image and the hero name uses `{typography.title}` with the tile text shadow; hover/selected uses `surface-raised` / `accent-dim` + accent border. Heroes with zero curated entries render identically but carry a `text-muted` "no entries yet" line (FR-7, full roster, honest depth, no 404s, no dimming that implies broken).
+- **Asset tooltip** (`components.asset-tooltip`), hover/focus panel for hero, ability, and shop-item icons. `surface-raised` + `border-strong` + `{rounded.md}` + `{spacing.3}` padding, `{typography.caption}`, 280px max width. Opens on hover or keyboard focus, stays open while hovered/focused, dismisses with `Esc`; content states the name, type or tier, and a one-line effect summary. This is the one new client island required by WCAG 1.4.13.
+- **Deprecated Tech / Patch Note callout** (`components.deprecated-callout`), distinct rose-tinted block below the record body on deprecated entries. Label "Deprecated Tech / Patch Note", then the patch number and the note. It supplements, never replaces, `badge-deprecated`; content stays fully rendered (FR-10).
 - **Flag control** (`components.flag-control`), quiet ghost button pair on every entry detail: "Still correct" / "Outdated" (`{typography.label}`, `text-secondary`, `border-input`, `{rounded.md}`, 44px min-height), optional one-line note field revealed on activate (FR-9). Post-submit: control swaps to a static confirmation line in `text-secondary`, no modal, no account wall, no celebration. Rate-limited/deduped responses replace the control with a single-line notice (see EXPERIENCE.md · State Patterns).
 - **Navigation** (`components.navigation`), flat top bar on `background`: wordmark, primary links (Heroes, Interactions, Matchups), search affordance. Active link: `{colors.text}` + accent underline (2px). Mobile: same bar with search + menu glyphs; menu opens a single-level sheet. No mega-menus, no sidebar on desktop, three destinations don't need one.
 
@@ -225,3 +270,7 @@ Tight and instrumental: `{rounded.sm}` (3px) for badges and chips, `{rounded.md}
 | Show deprecated entries with badge + history, in place | Hide, gray-out to illegibility, or delete deprecated records |
 | Let empty roster tiles state "no entries yet" plainly | Dim/omit heroes to fake corpus depth |
 | Truncate card previews at sentence boundaries | Truncate conditions text on detail pages (FR-3) |
+| Use the media scrim and text shadow to keep overlay text ≥4.5:1 | Put text directly on busy artwork without a scrim |
+| Pair tier borders with the tier in words in the tooltip | Use tier color as the only tier signal |
+| Keep the Deprecated Tech callout distinct from the badge | Replace the badge with the callout, or hide the note |
+| Use official artwork as a recognition layer | Let artwork compete with the freshness badge |

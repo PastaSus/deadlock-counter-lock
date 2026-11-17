@@ -41,17 +41,22 @@ This document provides the complete epic and story breakdown for Counterlock, de
 - NFR6: No accounts/auth/profiles anywhere in visitor experience (PRD §5).
 - NFR7: Content-only changes ship via build/deploy pipeline with no migration; build-time schema validation fails fast on malformed content (PRD FR-11, AD-2).
 - NFR8: Flag endpoint security. Server-side rate limiting and dedupe; errors never report success; backlog requires secret (AD-3, AD-9).
+- NFR9: Asset delivery constraint. All official artwork ships as static files committed to the repo (`public/assets/`); no page, component, or client island ever calls the Deadlock Assets API at build, render, or runtime, so client-side rate limits are impossible (prompt, AD-16).
 
 ### Additional Requirements
 
 - Content-as-code SSOT: all editorial content in `content/`; no other store holds content (AD-1).
-- zod v4 (`zod@^4`) build validation; fixed entry field vocabulary (`slug`, `kind`, `title`, `sourceRef`, `targetRef`, `effects[]`, `conditions`, `verifiedPatch`, `patchHistory[]`); referential integrity of refs enforced at build (AD-2).
+- zod v4 (`zod@^4`) build validation; fixed entry field vocabulary (`slug`, `kind`, `title`, `sourceRef`, `targetRef`, `effects[]`, `conditions`, `verifiedPatch`, `patchHistory[]`, optional boolean `deprecated` which requires non-empty `patchHistory` for the callout); refs resolve against the editorial registry (heroes + nested abilities, items, archetypes); all cross-file resolution runs in the `lib/loaders` build pass — one resolution site (AD-2).
 - Static rendering of content routes via `generateStaticParams`; `cacheComponents: true` + `partialPrefetching: true` compliance; dynamic surface limited to `/api/flags/*` (AD-4).
-- Flag API contract: `POST /api/flags` `{entrySlug, verdict, note?}`; `GET /api/flags/overlay` → `{flaggedSlugs[]}` public; `GET /api/flags/backlog` secret-guarded; JSON envelope `{ok, data?, error?}`; Flag record shape fixed (AD-3, AD-9).
-- Badge base state derived at build in `lib/badges` only; content never persists status fields; runtime flagged overlay applied client-side; fetch failure degrades to base badge (AD-7, AD-12).
+- Flag API contract: `POST /api/flags` `{entrySlug, verdict, note?}`; `GET /api/flags/overlay` → `{flaggedSlugs[]}` public, built from pending `outdated` verdicts only; `GET /api/flags/backlog` secret-guarded returning `{id, entrySlug, verdict, note, createdAt, age}[]`; `POST /api/flags/review` `{id}` secret-guarded is the sole status write path (`pending` → `reviewed`); JSON envelope `{ok, data?, error?}`; Flag record shape fixed (AD-3, AD-9).
+- Badge base state derived at build in `lib/badges` only; content persists only the optional `deprecated` boolean (the one content-held trust signal) — `verified`/`stale`/`flagged` never persist; runtime flagged overlay applied client-side; fetch failure degrades to base badge (AD-7, AD-12).
 - Hero registry exhaustive: one `content/heroes/` file per hero regardless of entries (AD-13).
 - Search index generated at build from the same loaders as pages; includes deprecated entries (AD-14).
-- Closed client-island list: search input/results, flag form, mobile menu, badge-flag overlay fetcher, copy-link (AD-6).
+- Closed client-island list: search input/results, flag form, mobile menu, badge-flag overlay fetcher, copy-link, asset tooltip, hero counterpart filter (`?vs=`) (AD-6).
+- Asset sync pipeline: `scripts/sync-assets` is the sole caller of `api.deadlock-api.com` (`/v1/assets/heroes`, `/v1/assets/items`, `/v1/assets/items/by-hero-id/<hero id>` — endpoints live-verified, no auth); run manually via `npm run sync:assets`, default build network-free with an env-gated opt-in pre-sync as the only build-time API touch; images land in `public/assets/{heroes,abilities,items}/` plus generated `lib/assets/manifest.json`, all committed; manifest zod-validated against the shared schema in `lib/schema` (missing/invalid manifest = clear build error, never silent placeholders); a valid entity without an image renders the DESIGN placeholder; manifest carries per-family source URL, fetch date, attribution/license note (AD-16).
+- Official id/class_name mapping: editorial records (heroes, nested abilities, items) carry optional `assetId`/`className` stamps upserted only by the sync script (git-diff reviewable); a stamp absent from the manifest fails the build; `lib/loaders` owns the single slug → stamp → manifest join and hands typed asset props (paths, name, type/tier, summary) to components; components never import the manifest and never match by display name; tooltip effect-line precedence: editorial `summary` → manifest description sentence → name + type/tier (AD-17).
+- Search index embeds loader-resolved asset metadata so the client search island never imports the manifest (AD-14).
+- Item tier renders from manifest `item_tier` (API exposes tiers 1–5; DESIGN defines `tier-1..4` tokens — tier-5 rendering is an open item deferred in the spine, revisit if a synced tier-5 shop item renders in a card) (AD-16, AD-17).
 - Design tokens shipped as CSS custom properties + Tailwind 4 `@theme` in `app/globals.css`; fonts via `next/font`; no component library; dark-only (AD-15).
 - Flag KV provider: Upstash Redis preferred (Vercel KV sunset, excluded); env vars for KV connection + `EDITOR_SECRET` (spine Deferred/Stack).
 - Slug IDs mirrored in routes; no numeric IDs (AD-8).
@@ -74,6 +79,12 @@ This document provides the complete epic and story breakdown for Counterlock, de
 - UX-DR14: Responsive breakpoints. <640px single column (roster 2-col, stacked detail), 640–1023px (roster 3-col), ≥1024px (`max-content` 1120px, roster 4–6 col); mobile is first-class lookup surface.
 - UX-DR15: Microcopy voice per EXPERIENCE Voice and Tone table. Trusted-scout tone; exact badge/flag/empty/error strings as specified (provisional wording, binding tone).
 - UX-DR16: Home layout. Headline + full-width search and hero roster co-equal above the fold; featured entries + archetype warning card below.
+- UX-DR17: Hero artwork tiles. Official hero card/background image as the tile background, overlaid with the `hero-artwork-tile` scrim (the only permitted gradient) and tile text shadow; hero name in `{colors.text}` verified at ≥4.5:1 on the busiest portrait area; missing artwork falls back to a neutral placeholder with the entity initial, never a broken image (DESIGN Official Assets & Media, hero-artwork-tile; EXPERIENCE).
+- UX-DR18: Counter card media row. Every entry card renders a 32px source/target hero portrait followed by 24px ability and shop-item icons; item icons carry a 2px tier-colored border (`{colors.tier-1}`–`{colors.tier-4}`); the tier is always stated in words in the tooltip so tier is never color-only (DESIGN entry-card anatomy; EXPERIENCE counter card media).
+- UX-DR19: Asset tooltip component. `surface-raised` + `border-strong`, `{rounded.md}`, caption type, 280px max width; opens on hover OR keyboard focus, persists while hovered/focused, dismisses with `Esc`, linked to its trigger via `aria-describedby` (WCAG 1.4.13); content = name, type or tier, one-line effect summary; this is the single new client island (DESIGN asset-tooltip; EXPERIENCE tooltips).
+- UX-DR20: Patch-Verified badge wording. Visible label `PATCH-VERIFIED · X.Y`; screen readers hear "Patch-verified as of patch X.Y"; icon + word + color unchanged; no separate public community-verified count at MVP (DESIGN badge-verified; EXPERIENCE).
+- UX-DR21: Deprecated Tech / Patch Note callout. Distinct rose `status-deprecated` block below the record body stating the label, patch number, and note; supplements `badge-deprecated`, never replaces it; record content stays fully rendered (DESIGN deprecated-callout; EXPERIENCE).
+- UX-DR22: New tokens and states. Ship the `tier-1..4` and `media-scrim-strong/soft` color tokens plus the `hero-artwork-tile`, `asset-tooltip`, and `deprecated-callout` component specs into `app/globals.css` / Tailwind 4 `@theme` (extends UX-DR1, AD-15); asset-missing, tooltip, and Patch-Verified rows render per the EXPERIENCE State Patterns table.
 
 ### FR Coverage Map
 
@@ -90,6 +101,8 @@ FR10: Epic 1 - Patch History / Deprecated Tech
 FR11: Epic 1 - Curated content authoring (schema, validation, seed content)
 FR12: Epic 3 - Verification Sweep support
 
+(Epics 4 adds no new FRs: its work serves FR1/FR3/FR7 as the asset/visual layer, tracked via NFR9 + UX-DR17–22.)
+
 ## Epic List
 
 ### Epic 1: Counterplay Lookup: the static site players use
@@ -103,6 +116,10 @@ Accountless "Still correct" / "Outdated" flags, rate-limited/deduped API, public
 ### Epic 3: Patch Verification Sweep: editor keeps trust honest
 Post-patch editorial workflow: review the flag backlog, re-verify entries, refresh badges/deprecations, ship content updates; no flag older than one Patch Cycle unreviewed.
 **FRs covered:** FR12
+
+### Epic 4: Official Artwork & Recognition: players see the fight, not just text
+Players recognize heroes, abilities, and shop items at a glance from official Deadlock artwork with tier cues and accessible detail tooltips, while the site never calls the assets API from the client and never renders a broken image. Appends the asset pipeline and media rendering on top of Epic 1's shipped components; consolidates into one epic because every story touches the same core files (`app/globals.css`, `lib/loaders`, card/tile components).
+**FRs covered:** FR1, FR3, FR7 (asset/visual layer; primary coverage stays with Epic 1 — no new FR added by this change; carriers are NFR9 + UX-DR17–22)
 
 ## Epic 1: Counterplay Lookup: the static site players use
 
@@ -226,7 +243,7 @@ So that the backlog stays trustworthy without accounts.
 **Then** a valid flag persists with `{ id, entrySlug, verdict, note?, createdAt, status: "pending" }` (AD-3)
 **And** responses use the `{ok, data?, error?}` envelope; failures never report success (AD-9, NFR8)
 **And** duplicate submissions dedupe on `entrySlug + visitorHash` within a rolling window and sustained attempts rate-limit, both server-side, returning distinguishable error codes the UI maps to copy (NFR8, FR9)
-**And** `GET /api/flags/overlay` returns `{flaggedSlugs: []}` publicly with no secret (AD-3, AD-12)
+**And** `GET /api/flags/overlay` returns `{flaggedSlugs: []}` publicly with no secret, built from pending `outdated` verdicts only (reviewed flags never surface) (AD-3, AD-12)
 **And** no visitor-facing auth exists anywhere (NFR6)
 
 ### Story 2.2: Flag control on entry detail
@@ -253,7 +270,7 @@ So that I see fresh distrust signals on an otherwise static page.
 
 **Given** a statically rendered entry page with a base badge (verified/stale/deprecated)
 **When** the client island fetches `GET /api/flags/overlay` after hydration
-**Then** slugs in `flaggedSlugs` upgrade their badge to `badge-flagged` with the announced phrase "Community-flagged outdated, in review" (FR4, FR9, AD-12)
+**Then** slugs in `flaggedSlugs` (pending `outdated` verdicts only, AD-3) upgrade their badge to `badge-flagged` with the announced phrase "Community-flagged outdated, in review" (FR4, FR9, AD-12)
 **And** the build-derived base state remains the single source for freshness, the overlay never computes patch freshness (AD-7)
 **And** a failed overlay fetch leaves the base badge intact, render never blocks, never falsely claims flagged (AD-12)
 **And** the overlay fetcher is within the closed client-island list (AD-6)
@@ -274,7 +291,7 @@ So that I know exactly what needs re-verification this sweep.
 
 **Given** `EDITOR_SECRET` configured
 **When** an authorized request hits `GET /api/flags/backlog`
-**Then** pending flags return sorted oldest-first with `createdAt` age visible; requests without the secret are rejected (FR12, AD-3, NFR8)
+**Then** pending flags return as `{ id, entrySlug, verdict, note, createdAt, age }[]` sorted oldest-first with age visible; requests without the secret are rejected (FR12, AD-3, NFR8)
 **And** the backlog lists entry slug, verdict, note, and age, enough to audit "no flag older than one Patch Cycle unreviewed" (FR12)
 **And** responses use the standard envelope (AD-9)
 
@@ -287,8 +304,92 @@ So that every badge reflects the current patch.
 **Acceptance Criteria:**
 
 **Given** pending flags and a new Deadlock patch
-**When** the editor re-verifies entries (updating `verifiedPatch`, `patchHistory`, deprecations) in `content/`, ships via build, and marks flags `status: "reviewed"` via the authorized `/api/flags` write
+**When** the editor re-verifies entries (updating `verifiedPatch`, `patchHistory`, deprecations) in `content/`, ships via build, and marks flags reviewed via `POST /api/flags/review` `{id}` (EDITOR_SECRET, the sole status write path, AD-3)
 **Then** refreshed badges render the new `currentPatch` on next deploy, and stale badges are either refreshed or explicitly deprecated (FR12, FR8, AD-7)
 **And** the build's schema validation still gates the content edits (FR11, AD-2)
 **And** after the sweep no pending flag remains older than one Patch Cycle; a still-pending flag must be explicitly re-triaged, never silently dropped (FR12)
 **And** the editorial voice of any user-facing copy stays per the Voice and Tone table (UX-DR15)
+
+## Epic 4: Official Artwork & Recognition: players see the fight, not just text
+
+Give players the recognition layer: official artwork on roster tiles and every counter card, tier-colored item cues, accessible detail tooltips, and refreshed trust-signal wording — all served from repo-synced static files with zero client calls to the assets API.
+
+**FRs covered:** FR1, FR3, FR7 (asset/visual layer; primary coverage stays Epic 1) · **Relevant NFRs:** NFR3, NFR4, NFR9 · **Relevant UX-DRs:** UX-DR17–22
+
+### Story 4.1: Asset sync pipeline and loader join
+
+As a site builder,
+I want official Deadlock artwork synced into the repo and joined to content at build time,
+So that every page renders real artwork with zero client calls to the assets API.
+
+**Acceptance Criteria:**
+
+**Given** the repo with `scripts/sync-assets` and network access to `api.deadlock-api.com`
+**When** `npm run sync:assets` runs
+**Then** the script fetches `/v1/assets/heroes`, `/v1/assets/items`, and `/v1/assets/items/by-hero-id/<hero id>` for every hero in `content/heroes/`, and it is the only code path that ever contacts the API (AD-16, NFR9)
+**And** images write to `public/assets/{heroes,abilities,items}/` and `lib/assets/manifest.json` regenerates with image path + png/webp variants per record plus source URL, fetch date, and attribution/license note per asset family (AD-16)
+**And** `assetId`/`className` stamps upsert into editorial records (heroes, nested abilities, items) via official-name match within scope, reviewable as a git diff (AD-17)
+**Given** the committed manifest
+**When** `npm run build` runs
+**Then** the manifest validates against the shared zod schema in `lib/schema`; a missing or invalid manifest fails the build with a clear error, never a silent all-placeholder render (AD-16)
+**And** a stamp with no matching manifest record fails the build; an unstamped entity passes with no artwork, taking the placeholder path (AD-17)
+**And** `lib/loaders` performs the single slug → stamp → manifest join and exposes typed asset props (paths, name, type/tier, summary), summary precedence editorial `summary` → manifest description sentence → name + type/tier (AD-17)
+**And** the build-generated search index embeds the loader-resolved asset metadata so no client ever imports the manifest (AD-14)
+**And** the default build performs no network calls; the env-gated pre-sync refresh is opt-in and is the only build-time API touch (AD-16)
+**And** new files and slugs stay kebab-case, components PascalCase, TypeScript `.ts`/`.tsx` (NFR4, AD-10)
+
+### Story 4.2: Hero artwork tiles
+
+As a player,
+I want roster and hero-page headers using official hero artwork,
+So that I recognize my hero at a glance.
+
+**Acceptance Criteria:**
+
+**Given** synced artwork from Story 4.1 and the DESIGN tokens
+**When** a visitor opens `/heroes` or `/heroes/[slug]`
+**Then** each roster tile and the hero-page header render the official hero artwork as the background under the `hero-artwork-tile` scrim with the tile text shadow, hero name in `{colors.text}` at ≥4.5:1 measured on the busiest portrait area (UX-DR17, NFR3)
+**And** artwork loads from static repo files passed down as loader props; no client fetch of artwork or manifest (AD-16, AD-17, NFR9)
+**And** artwork is decorative (CSS background / `aria-hidden`) with the hero name as real text, and zero-entry heroes keep their full-tile "no entries yet" state (FR7, UX-DR6)
+**And** an entity with no synced artwork renders the neutral placeholder with the entity initial, never a broken image; a missing image never fails the page (UX-DR17, AD-16)
+**And** hover/selected states (`surface-raised` / `accent-dim` + accent border) are preserved over artwork (UX-DR6)
+**And** `media-scrim-strong/soft` ship as CSS custom properties in `app/globals.css` via Tailwind 4 `@theme` (UX-DR22, AD-15)
+
+### Story 4.3: Counter card media row, tier borders, and asset tooltips
+
+As a player,
+I want every entry card and detail to show the hero portraits and ability/item icons involved,
+So that I can see the matchup without reading it.
+
+**Acceptance Criteria:**
+
+**Given** entries rendered on hero pages, search results, and detail
+**When** an entry card or interaction detail renders
+**Then** the media row shows 32px source/target hero portraits followed by 24px ability and shop-item icons, all resolved at build and passed as loader props (UX-DR18)
+**And** each shop-item icon carries a 2px border in its `item_tier` color using `{colors.tier-1}`–`{colors.tier-4}`, and the tooltip states the tier in words so tier is never color-only (UX-DR18, NFR3)
+**And** the asset tooltip opens on hover OR keyboard focus, persists while hovered or focused, dismisses with `Esc`, links to its trigger via `aria-describedby`, and renders name + type/tier + one-line effect within 280px max width (UX-DR19, WCAG 1.4.13)
+**And** the tooltip is the only new `"use client"` island, inside AD-6's closed list (AD-6)
+**And** search-result cards use the asset metadata embedded in the search index; no client manifest import (AD-14)
+**And** a missing icon renders the neutral placeholder with the entity initial, and the tooltip still opens with text details (UX-DR22 state patterns)
+**And** icons are decorative where adjacent text names the entity; the tooltip trigger is a real button with an accessible name (EXPERIENCE interaction primitives, NFR3)
+**And** `tier-1..4` tokens and the `asset-tooltip` spec ship in `app/globals.css` / Tailwind 4 `@theme`; if sync reveals a curated item with `item_tier` 5, stop and surface the DESIGN tier-5 token gap before shipping (UX-DR22, spine open item)
+
+### Story 4.4: Trust-signal refresh: Patch-Verified and Deprecated callout
+
+As a player,
+I want unmistakable trust states on every entry,
+So that I instantly know what is current and what has been nerfed.
+
+**Acceptance Criteria:**
+
+**Given** the shipped badge and entry components
+**When** any entry surface renders the verified base badge
+**Then** the visible label reads `PATCH-VERIFIED · X.Y` and screen readers hear "Patch-verified as of patch X.Y", with icon + word + color unchanged (UX-DR20)
+**And** stale/flagged/deprecated badge labels and states are unchanged (UX-DR4)
+**And** no separate public community-verified count renders at MVP (UX-DR20)
+**Given** an entry with `deprecated: true`
+**When** its card or detail renders
+**Then** a distinct rose `deprecated-callout` block appears below the record body stating "Deprecated Tech / Patch Note", the patch number, and the note from the latest `patchHistory` row (UX-DR21, AD-2)
+**And** the callout supplements `badge-deprecated`, never replaces it, and record content stays fully rendered (FR10)
+**And** deprecated entries with empty `patchHistory` already fail the build (AD-2), so the callout always has a patch number and note to show
+**And** callout text meets WCAG 2.1 AA contrast on the rose surface, and the `deprecated-callout` spec ships in `app/globals.css` / Tailwind 4 `@theme` (NFR3, UX-DR22)

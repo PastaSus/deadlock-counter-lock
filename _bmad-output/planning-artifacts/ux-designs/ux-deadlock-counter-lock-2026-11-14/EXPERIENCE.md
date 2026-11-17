@@ -2,7 +2,7 @@
 title: "EXPERIENCE.md: Counterlock"
 status: final
 created: 2026-11-14
-updated: 2026-11-14
+updated: 2026-11-16
 name: Counterlock
 sources:
   - {planning_artifacts}/prds/prd-deadlock-counter-lock-2026-11-14/prd.md
@@ -13,7 +13,7 @@ sources:
 
 ## Foundation
 
-Responsive web, mobile-first breakpoints, no separate app (memlog). Next.js 16 App Router + Tailwind CSS 4 custom components, no component library (memlog); `DESIGN.md` is the visual identity reference and owns all tokens; this spine owns behavior. Dark-first "precision-tool" aesthetic; light mode deferred (memlog). SEO-first static/SSR routes and the ~10s lookup target (SM-3) are inherited from PRD §6.1, not restated here. Content is curated repo files (FR-11); there is no account layer anywhere in the experience (PRD §5).
+Responsive web, mobile-first breakpoints, no separate app (memlog). Next.js 16 App Router + Tailwind CSS 4 custom components, no component library (memlog); `DESIGN.md` is the visual identity reference and owns all tokens; this spine owns behavior. Dark-first "precision-tool" aesthetic; light mode deferred (memlog). SEO-first static/SSR routes and the ~10s lookup target (SM-3) are inherited from PRD §6.1, not restated here. Content is curated repo files (FR-11); there is no account layer anywhere in the experience (PRD §5). Official Deadlock artwork is synced at build time or by a local script, stored with the repo, and served statically; the browser never calls the Deadlock Assets API.
 
 ## Information Architecture
 
@@ -56,13 +56,26 @@ Behavioral. Visual specs live in `DESIGN.md · Components`.
 |---|---|---|
 | Hero-first browse | Home, `/heroes` | Pick a hero (tile → hero page) is path #1; search is path #2, never demoted below fold (FR-1, FR-2). Selected tile uses `accent-dim` + accent border ({colors.accent-dim}). No modal hero picker, browsing is the navigation. |
 | Free-text search | Home, nav (field: {components.search-field}) | Matches heroes, abilities, items, effect terms across Interaction Records *and* Matchup Guidance (FR-2). `aria-live` result count. Deprecated entries appear in results, labeled (FR-10). |
-| Entry card | Hero page, search results | Whole card taps through to detail. Badge footer always visible, freshness is never behind a click (FR-4). Conditions preview truncates at sentence end only. |
+| Entry card | Hero page, search results | Whole card taps through to detail. Media row shows the official hero portrait and ability/shop-item icons; item icons carry tier borders and an accessible tooltip. Badge footer always visible, freshness is never behind a click (FR-4). Conditions preview truncates at sentence end only. Deprecated entries add the Deprecated Tech / Patch Note callout. |
 | Badge / chip (badge states) | Every entry surface | `badge-verified` / `badge-stale` / `badge-flagged` / `badge-deprecated` ({colors.status-verified}, {colors.status-flagged}, {colors.status-deprecated}) with icon + word + color. Text pattern "verified as of patch X.Y" on detail (FR-8); compact mono stamp on cards. Verified patch older than the site's current Patch renders `badge-stale`, dashed border + `· STALE` suffix, so old-patch vs current-patch is distinguishable at a glance, not by reading digits (FR-4). |
 | Patch History block | Entry detail, below conditions | Ordered by Patch ascending (FR-10). Renders per {components.patch-history}, rows in {typography.mono}. Missing history renders explicit "No recorded changes", never blank (FR-3 consequence). Deprecated rows keep the record visible. |
 | Flag control | Entry detail | Two verdicts, "Still correct" / "Outdated" (FR-9), optional one-line note after activate, submit without auth. In-place confirmation swap; no modal, no redirect. Duplicate within window dedupes silently to a notice; sustained attempts rate-limit with plain-language notice. Accepted "outdated" flips the entry to `badge-flagged` (pending review) for other visitors (FR-9 consequence). 44px min-height per {components.flag-control}. |
 | Copy link | Entry detail, beside flag control | Copies canonical URL; label swaps to patch-stamped citation ("Counterlock · <title> · verified as of patch X.Y") for creators (PRD §2.1). Announced via `aria-live`. Per {components.copy-link}. |
-| Roster grid ({components.hero-roster-tile}) | `/heroes` | Every current hero present (FR-7). Zero-entry heroes render full tiles with "no entries yet", valid state, not 404. Count must match tracked roster. |
+| Roster grid ({components.hero-roster-tile}) | `/heroes` | Every current hero present (FR-7). Tiles use official hero artwork with the media scrim and text shadow; text stays ≥4.5:1 on the busiest portrait. Zero-entry heroes render full tiles with "no entries yet", valid state, not 404. Count must match tracked roster. |
+| Asset tooltip | Entry cards, detail media | Opens on hover or focus, linked with `aria-describedby`, dismissible with `Esc`, persistent while hovered/focused (WCAG 1.4.13). States name, type or tier, and one-line effect. Tier always in words. |
+| Deprecated Tech / Patch Note callout | Entry detail, deprecated cards | Rose-tinted block below the record body with label, patch number, and note. Supplements `badge-deprecated`, never replaces it. Content fully rendered (FR-10). |
 | Navigation | Global | Flat top bar: Heroes, Interactions, Matchups, search. Back navigation preserves prior browse state (hero filter, scroll) via normal history, no app-shell reset. |
+
+## Official Assets & Media
+
+Official artwork is recognition, not decoration. The asset pipeline is invisible to visitors: assets are synced at build time or by a local script and served from the repo, so a page never waits on the Deadlock Assets API and a rate limit never breaks a lookup.
+
+- **Hero artwork:** roster tiles and hero-page headers use the official hero card or background image. A dark scrim and text shadow keep the hero name and metadata at or above 4.5:1 on the busiest area. If the artwork fails to load, the tile falls back to a neutral surface with the hero name and initial, never a broken image.
+- **Counter card media:** every entry card shows the source and target hero portraits plus the ability and shop-item icons that the entry references. Item icons carry a 2px tier-colored border; the tooltip states the tier in words, so tier is never color-only. Icons are decorative when the adjacent text names the entity; icon-only controls carry an accessible name.
+- **Tooltips:** hover or keyboard focus opens the asset tooltip. It stays open while hovered or focused, is dismissible with `Esc`, and is linked to its trigger with `aria-describedby` (WCAG 1.4.13). Content is build-time data: name, type or tier, and a one-line effect. No tooltip is hover-only; touch users get the same content by focusing the icon.
+- **Patch-Verified badge:** the visible label is `PATCH-VERIFIED · X.Y`; screen readers hear "Patch-verified as of patch X.Y". The existing badge states, icon + word + color, are unchanged.
+- **Community flags:** pending outdated flags still upgrade the badge to `badge-flagged` through the overlay. Community verified flags do not add a separate public count at MVP; the Patch-Verified badge is the editor's verification. A later verified count must not compete with the badge.
+- **Deprecated Tech / Patch Note callout:** deprecated entries show a distinct rose-tinted callout below the record body with the patch number and the note. The callout supplements `badge-deprecated`; it never replaces the badge or hides the record.
 
 ## State Patterns
 
@@ -77,6 +90,9 @@ Behavioral. Visual specs live in `DESIGN.md · Components`.
 | Flag rate-limited | Flag control | "Slow down, you've already flagged this recently." [ASSUMPTION] No account prompt ever. |
 | Error (flag submit) | Flag control | "Couldn't send. Try again." in {colors.error} (text + border only, never a fill). Control stays enabled for retry (FR-9: accepted flags must reliably reach the backlog, failures never silently succeed). |
 | Error (page/data) | Any route | Plain-language error surface in {colors.error} + link home; no stack traces. [ASSUMPTION: standard Next.js error boundary copy] |
+| Asset missing | Hero tiles, card media | Neutral `surface-raised` placeholder with the entity initial and name; never a broken image. The tooltip still opens with text details. |
+| Tooltip | Asset icons | Opens on hover or focus, linked with `aria-describedby`, persists while hovered/focused, `Esc` dismisses; no layout shift. |
+| Patch-Verified | Every entry surface | `badge-verified` reads `PATCH-VERIFIED · X.Y`; screen readers hear "Patch-verified as of patch X.Y". |
 
 ## Interaction Primitives
 
@@ -85,6 +101,8 @@ Behavioral. Visual specs live in `DESIGN.md · Components`.
 - **Back nav:** browser/OS back is the primary reverse path (UJ-1 loop: detail → hero → home). No custom back that breaks history; detail pages never trap focus.
 - **Deep links:** every hero, interaction, and guidance record has a canonical static/SSR URL (PRD §6.1), shareable from Discord, indexable, and the reason deprecated records stay retrievable by direct link (FR-10). Search results serialize to `?q=` so a query is shareable/reloadable. Copy-link control on detail gives creators the patch-stamped citation (PRD §2.1).
 - **Icon-only controls:** every glyph button (search, menu, copy-link) has an accessible name (`aria-label`: "Search", "Menu", "Copy link"); badge glyphs render `aria-hidden` so SR users hear only the badge phrase.
+- **Asset icons and tooltips:** hero portraits and item/ability icons are decorative when adjacent text names the entity; the tooltip trigger is a real button with `aria-describedby`. Tooltips open on hover or focus, stay open while hovered/focused, and dismiss with `Esc` (WCAG 1.4.13). No tooltip is hover-only; touch users focus the icon to read it.
+- **Text over artwork:** hero artwork always sits under the media scrim and text shadow; overlay text is `{colors.text}` and verified at ≥4.5:1 on the busiest portrait area.
 - **Banned:** hover-only affordances on touch, auto-play motion, modal stacks >1 deep, infinite scroll on roster/search (grid renders complete; corpus fits client-side, FR-2).
 
 ## Accessibility Floor
