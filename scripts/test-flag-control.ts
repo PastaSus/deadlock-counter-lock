@@ -270,15 +270,21 @@ const checks: [string, () => void | Promise<void>][] = [
           });
         });
 
-      const result = await requestFlagSubmission(
-        {
-          entrySlug: "knockdown-vs-danny-crash",
-          selection: "outdated",
-          note: "retry me",
-        },
-        fetchImpl,
-        5,
-      );
+      const keepAlive = setInterval(() => undefined, 50);
+      let result;
+      try {
+        result = await requestFlagSubmission(
+          {
+            entrySlug: "knockdown-vs-danny-crash",
+            selection: "outdated",
+            note: "retry me",
+          },
+          fetchImpl,
+          5,
+        );
+      } finally {
+        clearInterval(keepAlive);
+      }
 
       assert.equal(result.outcome, "error");
       assert.equal(result.payload.note, "retry me");

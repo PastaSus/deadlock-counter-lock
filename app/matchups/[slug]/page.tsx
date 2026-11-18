@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Badge } from "../../../components/badge";
 import { CopyLink } from "../../../components/copy-link";
 import { FlagControl } from "../../../components/flag-control";
+import { FlagOverlayBadge } from "../../../components/flag-overlay-badge";
 import { PatchHistory } from "../../../components/patch-history";
 import { deriveBadgeState } from "../../../lib/badges";
 import { loadAllContent } from "../../../lib/loaders";
@@ -110,7 +110,11 @@ export default async function GuidanceDetailPage({
         </div>
 
         <div className="flex items-center justify-between gap-4">
-          <Badge variant={badgeVariant} patch={entry.verifiedPatch} />
+          <FlagOverlayBadge
+            entrySlug={entry.slug}
+            baseVariant={badgeVariant}
+            patch={entry.verifiedPatch}
+          />
           <CopyLink
             url={canonicalUrl}
             title={entry.title}

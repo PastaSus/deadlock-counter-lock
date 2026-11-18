@@ -77,6 +77,7 @@ export default function Home() {
             return (
               <EntryCard
                 key={entry.slug}
+                entrySlug={entry.slug}
                 href={
                   entry.kind === "interaction"
                     ? `/interactions/${entry.slug}`
@@ -106,6 +107,7 @@ export default function Home() {
             Archetype Warning
           </h2>
           <EntryCard
+            entrySlug={archetypeCard.slug}
             href={`/matchups/${archetypeCard.slug}`}
             effectChip="ARCHETYPE WARNING"
             source={
