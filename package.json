@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test:content": "tsx scripts/test-content.ts",
     "test:heroes": "tsx scripts/test-heroes.ts",
-    "test:flags": "tsx scripts/test-flags.ts"
+    "test:flags": "tsx scripts/test-flags.ts",
+    "test:flag-control": "tsx scripts/test-flag-control.ts"
   },
   "dependencies": {
     "@types/node": "^26.6.6",
