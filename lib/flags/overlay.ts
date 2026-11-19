@@ -52,11 +52,12 @@ export function parseFlaggedSlugs(body: unknown): string[] {
 
 export async function requestFlagOverlay(
   fetchImpl: OverlayFetch = (url, init) => fetch(url, init),
+  timeoutMs: number = OVERLAY_REQUEST_TIMEOUT_MS,
 ): Promise<string[] | null> {
   try {
     const response = await fetchImpl("/api/flags/overlay", {
       cache: "no-store",
-      signal: AbortSignal.timeout(OVERLAY_REQUEST_TIMEOUT_MS),
+      signal: AbortSignal.timeout(timeoutMs),
     });
 
     if (response.status < 200 || response.status >= 300) {

@@ -92,6 +92,24 @@ No frozen-intent changes.
 - **Per-badge live regions can repeat the phrase on grids.** Accepted for this story: each upgraded badge is required to announce, and a single page-level live region needs cross-page plumbing outside this scope. Deferred in `deferred-work.md`.
 - **The test-only `test-flag-control` keep-alive edit is outside the Code Map.** Accepted: without it the existing 26-check suite exits early under Node's unref'd timeout timer. No production behavior changed.
 
+### Review pass 2 (2026-11-19)
+
+| Finding | Verdict | Evidence | Route |
+|---|---|---|---|
+| Session-scoped overlay cache; no refetch after client navigation (blind 1, edge 1) | low | The Always/Design Notes specify one module-level shared request per page load and the matrix requires one request per page, which the singleton satisfies. Stale data can persist across client navigation only if a flag changes mid-session; fixing it needs per-route invalidation, more than a direct correction. | reject |
+| `markFlagSubmitted` marks the slug for error, duplicate, and rate-limited outcomes (blind 2) | low | The frozen constraint "No immediate self-upgrade after a visitor submits" requires the mark before the POST to close the GET-after-POST race; a success-only mark would reopen it. The suppressed upgrade on a failed or duplicate attempt is negligible. | reject |
+| `submittedAt` marker grows for the tab lifetime (blind 3, edge 3) | low | A tab accumulates one entry per distinct submitted slug, so growth is negligible. A TTL or eviction adds complexity beyond a direct correction. | reject |
+| Race guard compares per-badge mount time, not the shared request start (blind 4, edge 2) | false | A badge mounted before a submission has `startedAt` earlier than the mark, so the guard blocks the upgrade. A badge mounted after the submission joins a request that began before it, so that response cannot contain the new flag. The forbidden self-upgrade does not occur. | reject |
+| The `deprecated` fetch skip, upgrade transition, slug change, and live-region text are untested (blind 5, blind 8, verification 1, verification 2) | low | No DOM harness exists; only pure helpers and static markup are exercised. This is already recorded as a DOM-level overlay badge test in `deferred-work.md`. | defer (existing entry) |
+| `requestFlagOverlay` and `parseFlaggedSlugs` disagree on a missing `flaggedSlugs` (blind 6) | false | The spec requires a missing `flaggedSlugs` to be a failure in `requestFlagOverlay`; the parser is called only after that validation, so its lenient branch is unreachable there. The divergence is intentional. | reject |
+| The overlay timeout fallback is untested (blind 7, verification 3) | low | Replacing the 10s timeout with a zero or never-aborting signal passed every check. Patched: added an optional `timeoutMs` seam and a hung-request check asserting the `null` fallback. | patch |
+| Flagged-plus-patch presentation is unspecified (blind 9) | false | The spec requires rendering the existing Badge unchanged; the flagged patch phrase is existing Badge behavior and no acceptance criterion asks for a different presentation. | reject |
+| No-JS and crawler consequences are not recorded (blind 10) | false | The spec requires the base badge in server and first-client markup; no-JS visitors and crawlers correctly see the build-derived badge. The limitation is inherent and accepted. | reject |
+| Code Map is stale relative to the shipped exports and the `feedback.ts` edit (blind 11) | low | The map lists four exports while the implementation adds loader, presentation, and marker helpers, and the `feedback.ts` edit is unlisted. The fix is a spec edit, which review must not make. | reject |
+| No guard enforces the "no `node:` imports" rule (blind 12) | false | `lib/flags/overlay.ts` has no `node:` imports, and the client island imports it, so a future `node:` import fails `next build`, which is part of the spec's verification. | reject |
+| The test keep-alive could hang the suite (blind 13) | false | The hung-request check passes `timeoutMs = 5`, so the production abort fires and the fake fetch rejects; the keep-alive only stops Node's unref'd timer from letting the process exit first. | reject |
+| `className` is plumbed but unused (blind 14) | false | The prop is forwarded to the existing Badge and matches its public shape; no call site needs it and it causes no harm. | reject |
+
 ## Design Notes
 
 The shared request lives in a module-level promise inside the client island, so every badge mounted during a page load joins the same GET. A null result from a failed request is not cached permanently; the next mount can retry. Upgrade state stores the slug that was confirmed flagged rather than a boolean, so client navigation to another entry cannot inherit the previous upgrade. The effect records its start time and checks the submission marker before applying a result, which closes the narrow GET-after-POST race. The live region holds the phrase only while the current badge is flagged; it is swapped to empty when the slug changes.
@@ -99,7 +117,7 @@ The shared request lives in a module-level promise inside the client island, so 
 ## Verification
 
 **Commands:**
-- `npm run test:flag-overlay` -- PASS, 18/18: every matrix row, the submission marker, and the real overlay route.
+- `npm run test:flag-overlay` -- PASS, 19/19: every matrix row, the submission marker, the real overlay route, and the hung-request timeout fallback.
 - `npm run test:flag-control` -- PASS, 26/26 (unchanged behavior; test harness keep-alive added).
 - `npm run test:flags` -- PASS, 20/20 (unchanged).
 - `npm run lint` -- PASS, no errors.

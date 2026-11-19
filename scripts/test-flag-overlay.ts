@@ -255,6 +255,27 @@ const checks: [string, () => void | Promise<void>][] = [
     },
   ],
   [
+    "a hung overlay request aborts into the null fallback",
+    async () => {
+      const fetchImpl: OverlayFetch = (_url, init) =>
+        new Promise((_resolve, reject) => {
+          init.signal?.addEventListener("abort", () => {
+            reject(new Error("aborted"));
+          });
+        });
+
+      const keepAlive = setInterval(() => undefined, 50);
+      let slugs: string[] | null = [];
+      try {
+        slugs = await requestFlagOverlay(fetchImpl, 5);
+      } finally {
+        clearInterval(keepAlive);
+      }
+
+      assert.equal(slugs, null);
+    },
+  ],
+  [
     "FETCH_FAILURE returns null on throw, error status, ok:false, missing slugs, or unparseable body",
     async () => {
       const thrown = await requestFlagOverlay(async () => {
