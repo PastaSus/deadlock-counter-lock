@@ -52,7 +52,7 @@ development_status:
 
   epic-3: in-progress
   3-1-flag-backlog-surface: review
-  3-2-sweep-execution-re-verify-and-close-flags: in-progress
+  3-2-sweep-execution-re-verify-and-close-flags: review
   epic-3-retrospective: optional
 
   epic-4: backlog

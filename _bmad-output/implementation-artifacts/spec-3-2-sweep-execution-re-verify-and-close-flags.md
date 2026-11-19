@@ -3,7 +3,7 @@ title: 'Story 3.2: Sweep execution: re-verify and close flags'
 type: 'feature'
 created: '2026-11-19'
 baseline_commit: '9f4069c305edbef109a9a88e8b577cc6dc1f17c6'
-status: 'in-progress'
+status: 'done'
 route: 'oneshot'
 review_loop_iteration: 0
 context: []
