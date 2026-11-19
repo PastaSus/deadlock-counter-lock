@@ -13,7 +13,8 @@
     "test:flags": "tsx scripts/test-flags.ts",
     "test:flag-control": "tsx scripts/test-flag-control.ts",
     "test:flag-overlay": "tsx scripts/test-flag-overlay.ts",
-    "test:flag-backlog": "tsx scripts/test-flag-backlog.ts"
+    "test:flag-backlog": "tsx scripts/test-flag-backlog.ts",
+    "test:flag-review": "tsx scripts/test-flag-review.ts"
   },
   "dependencies": {
     "@types/node": "^26.6.6",
