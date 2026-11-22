@@ -29,12 +29,11 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 # - Retrospective appends its action items to action_items; the status view surfaces open ones
 generated: 11-14-2026 14:00
-last_updated: 11-17-2026 18:34
+last_updated: 11-18-2026 12:30
 project: deadlock-counter-lock
 project_key: NOKEY
 tracking_system: file-system
-story_location: 
-  D:\WebDevPersonal\deadlock-counter-lock\_bmad-output\implementation-artifacts
+story_location: D:\WebDevPersonal\deadlock-counter-lock\_bmad-output\implementation-artifacts
 development_status:
   epic-1: in-progress
   1-1-content-pipeline-and-seed-corpus: done
@@ -47,7 +46,7 @@ development_status:
 
   epic-2: in-progress
   2-1-flag-api-with-rate-limit-and-dedupe: review
-  2-2-flag-control-on-entry-detail: backlog
+  2-2-flag-control-on-entry-detail: review
   2-3-flag-overlay-on-badges: backlog
   epic-2-retrospective: optional
 

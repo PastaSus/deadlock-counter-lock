@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { Badge } from "../../../components/badge";
 import { CopyLink } from "../../../components/copy-link";
+import { FlagControl } from "../../../components/flag-control";
 import { PatchHistory } from "../../../components/patch-history";
 import { deriveBadgeState } from "../../../lib/badges";
 import { loadAllContent } from "../../../lib/loaders";
@@ -118,6 +119,8 @@ export default async function GuidanceDetailPage({
         </div>
 
         <PatchHistory rows={entry.patchHistory} />
+
+        <FlagControl key={entry.slug} entrySlug={entry.slug} />
       </section>
 
       <nav className="mt-12 pt-6 border-t border-border">

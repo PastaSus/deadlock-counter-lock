@@ -31,3 +31,18 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-2-1-flag-api-with-rate-limit-and-dedupe.md`
   summary: Add a build or integration assertion that `GET /api/flags/overlay` runs per request under Cache Components.
   evidence: Direct handler tests simulate the Next request scope; the production `connection()` deferral path is verified only by build output inspection.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
+  summary: Replace the success check icon's `text-status-verified` with a non-status token.
+  evidence: Epic 2 reserves status colors for badges, but the icon's status color predates Story 2.2 and the story was scoped to avoid restyling existing components.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
+  summary: Wire `test:flag-control` into CI alongside `test:flags` when a pipeline exists.
+  evidence: The repo has no CI configuration, so the new 26-check suite runs only when invoked manually.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
+  summary: Add an automated assertion that the detail routes remain static and only `/api/flags/*` is dynamic.
+  evidence: AD-4/AD-6 staticness is confirmed by reading `next build` output; no test or CI check fails if a page becomes dynamic.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
+  summary: Reconcile the epic context wording with the approved flag flow ("one tap" and "beside the copy-link control").
+  evidence: The story's frozen intent specifies a two-step select-then-Submit flow below Patch History, while `epic-2-context.md` still carries the older single-tap, beside-copy-link phrasing.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
+  summary: Add a render or HTTP smoke test proving both detail pages mount `FlagControl` with their own `entry.slug`.
+  evidence: No page-render harness exists; a copy-paste error in either mount would pass every current test and only ship misattributed flags.
