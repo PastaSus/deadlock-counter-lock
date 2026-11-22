@@ -1,6 +1,8 @@
 {
   "slug": "silver",
   "name": "Silver",
+  "assetId": "80",
+  "className": "hero_werewolf",
   "abilities": [
     { "slug": "silver-quickdraw", "name": "Quickdraw" },
     { "slug": "silver-ricochet", "name": "Ricochet" },

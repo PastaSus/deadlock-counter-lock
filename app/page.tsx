@@ -3,7 +3,7 @@ import { HomeSearch } from "../components/home-search";
 import { EntryCard } from "../components/entry-card";
 import { deriveBadgeState } from "../lib/badges";
 import { loadAllContent } from "../lib/loaders";
-import type { Entry } from "../lib/schema";
+import { buildSearchIndex } from "../lib/search-index";
 
 export const metadata = {
   title: "Counterlock",
@@ -129,71 +129,4 @@ export default function Home() {
       )}
     </main>
   );
-}
-
-function buildSearchIndex(content: ReturnType<typeof loadAllContent>) {
-  const heroes = content.heroes.map((hero) => ({
-    slug: hero.slug,
-    kind: "hero" as const,
-    title: hero.name,
-    label: hero.name,
-    href: `/heroes/${hero.slug}`,
-    terms: tokenize(hero.name),
-  }));
-
-  const abilities: Array<{
-    slug: string;
-    kind: "ability";
-    title: string;
-    label: string;
-    href: string;
-    terms: string[];
-  }> = [];
-  for (const hero of content.heroes) {
-    for (const ability of hero.abilities) {
-      abilities.push({
-        slug: ability.slug,
-        kind: "ability",
-        title: ability.name,
-        label: `${ability.name} (${hero.name})`,
-        href: `/heroes/${hero.slug}`,
-        terms: tokenize(ability.name),
-      });
-    }
-  }
-
-  const items = content.items.map((item) => ({
-    slug: item.slug,
-    kind: "item" as const,
-    title: item.name,
-    label: item.name,
-    href: `/items/${item.slug}`,
-    terms: tokenize(item.name),
-  }));
-
-  const entries = content.entries.map((entry) => {
-    const source = content.registry[entry.sourceRef]?.name ?? entry.sourceRef;
-    const target = content.registry[entry.targetRef]?.name ?? entry.targetRef;
-    const href =
-      entry.kind === "interaction"
-        ? `/interactions/${entry.slug}`
-        : `/matchups/${entry.slug}`;
-    const terms = tokenize(
-      `${entry.title} ${source} ${target} ${entry.conditions} ${entry.effects.join(" ")}`,
-    );
-    return {
-      slug: entry.slug,
-      kind: "entry" as const,
-      title: entry.title,
-      label: `${source} vs ${target}`,
-      href,
-      terms,
-    };
-  });
-
-  return { heroes, abilities, items, entries };
-}
-
-function tokenize(text: string): string[] {
-  return text.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
 }

@@ -1,10 +1,12 @@
 {
   "slug": "vindicta",
   "name": "Vindicta",
+  "assetId": "3",
+  "className": "hero_hornet",
   "abilities": [
-    { "slug": "vindicta-stake", "name": "Stake" },
-    { "slug": "vindicta-flight", "name": "Flight" },
-    { "slug": "vindicta-crow-familiar", "name": "Crow Familiar" },
-    { "slug": "vindicta-assassinate", "name": "Assassinate" }
+    { "slug": "vindicta-stake", "name": "Stake", "assetId": "537527508", "className": "citadel_ability_hornet_chain" },
+    { "slug": "vindicta-flight", "name": "Flight", "assetId": "1796564033", "className": "citadel_ability_hornet_leap" },
+    { "slug": "vindicta-crow-familiar", "name": "Crow Familiar", "assetId": "2048438176", "className": "citadel_ability_hornet_sting" },
+    { "slug": "vindicta-assassinate", "name": "Assassinate", "assetId": "775377419", "className": "citadel_ability_hornet_snipe" }
   ]
 }

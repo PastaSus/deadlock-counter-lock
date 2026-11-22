@@ -1,6 +1,8 @@
 {
   "slug": "danny",
   "name": "Deadman Danny",
+  "assetId": "78",
+  "className": "hero_deadpack",
   "abilities": [
     { "slug": "danny-crash", "name": "Crash" },
     { "slug": "danny-grave-shift", "name": "Grave Shift" },

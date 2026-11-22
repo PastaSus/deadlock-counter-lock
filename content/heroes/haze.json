@@ -1,10 +1,12 @@
 {
   "slug": "haze",
   "name": "Haze",
+  "assetId": "13",
+  "className": "hero_haze",
   "abilities": [
-    { "slug": "haze-sleep-dagger", "name": "Sleep Dagger" },
-    { "slug": "haze-smoke-bomb", "name": "Smoke Bomb" },
-    { "slug": "haze-fixation", "name": "Fixation" },
-    { "slug": "haze-bullet-dance", "name": "Bullet Dance" }
+    { "slug": "haze-sleep-dagger", "name": "Sleep Dagger", "assetId": "2948410412", "className": "ability_sleep_dagger" },
+    { "slug": "haze-smoke-bomb", "name": "Smoke Bomb", "assetId": "2414191464", "className": "ability_smoke_bomb" },
+    { "slug": "haze-fixation", "name": "Fixation", "assetId": "1080948381", "className": "ability_stacking_damage" },
+    { "slug": "haze-bullet-dance", "name": "Bullet Dance", "assetId": "731943444", "className": "ability_bullet_flurry" }
   ]
 }

@@ -1,10 +1,12 @@
 {
   "slug": "wraith",
   "name": "Wraith",
+  "assetId": "7",
+  "className": "hero_wraith",
   "abilities": [
-    { "slug": "wraith-card-trick", "name": "Card Trick" },
-    { "slug": "wraith-project-mind", "name": "Project Mind" },
-    { "slug": "wraith-full-auto", "name": "Full Auto" },
-    { "slug": "wraith-telekinesis", "name": "Telekinesis" }
+    { "slug": "wraith-card-trick", "name": "Card Trick", "assetId": "1999680326", "className": "citadel_ability_card_toss" },
+    { "slug": "wraith-project-mind", "name": "Project Mind", "assetId": "4147641675", "className": "citadel_ability_projectmind" },
+    { "slug": "wraith-full-auto", "name": "Full Auto", "assetId": "1842576017", "className": "citadel_ability_wraith_rapidfire" },
+    { "slug": "wraith-telekinesis", "name": "Telekinesis", "assetId": "2981692841", "className": "citadel_ability_psychic_lift" }
   ]
 }
