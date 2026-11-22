@@ -46,3 +46,9 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-2-2-flag-control-on-entry-detail.md`
   summary: Add a render or HTTP smoke test proving both detail pages mount `FlagControl` with their own `entry.slug`.
   evidence: No page-render harness exists; a copy-paste error in either mount would pass every current test and only ship misattributed flags.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-3-flag-overlay-on-badges.md`
+  summary: Consolidate overlay announcements into one page-level live region so a grid of upgraded badges does not repeat the same phrase.
+  evidence: Every overlay badge owns an `aria-live` span; when several badges on the home, hero, or archetypes surfaces upgrade in one commit, assistive tech may announce the identical phrase once per badge.
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-3-flag-overlay-on-badges.md`
+  summary: Add a DOM-level test for the overlay badge effect, including the upgrade transition, slug changes, and live-region text.
+  evidence: The pure decision layer and server markup are covered, but no DOM harness exists; a broken `useEffect` or state reset would still pass the current suite.

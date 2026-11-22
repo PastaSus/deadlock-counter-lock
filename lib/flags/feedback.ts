@@ -1,3 +1,4 @@
+import { markFlagSubmitted } from "./overlay";
 import type { FlagSubmission, FlagVerdict } from "./schema";
 
 export const FLAG_NOTE_MAX_LENGTH = 200;
@@ -122,6 +123,8 @@ export async function requestFlagSubmission(
     request.selection,
     request.note,
   );
+
+  markFlagSubmitted(payload.entrySlug);
 
   try {
     const response = await fetchImpl("/api/flags", {

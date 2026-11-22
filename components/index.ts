@@ -6,4 +6,5 @@ export { PatchHistory } from "./patch-history";
 export { CopyLink } from "./copy-link";
 export { SearchField } from "./search-field";
 export { FlagControl } from "./flag-control";
+export { FlagOverlayBadge } from "./flag-overlay-badge";
 export { RosterSkeleton, EntryDetailSkeleton, SearchSkeleton, HeroPageSkeleton } from "./skeletons";

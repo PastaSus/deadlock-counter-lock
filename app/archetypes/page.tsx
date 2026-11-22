@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Badge } from "../../components/badge";
+import { FlagOverlayBadge } from "../../components/flag-overlay-badge";
 import { deriveBadgeState } from "../../lib/badges";
 import { loadAllContent } from "../../lib/loaders";
 import type { Entry } from "../../lib/schema";
@@ -109,8 +109,9 @@ export default async function ArchetypesPage() {
                             {entry.conditions}
                           </p>
                           <footer className="mt-3 flex items-center justify-between border-t border-border pt-3">
-                            <Badge
-                              variant={badgeVariant}
+                            <FlagOverlayBadge
+                              entrySlug={entry.slug}
+                              baseVariant={badgeVariant}
                               patch={entry.verifiedPatch}
                             />
                             <span className="text-[11px] font-mono text-text-muted" aria-hidden="true">

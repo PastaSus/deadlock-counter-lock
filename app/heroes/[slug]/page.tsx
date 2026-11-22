@@ -178,6 +178,7 @@ export default async function HeroPage({
                         {group.entries.map((entry) => (
                           <EntryCard
                             key={entry.slug}
+                            entrySlug={entry.slug}
                             href={entryHref(entry)}
                             effectChip={effectChip(entry)}
                             source={

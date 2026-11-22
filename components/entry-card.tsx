@@ -1,18 +1,21 @@
-import { Badge } from "./badge";
+import type { BaseBadgeState } from "../lib/badges";
+import { FlagOverlayBadge } from "./flag-overlay-badge";
 
 export interface EntryCardProps {
   href: string;
+  entrySlug: string;
   effectChip: string;
   source: string;
   target: string;
   condition: string;
-  badgeVariant: "verified" | "stale" | "flagged" | "deprecated";
+  badgeVariant: BaseBadgeState;
   patch?: string;
   className?: string;
 }
 
 export function EntryCard({
   href,
+  entrySlug,
   effectChip,
   source,
   target,
@@ -49,7 +52,11 @@ export function EntryCard({
       <p className="text-sm text-text-secondary leading-1.4 truncate">{condition}</p>
 
       <footer className="mt-3 flex items-center justify-between border-t border-border pt-3">
-        <Badge variant={badgeVariant} patch={patch} />
+        <FlagOverlayBadge
+          entrySlug={entrySlug}
+          baseVariant={badgeVariant}
+          patch={patch}
+        />
         <span className="text-[11px] font-mono text-text-muted" aria-hidden="true">
           &rarr;
         </span>
