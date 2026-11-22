@@ -218,6 +218,34 @@ export async function submitFlag(
   return { status: "created", flag };
 }
 
+export async function reviewFlag(
+  id: string,
+  store: FlagStore = getDefaultStore(),
+): Promise<FlagRecord | null> {
+  const key = flagRecordKey(id);
+  const raw = await store.get<unknown>(key);
+  if (raw === null) {
+    return null;
+  }
+
+  const parsed = flagRecordSchema.safeParse(raw);
+  if (!parsed.success) {
+    return null;
+  }
+
+  if (parsed.data.status !== "pending") {
+    return null;
+  }
+
+  const reviewed: FlagRecord = {
+    ...parsed.data,
+    status: "reviewed",
+  };
+
+  await store.set(key, reviewed);
+  return reviewed;
+}
+
 export async function getFlaggedSlugs(
   store: FlagStore = getDefaultStore(),
 ): Promise<string[]> {
