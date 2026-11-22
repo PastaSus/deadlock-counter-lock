@@ -4,6 +4,7 @@ import {
   flagRecordSchema,
   type FlagRecord,
   type FlagSubmission,
+  type FlagVerdict,
 } from "./schema";
 import { getDefaultStore, type FlagStore } from "./store";
 
@@ -225,4 +226,70 @@ export async function getFlaggedSlugs(
     .map((key) => key.slice(FLAG_OVERLAY_KEY_PREFIX.length))
     .filter((slug) => slug.length > 0)
     .sort((a, b) => a.localeCompare(b));
+}
+
+export interface BacklogFlag {
+  id: string;
+  entrySlug: string;
+  verdict: FlagVerdict;
+  note: string | null;
+  createdAt: string;
+  age: number;
+}
+
+interface BacklogEntry extends BacklogFlag {
+  createdAtMs: number;
+}
+
+export async function getPendingFlags(
+  now: number = Date.now(),
+  store: FlagStore = getDefaultStore(),
+): Promise<BacklogFlag[]> {
+  const keys = await store.keys(FLAG_RECORD_KEY_PREFIX);
+  const records = await Promise.all(
+    keys.map(async (key): Promise<BacklogEntry | null> => {
+      const raw = await store.get<unknown>(key);
+      if (raw === null) {
+        return null;
+      }
+
+      const parsed = flagRecordSchema.safeParse(raw);
+      if (!parsed.success) {
+        console.warn("Skipping malformed flag record:", key);
+        return null;
+      }
+
+      if (parsed.data.status !== "pending") {
+        return null;
+      }
+
+      const createdAtMs = Date.parse(parsed.data.createdAt);
+      return {
+        id: parsed.data.id,
+        entrySlug: parsed.data.entrySlug,
+        verdict: parsed.data.verdict,
+        note: parsed.data.note ?? null,
+        createdAt: parsed.data.createdAt,
+        age: Math.max(0, Math.floor((now - createdAtMs) / 1000)),
+        createdAtMs,
+      };
+    }),
+  );
+
+  return records
+    .filter((record): record is BacklogEntry => record !== null)
+    .sort((a, b) => {
+      if (a.createdAtMs !== b.createdAtMs) {
+        return a.createdAtMs - b.createdAtMs;
+      }
+      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+    })
+    .map(({ id, entrySlug, verdict, note, createdAt, age }) => ({
+      id,
+      entrySlug,
+      verdict,
+      note,
+      createdAt,
+      age,
+    }));
 }
