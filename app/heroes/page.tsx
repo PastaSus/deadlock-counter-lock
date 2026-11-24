@@ -23,14 +23,19 @@ export default function HeroesPage() {
       </header>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {content.heroes.map((hero) => (
-          <HeroRosterTile
-            key={hero.slug}
-            href={`/heroes/${hero.slug}`}
-            name={hero.name}
-            entryCount={getHeroEntries(content.entries, hero).length}
-          />
-        ))}
+        {content.heroes.map((hero) => {
+          const asset = content.assets[hero.slug];
+          return (
+            <HeroRosterTile
+              key={hero.slug}
+              href={`/heroes/${hero.slug}`}
+              name={hero.name}
+              entryCount={getHeroEntries(content.entries, hero).length}
+              imagePath={asset?.imagePath}
+              imageWebpPath={asset?.imageWebpPath}
+            />
+          );
+        })}
       </div>
     </main>
   );

@@ -1,5 +1,6 @@
 export { Badge } from "./badge";
 export { EntryCard } from "./entry-card";
+export { HeroArtworkBackdrop } from "./hero-artwork-backdrop";
 export { HeroRosterTile } from "./hero-roster-tile";
 export { Navigation } from "./navigation";
 export { PatchHistory } from "./patch-history";

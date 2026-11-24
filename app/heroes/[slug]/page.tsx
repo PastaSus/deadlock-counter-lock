@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { EntryCard } from "../../../components/entry-card";
+import {
+  HERO_ARTWORK_TEXT_SHADOW,
+  HeroArtworkBackdrop,
+} from "../../../components/hero-artwork-backdrop";
 import { deriveBadgeState } from "../../../lib/badges";
 import {
   getHeroEntries,
@@ -83,6 +87,7 @@ export default async function HeroPage({
   }
 
   const heroEntries = getHeroEntries(content.entries, hero);
+  const asset = content.assets[hero.slug];
   const sections = SECTIONS.map((section) => ({
     ...section,
     groups: groupEntriesByCounterpart(
@@ -101,8 +106,17 @@ export default async function HeroPage({
         All heroes
       </Link>
 
-      <header className="mt-2 mb-8">
-        <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.02em] text-text">
+      <header className="relative mt-2 mb-8 flex min-h-[132px] items-end overflow-hidden rounded-md border border-border bg-surface">
+        <HeroArtworkBackdrop
+          name={hero.name}
+          imagePath={asset?.imagePath}
+          imageWebpPath={asset?.imageWebpPath}
+          imagePosition="center 20%"
+        />
+        <h1
+          className="relative z-10 p-4 font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.02em] text-text"
+          style={{ textShadow: HERO_ARTWORK_TEXT_SHADOW }}
+        >
           {hero.name}
         </h1>
       </header>
