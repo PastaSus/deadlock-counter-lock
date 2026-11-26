@@ -10,6 +10,7 @@
     "lint": "eslint",
     "test:content": "tsx scripts/test-content.ts",
     "test:heroes": "tsx scripts/test-heroes.ts",
+    "test:hero-artwork": "tsx scripts/test-hero-artwork.ts",
     "test:assets": "tsx scripts/test-assets.ts",
     "test:flags": "tsx scripts/test-flags.ts",
     "test:flag-control": "tsx scripts/test-flag-control.ts",

@@ -48,12 +48,15 @@ export default function Home() {
                     entry.targetRef === ability.slug,
                 ),
             ).length;
+            const asset = content.assets[hero.slug];
             return (
               <HeroRosterTile
                 key={hero.slug}
                 href={`/heroes/${hero.slug}`}
                 name={hero.name}
                 entryCount={entryCount}
+                imagePath={asset?.imagePath}
+                imageWebpPath={asset?.imageWebpPath}
               />
             );
           })}

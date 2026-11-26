@@ -18,6 +18,9 @@
   --accent: #57C7AE;
   --accent-foreground: #06130F;
   --accent-dim: #0F2E28;
+  /* Media legibility scrim (the only permitted gradient; see Official Assets & Media) */
+  --media-scrim-strong: rgba(16, 17, 18, 0.92);
+  --media-scrim-soft: rgba(16, 17, 18, 0.55);
   /* Semantic badge states */
   --status-verified: #4ADE80;
   --status-verified-surface: #0E2A1C;
@@ -43,6 +46,8 @@
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
     --color-accent-dim: var(--accent-dim);
+    --color-media-scrim-strong: var(--media-scrim-strong);
+    --color-media-scrim-soft: var(--media-scrim-soft);
     --color-status-verified: var(--status-verified);
     --color-status-verified-surface: var(--status-verified-surface);
     --color-status-flagged: var(--status-flagged);
