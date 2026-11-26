@@ -1,7 +1,8 @@
 import Link from "next/link";
 
+import { DeprecatedCallout } from "../../components/deprecated-callout";
 import { FlagOverlayBadge } from "../../components/flag-overlay-badge";
-import { deriveBadgeState } from "../../lib/badges";
+import { deriveBadgeState, latestPatchHistory } from "../../lib/badges";
 import { loadAllContent } from "../../lib/loaders";
 import type { Entry } from "../../lib/schema";
 
@@ -79,6 +80,7 @@ export default async function ArchetypesPage() {
                       entry,
                       content.config.currentPatch,
                     );
+                    const latestHistory = latestPatchHistory(entry);
                     return (
                       <article
                         key={entry.slug}
@@ -108,6 +110,12 @@ export default async function ArchetypesPage() {
                           <p className="text-sm text-text-secondary leading-1.4">
                             {entry.conditions}
                           </p>
+                          {badgeVariant === "deprecated" && latestHistory && (
+                            <DeprecatedCallout
+                              row={latestHistory}
+                              className="mt-3"
+                            />
+                          )}
                           <footer className="mt-3 flex items-center justify-between border-t border-border pt-3">
                             <FlagOverlayBadge
                               entrySlug={entry.slug}

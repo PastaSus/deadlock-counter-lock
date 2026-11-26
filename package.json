@@ -18,6 +18,7 @@
     "test:flag-overlay": "tsx scripts/test-flag-overlay.ts",
     "test:flag-backlog": "tsx scripts/test-flag-backlog.ts",
     "test:flag-review": "tsx scripts/test-flag-review.ts",
+    "test:trust-signals": "tsx scripts/test-trust-signals.ts",
     "sync:assets": "tsx scripts/sync-assets.ts"
   },
   "dependencies": {

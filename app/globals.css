@@ -28,6 +28,11 @@
   --tier-4: #C4B5FD;
   /* Asset tooltip */
   --asset-tooltip-max-width: 280px;
+  /* Deprecated Tech / Patch Note callout */
+  --deprecated-callout-background: var(--status-deprecated-surface);
+  --deprecated-callout-border: var(--status-deprecated);
+  --deprecated-callout-foreground: var(--status-deprecated);
+  --deprecated-callout-padding: 12px;
   /* Semantic badge states */
   --status-verified: #4ADE80;
   --status-verified-surface: #0E2A1C;
@@ -65,6 +70,9 @@
     --color-status-flagged-surface: var(--status-flagged-surface);
     --color-status-deprecated: var(--status-deprecated);
     --color-status-deprecated-surface: var(--status-deprecated-surface);
+    --color-deprecated-callout-background: var(--deprecated-callout-background);
+    --color-deprecated-callout-border: var(--deprecated-callout-border);
+    --color-deprecated-callout-foreground: var(--deprecated-callout-foreground);
     --color-error: var(--error);
     --color-error-surface: var(--error-surface);
 
@@ -91,6 +99,7 @@
     --spacing-gutter: 16px;
     --spacing-gutter-desktop: 24px;
     --spacing-card-padding: 16px;
+    --spacing-deprecated-callout-padding: var(--deprecated-callout-padding);
     --spacing-section-gap: 40px;
     --spacing-max-content: 1120px;
 

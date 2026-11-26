@@ -6,7 +6,7 @@ import {
   HERO_ARTWORK_TEXT_SHADOW,
   HeroArtworkBackdrop,
 } from "../../../components/hero-artwork-backdrop";
-import { deriveBadgeState } from "../../../lib/badges";
+import { deriveBadgeState, latestPatchHistory } from "../../../lib/badges";
 import {
   getHeroEntries,
   groupEntriesByCounterpart,
@@ -210,6 +210,7 @@ export default async function HeroPage({
                             )}
                             patch={entry.verifiedPatch}
                             media={content.entryMedia[entry.slug]}
+                            deprecatedCallout={latestPatchHistory(entry)}
                           />
                         ))}
                       </div>

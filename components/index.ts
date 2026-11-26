@@ -6,6 +6,7 @@ export { HeroRosterTile } from "./hero-roster-tile";
 export { Navigation } from "./navigation";
 export { PatchHistory } from "./patch-history";
 export { CopyLink } from "./copy-link";
+export { DeprecatedCallout } from "./deprecated-callout";
 export { SearchField } from "./search-field";
 export { FlagControl } from "./flag-control";
 export { FlagOverlayBadge } from "./flag-overlay-badge";

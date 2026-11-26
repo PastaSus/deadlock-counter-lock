@@ -114,6 +114,14 @@ export const entrySchema = z
       });
     }
 
+    if (entry.deprecated && entry.patchHistory.length === 0) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["patchHistory"],
+        message: "Deprecated entries require at least one patchHistory row",
+      });
+    }
+
     for (let index = 1; index < entry.patchHistory.length; index += 1) {
       const previous = entry.patchHistory[index - 1];
       const current = entry.patchHistory[index];

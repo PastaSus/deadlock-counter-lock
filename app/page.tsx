@@ -1,7 +1,7 @@
 import { HeroRosterTile } from "../components/hero-roster-tile";
 import { HomeSearch } from "../components/home-search";
 import { EntryCard } from "../components/entry-card";
-import { deriveBadgeState } from "../lib/badges";
+import { deriveBadgeState, latestPatchHistory } from "../lib/badges";
 import { loadAllContent } from "../lib/loaders";
 import { buildSearchIndex } from "../lib/search-index";
 
@@ -99,6 +99,7 @@ export default function Home() {
                 badgeVariant={badgeVariant}
                 patch={entry.verifiedPatch}
                 media={content.entryMedia[entry.slug]}
+                deprecatedCallout={latestPatchHistory(entry)}
               />
             );
           })}
@@ -129,6 +130,7 @@ export default function Home() {
             )}
             patch={archetypeCard.verifiedPatch}
             media={content.entryMedia[archetypeCard.slug]}
+            deprecatedCallout={latestPatchHistory(archetypeCard)}
           />
         </section>
       )}
