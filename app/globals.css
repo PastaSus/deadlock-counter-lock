@@ -21,6 +21,13 @@
   /* Media legibility scrim (the only permitted gradient; see Official Assets & Media) */
   --media-scrim-strong: rgba(16, 17, 18, 0.92);
   --media-scrim-soft: rgba(16, 17, 18, 0.55);
+  /* Item tier borders (functional encoding only, never status) */
+  --tier-1: #9CA3AF;
+  --tier-2: #6EE7B7;
+  --tier-3: #7DD3FC;
+  --tier-4: #C4B5FD;
+  /* Asset tooltip */
+  --asset-tooltip-max-width: 280px;
   /* Semantic badge states */
   --status-verified: #4ADE80;
   --status-verified-surface: #0E2A1C;
@@ -48,6 +55,10 @@
     --color-accent-dim: var(--accent-dim);
     --color-media-scrim-strong: var(--media-scrim-strong);
     --color-media-scrim-soft: var(--media-scrim-soft);
+    --color-tier-1: var(--tier-1);
+    --color-tier-2: var(--tier-2);
+    --color-tier-3: var(--tier-3);
+    --color-tier-4: var(--tier-4);
     --color-status-verified: var(--status-verified);
     --color-status-verified-surface: var(--status-verified-surface);
     --color-status-flagged: var(--status-flagged);

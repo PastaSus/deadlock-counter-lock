@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { SearchField } from "./search-field";
+import { SearchResultRow } from "./search-result-row";
 import type { SearchIndex, SearchIndexItem } from "../lib/search-index";
 
 interface HomeSearchProps {
@@ -89,15 +90,7 @@ export function HomeSearch({ index }: HomeSearchProps) {
             <ul className="space-y-2">
               {results.slice(0, 10).map((item) => (
                 <li key={item.slug}>
-                  <a
-                    href={item.href}
-                    className="flex items-center gap-2 rounded-md border border-border p-2 bg-surface text-sm text-text-secondary transition-colors hover:border-border-strong hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                  >
-                    <span className="font-semibold text-text">{item.title}</span>
-                    <span className="ml-auto text-[11px] font-mono text-text-muted">
-                      {item.label}
-                    </span>
-                  </a>
+                  <SearchResultRow item={item} />
                 </li>
               ))}
               {results.length > 10 && (

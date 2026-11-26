@@ -190,3 +190,35 @@ export type AssetTier = z.infer<typeof assetTierSchema>;
 export type AssetFamily = z.infer<typeof assetFamilySchema>;
 export type ManifestRecord = z.infer<typeof manifestRecordSchema>;
 export type Manifest = z.infer<typeof manifestSchema>;
+
+export type MediaAssetKind = "hero" | "ability" | "item";
+export type MediaEntityKind = MediaAssetKind | "archetype";
+
+export interface MediaAsset {
+  slug: string;
+  name: string;
+  kind: MediaAssetKind;
+  typeLabel: string;
+  tier?: AssetTier;
+  summary: string;
+  imagePath?: string;
+  imageWebpPath?: string;
+  portraitPath?: string;
+  portraitWebpPath?: string;
+}
+
+export interface EntryMediaSide {
+  ref: string;
+  kind: MediaEntityKind;
+  name: string;
+  typeLabel: string;
+  summary: string;
+  tier?: AssetTier;
+  portrait?: MediaAsset;
+  icon?: MediaAsset;
+}
+
+export interface EntryMedia {
+  source: EntryMediaSide;
+  target: EntryMediaSide;
+}

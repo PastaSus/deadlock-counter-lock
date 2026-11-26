@@ -12,10 +12,13 @@ import {
   type AssetTier,
   type Config,
   type Entry,
+  type EntryMedia,
+  type EntryMediaSide,
   type Hero,
   type Item,
   type Manifest,
   type ManifestRecord,
+  type MediaAsset,
 } from "../schema";
 import { loadManifest, ManifestError } from "../assets";
 
@@ -60,6 +63,7 @@ export interface AllContent {
   entries: Entry[];
   registry: ContentRegistry;
   assets: ContentAssets;
+  entryMedia: Record<string, EntryMedia>;
 }
 
 export interface ContentIssue {
@@ -413,6 +417,113 @@ export function buildAssetMap(
   return assets;
 }
 
+function toMediaAsset(
+  registryEntry: RegistryEntry,
+  asset: AssetProps | undefined,
+  kind: AssetKind,
+): MediaAsset {
+  const name = asset?.name ?? registryEntry.name;
+  const typeLabel = asset?.typeLabel ?? ASSET_TYPE_LABEL[kind];
+
+  return {
+    slug: registryEntry.slug,
+    name,
+    kind,
+    typeLabel,
+    tier: asset?.tier,
+    summary: asset?.summary ?? `${name} (${typeLabel})`,
+    imagePath: asset?.imagePath,
+    imageWebpPath: asset?.imageWebpPath,
+    portraitPath: asset?.portraitPath,
+    portraitWebpPath: asset?.portraitWebpPath,
+  };
+}
+
+function buildMediaSide(
+  ref: string,
+  registry: ContentRegistry,
+  assets: ContentAssets,
+): EntryMediaSide {
+  const entity = registry[ref];
+
+  if (!entity) {
+    return {
+      ref,
+      kind: "archetype",
+      name: ref,
+      typeLabel: "Entity",
+      summary: `${ref} (Entity)`,
+    };
+  }
+
+  if (entity.kind === "hero") {
+    const asset = assets[entity.slug];
+
+    return {
+      ref: entity.slug,
+      kind: "hero",
+      name: asset?.name ?? entity.name,
+      typeLabel: asset?.typeLabel ?? ASSET_TYPE_LABEL.hero,
+      summary: asset?.summary ?? `${entity.name} (${ASSET_TYPE_LABEL.hero})`,
+      tier: asset?.tier,
+      portrait: toMediaAsset(entity, asset, "hero"),
+    };
+  }
+
+  if (entity.kind === "ability") {
+    const asset = assets[entity.slug];
+    const owner = entity.heroSlug ? registry[entity.heroSlug] : undefined;
+    const ownerAsset = owner ? assets[owner.slug] : undefined;
+
+    return {
+      ref: entity.slug,
+      kind: "ability",
+      name: asset?.name ?? entity.name,
+      typeLabel: asset?.typeLabel ?? ASSET_TYPE_LABEL.ability,
+      summary:
+        asset?.summary ?? `${entity.name} (${ASSET_TYPE_LABEL.ability})`,
+      tier: asset?.tier,
+      portrait: owner
+        ? toMediaAsset(owner, ownerAsset, "hero")
+        : undefined,
+      icon: toMediaAsset(entity, asset, "ability"),
+    };
+  }
+
+  if (entity.kind === "item") {
+    const asset = assets[entity.slug];
+
+    return {
+      ref: entity.slug,
+      kind: "item",
+      name: asset?.name ?? entity.name,
+      typeLabel: asset?.typeLabel ?? ASSET_TYPE_LABEL.item,
+      summary: asset?.summary ?? `${entity.name} (${ASSET_TYPE_LABEL.item})`,
+      tier: asset?.tier,
+      icon: toMediaAsset(entity, asset, "item"),
+    };
+  }
+
+  return {
+    ref: entity.slug,
+    kind: "archetype",
+    name: entity.name,
+    typeLabel: "Archetype",
+    summary: `${entity.name} (Archetype)`,
+  };
+}
+
+export function buildEntryMedia(
+  entry: Entry,
+  registry: ContentRegistry,
+  assets: ContentAssets,
+): EntryMedia {
+  return {
+    source: buildMediaSide(entry.sourceRef, registry, assets),
+    target: buildMediaSide(entry.targetRef, registry, assets),
+  };
+}
+
 export function loadAllContent(contentRoot?: string): AllContent {
   const root = resolveContentRoot(contentRoot);
   const config = loadConfig(root);
@@ -436,5 +547,10 @@ export function loadAllContent(contentRoot?: string): AllContent {
 
   const assets = buildAssetMap(heroes, items, manifest);
 
-  return { config, heroes, items, archetypes, entries, registry, assets };
+  const entryMedia: Record<string, EntryMedia> = {};
+  for (const entry of entries) {
+    entryMedia[entry.slug] = buildEntryMedia(entry, registry, assets);
+  }
+
+  return { config, heroes, items, archetypes, entries, registry, assets, entryMedia };
 }

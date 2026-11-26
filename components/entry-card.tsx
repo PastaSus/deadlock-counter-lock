@@ -1,4 +1,6 @@
 import type { BaseBadgeState } from "../lib/badges";
+import type { EntryMedia } from "../lib/schema";
+import { AssetMediaRow } from "./asset-media-row";
 import { FlagOverlayBadge } from "./flag-overlay-badge";
 
 export interface EntryCardProps {
@@ -11,6 +13,7 @@ export interface EntryCardProps {
   badgeVariant: BaseBadgeState;
   patch?: string;
   className?: string;
+  media?: EntryMedia;
 }
 
 export function EntryCard({
@@ -23,6 +26,7 @@ export function EntryCard({
   badgeVariant,
   patch,
   className,
+  media,
 }: EntryCardProps) {
   return (
     <article
@@ -36,6 +40,8 @@ export function EntryCard({
         className="absolute inset-0 z-10"
         aria-label={`${effectChip}: ${source} vs ${target}, ${condition}`}
       />
+
+      <AssetMediaRow media={media} className="mb-2" />
 
       <div className="flex items-center gap-2 mb-2">
         <span className="inline-flex items-center rounded-md bg-surface-raised px-2 py-0.5 text-[11px] font-mono text-text-secondary">
