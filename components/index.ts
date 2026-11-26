@@ -1,4 +1,5 @@
 export { Badge } from "./badge";
+export { AssetMediaRow } from "./asset-media-row";
 export { EntryCard } from "./entry-card";
 export { HeroArtworkBackdrop } from "./hero-artwork-backdrop";
 export { HeroRosterTile } from "./hero-roster-tile";

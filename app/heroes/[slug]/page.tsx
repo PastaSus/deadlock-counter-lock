@@ -209,6 +209,7 @@ export default async function HeroPage({
                               content.config.currentPatch,
                             )}
                             patch={entry.verifiedPatch}
+                            media={content.entryMedia[entry.slug]}
                           />
                         ))}
                       </div>

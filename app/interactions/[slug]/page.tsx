@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { CopyLink } from "../../../components/copy-link";
+import { AssetMediaRow } from "../../../components/asset-media-row";
 import { FlagControl } from "../../../components/flag-control";
 import { FlagOverlayBadge } from "../../../components/flag-overlay-badge";
 import { PatchHistory } from "../../../components/patch-history";
@@ -78,6 +79,8 @@ export default async function InteractionDetailPage({
       </header>
 
       <section className="mt-8 space-y-6">
+        <AssetMediaRow media={content.entryMedia[entry.slug]} />
+
         <div className="flex items-baseline gap-1 mb-1">
           <span className="font-semibold text-text">{source}</span>
           <span className="text-text-muted"> vs </span>

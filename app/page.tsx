@@ -98,6 +98,7 @@ export default function Home() {
                 condition={entry.conditions}
                 badgeVariant={badgeVariant}
                 patch={entry.verifiedPatch}
+                media={content.entryMedia[entry.slug]}
               />
             );
           })}
@@ -127,6 +128,7 @@ export default function Home() {
               content.config.currentPatch,
             )}
             patch={archetypeCard.verifiedPatch}
+            media={content.entryMedia[archetypeCard.slug]}
           />
         </section>
       )}

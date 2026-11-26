@@ -1,5 +1,5 @@
-import { loadAllContent, type AllContent, type AssetProps } from "./loaders";
-import type { AssetTier } from "./schema";
+import { buildEntryMedia, loadAllContent, type AllContent, type AssetProps } from "./loaders";
+import type { AssetTier, EntryMedia } from "./schema";
 
 export interface SearchAsset {
   slug: string;
@@ -24,6 +24,7 @@ export interface SearchIndexItem {
   asset?: SearchAsset | null;
   sourceAsset?: SearchAsset | null;
   targetAsset?: SearchAsset | null;
+  media?: EntryMedia | null;
 }
 
 export interface SearchIndex {
@@ -104,6 +105,9 @@ export function buildSearchIndex(
     const terms = tokenize(
       `${entry.title} ${source} ${target} ${entry.conditions} ${entry.effects.join(" ")}`,
     );
+    const media =
+      content.entryMedia?.[entry.slug] ??
+      buildEntryMedia(entry, content.registry, content.assets);
     return {
       slug: entry.slug,
       kind: "entry",
@@ -113,6 +117,7 @@ export function buildSearchIndex(
       terms,
       sourceAsset: toSearchAsset(content.assets[entry.sourceRef]),
       targetAsset: toSearchAsset(content.assets[entry.targetRef]),
+      media,
     };
   });
 

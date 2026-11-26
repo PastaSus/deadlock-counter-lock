@@ -1350,6 +1350,62 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "abrams-shoulder-charge",
+          "kind": "ability",
+          "name": "Shoulder Charge",
+          "typeLabel": "Ability",
+          "summary": "Charge forward, pulling enemies you hit.",
+          "portrait": {
+            "slug": "abrams",
+            "name": "Abrams",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Charges into close combat",
+            "imagePath": "/assets/heroes/abrams/card.png",
+            "imageWebpPath": "/assets/heroes/abrams/card.webp",
+            "portraitPath": "/assets/heroes/abrams/portrait.png",
+            "portraitWebpPath": "/assets/heroes/abrams/portrait.webp"
+          },
+          "icon": {
+            "slug": "abrams-shoulder-charge",
+            "name": "Shoulder Charge",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Charge forward, pulling enemies you hit.",
+            "imagePath": "/assets/abilities/abrams-shoulder-charge/icon.png",
+            "imageWebpPath": "/assets/abilities/abrams-shoulder-charge/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1401,7 +1457,34 @@
         "portraitPath": "/assets/heroes/abrams/portrait.png",
         "portraitWebpPath": "/assets/heroes/abrams/portrait.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "abrams",
+          "kind": "hero",
+          "name": "Abrams",
+          "typeLabel": "Hero",
+          "summary": "Charges into close combat",
+          "portrait": {
+            "slug": "abrams",
+            "name": "Abrams",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Charges into close combat",
+            "imagePath": "/assets/heroes/abrams/card.png",
+            "imageWebpPath": "/assets/heroes/abrams/card.webp",
+            "portraitPath": "/assets/heroes/abrams/portrait.png",
+            "portraitWebpPath": "/assets/heroes/abrams/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "poke-comps",
+          "kind": "archetype",
+          "name": "Poke comps",
+          "typeLabel": "Archetype",
+          "summary": "Poke comps (Archetype)"
+        }
+      }
     },
     {
       "slug": "apollo-riposte-vs-seven-storm-cloud",
@@ -1463,6 +1546,62 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "apollo-riposte",
+          "kind": "ability",
+          "name": "Riposte",
+          "typeLabel": "Ability",
+          "summary": "Prepare to deflect the next incoming attack.",
+          "portrait": {
+            "slug": "apollo",
+            "name": "Apollo",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "A land of beauty, tradition and conflict; North Ixia is no stranger to brutal political violence.",
+            "imagePath": "/assets/heroes/apollo/card.png",
+            "imageWebpPath": "/assets/heroes/apollo/card.webp",
+            "portraitPath": "/assets/heroes/apollo/portrait.png",
+            "portraitWebpPath": "/assets/heroes/apollo/portrait.webp"
+          },
+          "icon": {
+            "slug": "apollo-riposte",
+            "name": "Riposte",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Prepare to deflect the next incoming attack.",
+            "imagePath": "/assets/abilities/apollo-riposte/icon.png",
+            "imageWebpPath": "/assets/abilities/apollo-riposte/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1514,7 +1653,52 @@
         "imagePath": "/assets/items/counterspell/icon.png",
         "imageWebpPath": "/assets/items/counterspell/icon.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "counterspell",
+          "kind": "item",
+          "name": "Counterspell",
+          "typeLabel": "Tier 3 item",
+          "summary": "Your next parry protects you from the damage and effects of enemy abilities and items.",
+          "tier": "tier-3",
+          "icon": {
+            "slug": "counterspell",
+            "name": "Counterspell",
+            "kind": "item",
+            "typeLabel": "Tier 3 item",
+            "tier": "tier-3",
+            "summary": "Your next parry protects you from the damage and effects of enemy abilities and items.",
+            "imagePath": "/assets/items/counterspell/icon.png",
+            "imageWebpPath": "/assets/items/counterspell/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "danny-dead-reckoning",
+          "kind": "ability",
+          "name": "Dead Reckoning",
+          "typeLabel": "Ability",
+          "summary": "Dead Reckoning (Ability)",
+          "portrait": {
+            "slug": "danny",
+            "name": "Deadman Danny",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+            "imagePath": "/assets/heroes/danny/card.png",
+            "imageWebpPath": "/assets/heroes/danny/card.webp",
+            "portraitPath": "/assets/heroes/danny/portrait.png",
+            "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+          },
+          "icon": {
+            "slug": "danny-dead-reckoning",
+            "name": "Dead Reckoning",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Dead Reckoning (Ability)"
+          }
+        }
+      }
     },
     {
       "slug": "curse-vs-abrams-siphon-life",
@@ -1561,6 +1745,49 @@
         "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
         "imagePath": "/assets/abilities/abrams-siphon-life/icon.png",
         "imageWebpPath": "/assets/abilities/abrams-siphon-life/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "curse",
+          "kind": "item",
+          "name": "Curse",
+          "typeLabel": "Item",
+          "summary": "Curse (Item)",
+          "icon": {
+            "slug": "curse",
+            "name": "Curse",
+            "kind": "item",
+            "typeLabel": "Item",
+            "summary": "Curse (Item)"
+          }
+        },
+        "target": {
+          "ref": "abrams-siphon-life",
+          "kind": "ability",
+          "name": "Siphon Life",
+          "typeLabel": "Ability",
+          "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
+          "portrait": {
+            "slug": "abrams",
+            "name": "Abrams",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Charges into close combat",
+            "imagePath": "/assets/heroes/abrams/card.png",
+            "imageWebpPath": "/assets/heroes/abrams/card.webp",
+            "portraitPath": "/assets/heroes/abrams/portrait.png",
+            "portraitWebpPath": "/assets/heroes/abrams/portrait.webp"
+          },
+          "icon": {
+            "slug": "abrams-siphon-life",
+            "name": "Siphon Life",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
+            "imagePath": "/assets/abilities/abrams-siphon-life/icon.png",
+            "imageWebpPath": "/assets/abilities/abrams-siphon-life/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1608,6 +1835,49 @@
         "summary": "Leap into the air and fly.",
         "imagePath": "/assets/abilities/vindicta-flight/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "curse",
+          "kind": "item",
+          "name": "Curse",
+          "typeLabel": "Item",
+          "summary": "Curse (Item)",
+          "icon": {
+            "slug": "curse",
+            "name": "Curse",
+            "kind": "item",
+            "typeLabel": "Item",
+            "summary": "Curse (Item)"
+          }
+        },
+        "target": {
+          "ref": "vindicta-flight",
+          "kind": "ability",
+          "name": "Flight",
+          "typeLabel": "Ability",
+          "summary": "Leap into the air and fly.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-flight",
+            "name": "Flight",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Leap into the air and fly.",
+            "imagePath": "/assets/abilities/vindicta-flight/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1658,6 +1928,40 @@
         "summary": "Slows movement of enemy target.",
         "imagePath": "/assets/items/slowing-hex/icon.png",
         "imageWebpPath": "/assets/items/slowing-hex/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "debuff-remover",
+          "kind": "item",
+          "name": "Debuff Remover",
+          "typeLabel": "Item",
+          "summary": "Debuff Remover (Item)",
+          "icon": {
+            "slug": "debuff-remover",
+            "name": "Debuff Remover",
+            "kind": "item",
+            "typeLabel": "Item",
+            "summary": "Debuff Remover (Item)"
+          }
+        },
+        "target": {
+          "ref": "slowing-hex",
+          "kind": "item",
+          "name": "Slowing Hex",
+          "typeLabel": "Tier 2 item",
+          "summary": "Slows movement of enemy target.",
+          "tier": "tier-2",
+          "icon": {
+            "slug": "slowing-hex",
+            "name": "Slowing Hex",
+            "kind": "item",
+            "typeLabel": "Tier 2 item",
+            "tier": "tier-2",
+            "summary": "Slows movement of enemy target.",
+            "imagePath": "/assets/items/slowing-hex/icon.png",
+            "imageWebpPath": "/assets/items/slowing-hex/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1712,6 +2016,40 @@
         "imageWebpPath": "/assets/heroes/silver/card.webp",
         "portraitPath": "/assets/heroes/silver/portrait.png",
         "portraitWebpPath": "/assets/heroes/silver/portrait.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "disarm",
+          "kind": "item",
+          "name": "Disarm",
+          "typeLabel": "Item",
+          "summary": "Disarm (Item)",
+          "icon": {
+            "slug": "disarm",
+            "name": "Disarm",
+            "kind": "item",
+            "typeLabel": "Item",
+            "summary": "Disarm (Item)"
+          }
+        },
+        "target": {
+          "ref": "silver",
+          "kind": "hero",
+          "name": "Silver",
+          "typeLabel": "Hero",
+          "summary": "Lilah Silver is a mess.",
+          "portrait": {
+            "slug": "silver",
+            "name": "Silver",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Lilah Silver is a mess.",
+            "imagePath": "/assets/heroes/silver/card.png",
+            "imageWebpPath": "/assets/heroes/silver/card.webp",
+            "portraitPath": "/assets/heroes/silver/portrait.png",
+            "portraitWebpPath": "/assets/heroes/silver/portrait.webp"
+          }
+        }
       }
     },
     {
@@ -1772,6 +2110,53 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "ethereal-shift",
+          "kind": "item",
+          "name": "Ethereal Shift",
+          "typeLabel": "Tier 4 item",
+          "summary": "Instantly enter a void state and become Invulnerable for a short duration.",
+          "tier": "tier-4",
+          "icon": {
+            "slug": "ethereal-shift",
+            "name": "Ethereal Shift",
+            "kind": "item",
+            "typeLabel": "Tier 4 item",
+            "tier": "tier-4",
+            "summary": "Instantly enter a void state and become Invulnerable for a short duration.",
+            "imagePath": "/assets/items/ethereal-shift/icon.png",
+            "imageWebpPath": "/assets/items/ethereal-shift/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1827,6 +2212,62 @@
         "summary": "Leap into the air and fly.",
         "imagePath": "/assets/abilities/vindicta-flight/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "grey-talon-charged-shot",
+          "kind": "ability",
+          "name": "Charged Shot",
+          "typeLabel": "Ability",
+          "summary": "Charge up a powerful shot that pierces through enemies.",
+          "portrait": {
+            "slug": "grey-talon",
+            "name": "Grey Talon",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Delivers long range skill-shots",
+            "imagePath": "/assets/heroes/grey-talon/card.png",
+            "imageWebpPath": "/assets/heroes/grey-talon/card.webp",
+            "portraitPath": "/assets/heroes/grey-talon/portrait.png",
+            "portraitWebpPath": "/assets/heroes/grey-talon/portrait.webp"
+          },
+          "icon": {
+            "slug": "grey-talon-charged-shot",
+            "name": "Charged Shot",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Charge up a powerful shot that pierces through enemies.",
+            "imagePath": "/assets/abilities/grey-talon-charged-shot/icon.png",
+            "imageWebpPath": "/assets/abilities/grey-talon-charged-shot/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta-flight",
+          "kind": "ability",
+          "name": "Flight",
+          "typeLabel": "Ability",
+          "summary": "Leap into the air and fly.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-flight",
+            "name": "Flight",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Leap into the air and fly.",
+            "imagePath": "/assets/abilities/vindicta-flight/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1886,6 +2327,62 @@
         "summary": "Focus on enemies to connect whips to them.",
         "imagePath": "/assets/abilities/lash-death-slam/icon.png",
         "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "grey-talon-spirit-snare",
+          "kind": "ability",
+          "name": "Spirit Snare",
+          "typeLabel": "Ability",
+          "summary": "Throw out a trap that begins to arm itself.",
+          "portrait": {
+            "slug": "grey-talon",
+            "name": "Grey Talon",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Delivers long range skill-shots",
+            "imagePath": "/assets/heroes/grey-talon/card.png",
+            "imageWebpPath": "/assets/heroes/grey-talon/card.webp",
+            "portraitPath": "/assets/heroes/grey-talon/portrait.png",
+            "portraitWebpPath": "/assets/heroes/grey-talon/portrait.webp"
+          },
+          "icon": {
+            "slug": "grey-talon-spirit-snare",
+            "name": "Spirit Snare",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw out a trap that begins to arm itself.",
+            "imagePath": "/assets/abilities/grey-talon-spirit-snare/icon.png",
+            "imageWebpPath": "/assets/abilities/grey-talon-spirit-snare/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        }
       }
     },
     {
@@ -1938,7 +2435,61 @@
         "imagePath": "/assets/abilities/haze-sleep-dagger/icon.png",
         "imageWebpPath": "/assets/abilities/haze-sleep-dagger/icon.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "haze-sleep-dagger",
+          "kind": "ability",
+          "name": "Sleep Dagger",
+          "typeLabel": "Ability",
+          "summary": "Throw a dagger that damages and sleeps the target.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-sleep-dagger",
+            "name": "Sleep Dagger",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw a dagger that damages and sleeps the target.",
+            "imagePath": "/assets/abilities/haze-sleep-dagger/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-sleep-dagger/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "danny-crash",
+          "kind": "ability",
+          "name": "Crash",
+          "typeLabel": "Ability",
+          "summary": "Crash (Ability)",
+          "portrait": {
+            "slug": "danny",
+            "name": "Deadman Danny",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+            "imagePath": "/assets/heroes/danny/card.png",
+            "imageWebpPath": "/assets/heroes/danny/card.webp",
+            "portraitPath": "/assets/heroes/danny/portrait.png",
+            "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+          },
+          "icon": {
+            "slug": "danny-crash",
+            "name": "Crash",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Crash (Ability)"
+          }
+        }
+      }
     },
     {
       "slug": "haze-sleep-dagger-vs-lash-death-slam",
@@ -2004,6 +2555,62 @@
         "summary": "Focus on enemies to connect whips to them.",
         "imagePath": "/assets/abilities/lash-death-slam/icon.png",
         "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "haze-sleep-dagger",
+          "kind": "ability",
+          "name": "Sleep Dagger",
+          "typeLabel": "Ability",
+          "summary": "Throw a dagger that damages and sleeps the target.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-sleep-dagger",
+            "name": "Sleep Dagger",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw a dagger that damages and sleeps the target.",
+            "imagePath": "/assets/abilities/haze-sleep-dagger/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-sleep-dagger/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2068,6 +2675,62 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "haze-sleep-dagger",
+          "kind": "ability",
+          "name": "Sleep Dagger",
+          "typeLabel": "Ability",
+          "summary": "Throw a dagger that damages and sleeps the target.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-sleep-dagger",
+            "name": "Sleep Dagger",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw a dagger that damages and sleeps the target.",
+            "imagePath": "/assets/abilities/haze-sleep-dagger/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-sleep-dagger/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2130,6 +2793,62 @@
         "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
         "imagePath": "/assets/abilities/vindicta-assassinate/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-assassinate/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "haze-smoke-bomb",
+          "kind": "ability",
+          "name": "Smoke Bomb",
+          "typeLabel": "Ability",
+          "summary": "Fade out of sight, becoming invisible and gaining sprint speed.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-smoke-bomb",
+            "name": "Smoke Bomb",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Fade out of sight, becoming invisible and gaining sprint speed.",
+            "imagePath": "/assets/abilities/haze-smoke-bomb/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-smoke-bomb/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta-assassinate",
+          "kind": "ability",
+          "name": "Assassinate",
+          "typeLabel": "Ability",
+          "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-assassinate",
+            "name": "Assassinate",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
+            "imagePath": "/assets/abilities/vindicta-assassinate/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-assassinate/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2180,7 +2899,34 @@
         "portraitPath": "/assets/heroes/haze/portrait.png",
         "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "haze",
+          "kind": "hero",
+          "name": "Haze",
+          "typeLabel": "Hero",
+          "summary": "Sneaks in and sprays bullets",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "dive-comps",
+          "kind": "archetype",
+          "name": "Dive comps",
+          "typeLabel": "Archetype",
+          "summary": "Dive comps (Archetype)"
+        }
+      }
     },
     {
       "slug": "knockdown-vs-danny-crash",
@@ -2228,7 +2974,52 @@
         "imagePath": "/assets/items/knockdown/icon.png",
         "imageWebpPath": "/assets/items/knockdown/icon.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "knockdown",
+          "kind": "item",
+          "name": "Knockdown",
+          "typeLabel": "Tier 3 item",
+          "summary": "Apply a Stun after 2s.",
+          "tier": "tier-3",
+          "icon": {
+            "slug": "knockdown",
+            "name": "Knockdown",
+            "kind": "item",
+            "typeLabel": "Tier 3 item",
+            "tier": "tier-3",
+            "summary": "Apply a Stun after 2s.",
+            "imagePath": "/assets/items/knockdown/icon.png",
+            "imageWebpPath": "/assets/items/knockdown/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "danny-crash",
+          "kind": "ability",
+          "name": "Crash",
+          "typeLabel": "Ability",
+          "summary": "Crash (Ability)",
+          "portrait": {
+            "slug": "danny",
+            "name": "Deadman Danny",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+            "imagePath": "/assets/heroes/danny/card.png",
+            "imageWebpPath": "/assets/heroes/danny/card.webp",
+            "portraitPath": "/assets/heroes/danny/portrait.png",
+            "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+          },
+          "icon": {
+            "slug": "danny-crash",
+            "name": "Crash",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Crash (Ability)"
+          }
+        }
+      }
     },
     {
       "slug": "knockdown-vs-vindicta-flight",
@@ -2284,6 +3075,53 @@
         "summary": "Leap into the air and fly.",
         "imagePath": "/assets/abilities/vindicta-flight/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "knockdown",
+          "kind": "item",
+          "name": "Knockdown",
+          "typeLabel": "Tier 3 item",
+          "summary": "Apply a Stun after 2s.",
+          "tier": "tier-3",
+          "icon": {
+            "slug": "knockdown",
+            "name": "Knockdown",
+            "kind": "item",
+            "typeLabel": "Tier 3 item",
+            "tier": "tier-3",
+            "summary": "Apply a Stun after 2s.",
+            "imagePath": "/assets/items/knockdown/icon.png",
+            "imageWebpPath": "/assets/items/knockdown/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta-flight",
+          "kind": "ability",
+          "name": "Flight",
+          "typeLabel": "Ability",
+          "summary": "Leap into the air and fly.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-flight",
+            "name": "Flight",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Leap into the air and fly.",
+            "imagePath": "/assets/abilities/vindicta-flight/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2344,6 +3182,62 @@
         "summary": "Enter a flurry, firing your weapon at nearby enemies with perfect accuracy and added Bullet Damage.",
         "imagePath": "/assets/abilities/haze-bullet-dance/icon.png",
         "imageWebpPath": "/assets/abilities/haze-bullet-dance/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "haze-bullet-dance",
+          "kind": "ability",
+          "name": "Bullet Dance",
+          "typeLabel": "Ability",
+          "summary": "Enter a flurry, firing your weapon at nearby enemies with perfect accuracy and added Bullet Damage.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-bullet-dance",
+            "name": "Bullet Dance",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Enter a flurry, firing your weapon at nearby enemies with perfect accuracy and added Bullet Damage.",
+            "imagePath": "/assets/abilities/haze-bullet-dance/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-bullet-dance/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2402,6 +3296,62 @@
         "summary": "Leap into the air and fly.",
         "imagePath": "/assets/abilities/vindicta-flight/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "lash-ground-strike",
+          "kind": "ability",
+          "name": "Ground Strike",
+          "typeLabel": "Ability",
+          "summary": "Stomp the ground beneath you, damaging enemies in front of you.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-ground-strike",
+            "name": "Ground Strike",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Stomp the ground beneath you, damaging enemies in front of you.",
+            "imagePath": "/assets/abilities/lash-ground-strike/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-ground-strike/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta-flight",
+          "kind": "ability",
+          "name": "Flight",
+          "typeLabel": "Ability",
+          "summary": "Leap into the air and fly.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-flight",
+            "name": "Flight",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Leap into the air and fly.",
+            "imagePath": "/assets/abilities/vindicta-flight/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-flight/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2465,6 +3415,44 @@
         "imageWebpPath": "/assets/heroes/seven/card.webp",
         "portraitPath": "/assets/heroes/seven/portrait.png",
         "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "lash",
+          "kind": "hero",
+          "name": "Lash",
+          "typeLabel": "Hero",
+          "summary": "Dives down to stomp his foes",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "seven",
+          "kind": "hero",
+          "name": "Seven",
+          "typeLabel": "Hero",
+          "summary": "Electrocutes crowds of enemies",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          }
+        }
       }
     },
     {
@@ -2531,6 +3519,53 @@
         "summary": "Temporarily boost your fire rate and deal bonus spirit damage",
         "imagePath": "/assets/abilities/wraith-full-auto/icon.png",
         "imageWebpPath": "/assets/abilities/wraith-full-auto/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "metal-skin",
+          "kind": "item",
+          "name": "Metal Skin",
+          "typeLabel": "Tier 3 item",
+          "summary": "Become immune to bullets.",
+          "tier": "tier-3",
+          "icon": {
+            "slug": "metal-skin",
+            "name": "Metal Skin",
+            "kind": "item",
+            "typeLabel": "Tier 3 item",
+            "tier": "tier-3",
+            "summary": "Become immune to bullets.",
+            "imagePath": "/assets/items/metal-skin/icon.png",
+            "imageWebpPath": "/assets/items/metal-skin/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "wraith-full-auto",
+          "kind": "ability",
+          "name": "Full Auto",
+          "typeLabel": "Ability",
+          "summary": "Temporarily boost your fire rate and deal bonus spirit damage",
+          "portrait": {
+            "slug": "wraith",
+            "name": "Wraith",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Melts isolated targets",
+            "imagePath": "/assets/heroes/wraith/card.png",
+            "imageWebpPath": "/assets/heroes/wraith/card.webp",
+            "portraitPath": "/assets/heroes/wraith/portrait.png",
+            "portraitWebpPath": "/assets/heroes/wraith/portrait.webp"
+          },
+          "icon": {
+            "slug": "wraith-full-auto",
+            "name": "Full Auto",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Temporarily boost your fire rate and deal bonus spirit damage",
+            "imagePath": "/assets/abilities/wraith-full-auto/icon.png",
+            "imageWebpPath": "/assets/abilities/wraith-full-auto/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2593,6 +3628,62 @@
         "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
         "imagePath": "/assets/abilities/abrams-siphon-life/icon.png",
         "imageWebpPath": "/assets/abilities/abrams-siphon-life/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "paradox-pulse-grenade",
+          "kind": "ability",
+          "name": "Pulse Grenade",
+          "typeLabel": "Ability",
+          "summary": "Throw a grenade that begins pulsing when it lands.",
+          "portrait": {
+            "slug": "paradox",
+            "name": "Paradox",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Manipulates Space and Time",
+            "imagePath": "/assets/heroes/paradox/card.png",
+            "imageWebpPath": "/assets/heroes/paradox/card.webp",
+            "portraitPath": "/assets/heroes/paradox/portrait.png",
+            "portraitWebpPath": "/assets/heroes/paradox/portrait.webp"
+          },
+          "icon": {
+            "slug": "paradox-pulse-grenade",
+            "name": "Pulse Grenade",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw a grenade that begins pulsing when it lands.",
+            "imagePath": "/assets/abilities/paradox-pulse-grenade/icon.png",
+            "imageWebpPath": "/assets/abilities/paradox-pulse-grenade/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "abrams-siphon-life",
+          "kind": "ability",
+          "name": "Siphon Life",
+          "typeLabel": "Ability",
+          "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
+          "portrait": {
+            "slug": "abrams",
+            "name": "Abrams",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Charges into close combat",
+            "imagePath": "/assets/heroes/abrams/card.png",
+            "imageWebpPath": "/assets/heroes/abrams/card.webp",
+            "portraitPath": "/assets/heroes/abrams/portrait.png",
+            "portraitWebpPath": "/assets/heroes/abrams/portrait.webp"
+          },
+          "icon": {
+            "slug": "abrams-siphon-life",
+            "name": "Siphon Life",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Drain health from nearby enemies, dealing spirit damage over time and healing for a portion of the damage dealt.",
+            "imagePath": "/assets/abilities/abrams-siphon-life/icon.png",
+            "imageWebpPath": "/assets/abilities/abrams-siphon-life/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2660,6 +3751,62 @@
         "summary": "Focus on enemies to connect whips to them.",
         "imagePath": "/assets/abilities/lash-death-slam/icon.png",
         "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "paradox-paradoxical-swap",
+          "kind": "ability",
+          "name": "Paradoxical Swap",
+          "typeLabel": "Ability",
+          "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+          "portrait": {
+            "slug": "paradox",
+            "name": "Paradox",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Manipulates Space and Time",
+            "imagePath": "/assets/heroes/paradox/card.png",
+            "imageWebpPath": "/assets/heroes/paradox/card.webp",
+            "portraitPath": "/assets/heroes/paradox/portrait.png",
+            "portraitWebpPath": "/assets/heroes/paradox/portrait.webp"
+          },
+          "icon": {
+            "slug": "paradox-paradoxical-swap",
+            "name": "Paradoxical Swap",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+            "imagePath": "/assets/abilities/paradox-paradoxical-swap/icon.png",
+            "imageWebpPath": "/assets/abilities/paradox-paradoxical-swap/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2725,6 +3872,62 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "paradox-paradoxical-swap",
+          "kind": "ability",
+          "name": "Paradoxical Swap",
+          "typeLabel": "Ability",
+          "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+          "portrait": {
+            "slug": "paradox",
+            "name": "Paradox",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Manipulates Space and Time",
+            "imagePath": "/assets/heroes/paradox/card.png",
+            "imageWebpPath": "/assets/heroes/paradox/card.webp",
+            "portraitPath": "/assets/heroes/paradox/portrait.png",
+            "portraitWebpPath": "/assets/heroes/paradox/portrait.webp"
+          },
+          "icon": {
+            "slug": "paradox-paradoxical-swap",
+            "name": "Paradoxical Swap",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+            "imagePath": "/assets/abilities/paradox-paradoxical-swap/icon.png",
+            "imageWebpPath": "/assets/abilities/paradox-paradoxical-swap/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2786,6 +3989,62 @@
         "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
         "imagePath": "/assets/abilities/vindicta-assassinate/icon.png",
         "imageWebpPath": "/assets/abilities/vindicta-assassinate/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "paradox-time-wall",
+          "kind": "ability",
+          "name": "Time Wall",
+          "typeLabel": "Ability",
+          "summary": "Create a time warping wall that stops time for all enemy projectiles and bullets that touch it and increases the speed and damage of friendly bullets.",
+          "portrait": {
+            "slug": "paradox",
+            "name": "Paradox",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Manipulates Space and Time",
+            "imagePath": "/assets/heroes/paradox/card.png",
+            "imageWebpPath": "/assets/heroes/paradox/card.webp",
+            "portraitPath": "/assets/heroes/paradox/portrait.png",
+            "portraitWebpPath": "/assets/heroes/paradox/portrait.webp"
+          },
+          "icon": {
+            "slug": "paradox-time-wall",
+            "name": "Time Wall",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Create a time warping wall that stops time for all enemy projectiles and bullets that touch it and increases the speed and damage of friendly bullets.",
+            "imagePath": "/assets/abilities/paradox-time-wall/icon.png",
+            "imageWebpPath": "/assets/abilities/paradox-time-wall/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta-assassinate",
+          "kind": "ability",
+          "name": "Assassinate",
+          "typeLabel": "Ability",
+          "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-assassinate",
+            "name": "Assassinate",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Use your scoped rifle to fire a powerful shot over long distances.",
+            "imagePath": "/assets/abilities/vindicta-assassinate/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-assassinate/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2845,6 +4104,62 @@
         "summary": "Focus on enemies to connect whips to them.",
         "imagePath": "/assets/abilities/lash-death-slam/icon.png",
         "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "seven-static-charge",
+          "kind": "ability",
+          "name": "Static Charge",
+          "typeLabel": "Ability",
+          "summary": "Apply a charge to a target enemy hero.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-static-charge",
+            "name": "Static Charge",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Apply a charge to a target enemy hero.",
+            "imagePath": "/assets/abilities/seven-static-charge/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-static-charge/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2892,6 +4207,49 @@
         "summary": "Fire a projectile that swaps your position with the target enemy hero.",
         "imagePath": "/assets/abilities/paradox-paradoxical-swap/icon.png",
         "imageWebpPath": "/assets/abilities/paradox-paradoxical-swap/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "silence-glyph",
+          "kind": "item",
+          "name": "Silence Glyph",
+          "typeLabel": "Item",
+          "summary": "Silence Glyph (Item)",
+          "icon": {
+            "slug": "silence-glyph",
+            "name": "Silence Glyph",
+            "kind": "item",
+            "typeLabel": "Item",
+            "summary": "Silence Glyph (Item)"
+          }
+        },
+        "target": {
+          "ref": "paradox-paradoxical-swap",
+          "kind": "ability",
+          "name": "Paradoxical Swap",
+          "typeLabel": "Ability",
+          "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+          "portrait": {
+            "slug": "paradox",
+            "name": "Paradox",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Manipulates Space and Time",
+            "imagePath": "/assets/heroes/paradox/card.png",
+            "imageWebpPath": "/assets/heroes/paradox/card.webp",
+            "portraitPath": "/assets/heroes/paradox/portrait.png",
+            "portraitWebpPath": "/assets/heroes/paradox/portrait.webp"
+          },
+          "icon": {
+            "slug": "paradox-paradoxical-swap",
+            "name": "Paradoxical Swap",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Fire a projectile that swaps your position with the target enemy hero.",
+            "imagePath": "/assets/abilities/paradox-paradoxical-swap/icon.png",
+            "imageWebpPath": "/assets/abilities/paradox-paradoxical-swap/icon.webp"
+          }
+        }
       }
     },
     {
@@ -2959,6 +4317,44 @@
         "imageWebpPath": "/assets/heroes/vindicta/card.webp",
         "portraitPath": "/assets/heroes/vindicta/portrait.png",
         "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "silver",
+          "kind": "hero",
+          "name": "Silver",
+          "typeLabel": "Hero",
+          "summary": "Lilah Silver is a mess.",
+          "portrait": {
+            "slug": "silver",
+            "name": "Silver",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Lilah Silver is a mess.",
+            "imagePath": "/assets/heroes/silver/card.png",
+            "imageWebpPath": "/assets/heroes/silver/card.webp",
+            "portraitPath": "/assets/heroes/silver/portrait.png",
+            "portraitWebpPath": "/assets/heroes/silver/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "vindicta",
+          "kind": "hero",
+          "name": "Vindicta",
+          "typeLabel": "Hero",
+          "summary": "Snipes the unsuspecting",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          }
+        }
       }
     },
     {
@@ -3013,7 +4409,52 @@
         "imagePath": "/assets/items/slowing-hex/icon.png",
         "imageWebpPath": "/assets/items/slowing-hex/icon.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "slowing-hex",
+          "kind": "item",
+          "name": "Slowing Hex",
+          "typeLabel": "Tier 2 item",
+          "summary": "Slows movement of enemy target.",
+          "tier": "tier-2",
+          "icon": {
+            "slug": "slowing-hex",
+            "name": "Slowing Hex",
+            "kind": "item",
+            "typeLabel": "Tier 2 item",
+            "tier": "tier-2",
+            "summary": "Slows movement of enemy target.",
+            "imagePath": "/assets/items/slowing-hex/icon.png",
+            "imageWebpPath": "/assets/items/slowing-hex/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "danny-crash",
+          "kind": "ability",
+          "name": "Crash",
+          "typeLabel": "Ability",
+          "summary": "Crash (Ability)",
+          "portrait": {
+            "slug": "danny",
+            "name": "Deadman Danny",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+            "imagePath": "/assets/heroes/danny/card.png",
+            "imageWebpPath": "/assets/heroes/danny/card.webp",
+            "portraitPath": "/assets/heroes/danny/portrait.png",
+            "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+          },
+          "icon": {
+            "slug": "danny-crash",
+            "name": "Crash",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Crash (Ability)"
+          }
+        }
+      }
     },
     {
       "slug": "solomon-vs-danny",
@@ -3078,6 +4519,44 @@
         "imageWebpPath": "/assets/heroes/danny/card.webp",
         "portraitPath": "/assets/heroes/danny/portrait.png",
         "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "solomon",
+          "kind": "hero",
+          "name": "Solomon",
+          "typeLabel": "Hero",
+          "summary": "In a world that moves too fast, Solomon is content to stop and listen.",
+          "portrait": {
+            "slug": "solomon",
+            "name": "Solomon",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "In a world that moves too fast, Solomon is content to stop and listen.",
+            "imagePath": "/assets/heroes/solomon/card.png",
+            "imageWebpPath": "/assets/heroes/solomon/card.webp",
+            "portraitPath": "/assets/heroes/solomon/portrait.png",
+            "portraitWebpPath": "/assets/heroes/solomon/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "danny",
+          "kind": "hero",
+          "name": "Deadman Danny",
+          "typeLabel": "Hero",
+          "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+          "portrait": {
+            "slug": "danny",
+            "name": "Deadman Danny",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "\"Ladies and Gentlemen, I'm going to tell you a shocking secret: at Fairfax Industries we know nothing about safety.",
+            "imagePath": "/assets/heroes/danny/card.png",
+            "imageWebpPath": "/assets/heroes/danny/card.webp",
+            "portraitPath": "/assets/heroes/danny/portrait.png",
+            "portraitWebpPath": "/assets/heroes/danny/portrait.webp"
+          }
+        }
       }
     },
     {
@@ -3132,7 +4611,34 @@
         "portraitPath": "/assets/heroes/solomon/portrait.png",
         "portraitWebpPath": "/assets/heroes/solomon/portrait.webp"
       },
-      "targetAsset": null
+      "targetAsset": null,
+      "media": {
+        "source": {
+          "ref": "solomon",
+          "kind": "hero",
+          "name": "Solomon",
+          "typeLabel": "Hero",
+          "summary": "In a world that moves too fast, Solomon is content to stop and listen.",
+          "portrait": {
+            "slug": "solomon",
+            "name": "Solomon",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "In a world that moves too fast, Solomon is content to stop and listen.",
+            "imagePath": "/assets/heroes/solomon/card.png",
+            "imageWebpPath": "/assets/heroes/solomon/card.webp",
+            "portraitPath": "/assets/heroes/solomon/portrait.png",
+            "portraitWebpPath": "/assets/heroes/solomon/portrait.webp"
+          }
+        },
+        "target": {
+          "ref": "flier-comps",
+          "kind": "archetype",
+          "name": "Flier comps",
+          "typeLabel": "Archetype",
+          "summary": "Flier comps (Archetype)"
+        }
+      }
     },
     {
       "slug": "suppressor-vs-haze-fixation",
@@ -3188,6 +4694,53 @@
         "summary": "Shooting a target increases your bullet damage on that target.",
         "imagePath": "/assets/abilities/haze-fixation/icon.png",
         "imageWebpPath": "/assets/abilities/haze-fixation/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "suppressor",
+          "kind": "item",
+          "name": "Suppressor",
+          "typeLabel": "Tier 2 item",
+          "summary": "When you deal spirit damage to enemies, you also reduce their Fire Rate.",
+          "tier": "tier-2",
+          "icon": {
+            "slug": "suppressor",
+            "name": "Suppressor",
+            "kind": "item",
+            "typeLabel": "Tier 2 item",
+            "tier": "tier-2",
+            "summary": "When you deal spirit damage to enemies, you also reduce their Fire Rate.",
+            "imagePath": "/assets/items/suppressor/icon.png",
+            "imageWebpPath": "/assets/items/suppressor/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "haze-fixation",
+          "kind": "ability",
+          "name": "Fixation",
+          "typeLabel": "Ability",
+          "summary": "Shooting a target increases your bullet damage on that target.",
+          "portrait": {
+            "slug": "haze",
+            "name": "Haze",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Sneaks in and sprays bullets",
+            "imagePath": "/assets/heroes/haze/card.png",
+            "imageWebpPath": "/assets/heroes/haze/card.webp",
+            "portraitPath": "/assets/heroes/haze/portrait.png",
+            "portraitWebpPath": "/assets/heroes/haze/portrait.webp"
+          },
+          "icon": {
+            "slug": "haze-fixation",
+            "name": "Fixation",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Shooting a target increases your bullet damage on that target.",
+            "imagePath": "/assets/abilities/haze-fixation/icon.png",
+            "imageWebpPath": "/assets/abilities/haze-fixation/icon.webp"
+          }
+        }
       }
     },
     {
@@ -3251,6 +4804,44 @@
         "imageWebpPath": "/assets/heroes/wraith/card.webp",
         "portraitPath": "/assets/heroes/wraith/portrait.png",
         "portraitWebpPath": "/assets/heroes/wraith/portrait.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "suppressor",
+          "kind": "item",
+          "name": "Suppressor",
+          "typeLabel": "Tier 2 item",
+          "summary": "When you deal spirit damage to enemies, you also reduce their Fire Rate.",
+          "tier": "tier-2",
+          "icon": {
+            "slug": "suppressor",
+            "name": "Suppressor",
+            "kind": "item",
+            "typeLabel": "Tier 2 item",
+            "tier": "tier-2",
+            "summary": "When you deal spirit damage to enemies, you also reduce their Fire Rate.",
+            "imagePath": "/assets/items/suppressor/icon.png",
+            "imageWebpPath": "/assets/items/suppressor/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "wraith",
+          "kind": "hero",
+          "name": "Wraith",
+          "typeLabel": "Hero",
+          "summary": "Melts isolated targets",
+          "portrait": {
+            "slug": "wraith",
+            "name": "Wraith",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Melts isolated targets",
+            "imagePath": "/assets/heroes/wraith/card.png",
+            "imageWebpPath": "/assets/heroes/wraith/card.webp",
+            "portraitPath": "/assets/heroes/wraith/portrait.png",
+            "portraitWebpPath": "/assets/heroes/wraith/portrait.webp"
+          }
+        }
       }
     },
     {
@@ -3310,6 +4901,62 @@
         "summary": "Focus on enemies to connect whips to them.",
         "imagePath": "/assets/abilities/lash-death-slam/icon.png",
         "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "vindicta-stake",
+          "kind": "ability",
+          "name": "Stake",
+          "typeLabel": "Ability",
+          "summary": "Throw a stake that tethers enemies to the location where the stake lands.",
+          "portrait": {
+            "slug": "vindicta",
+            "name": "Vindicta",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Snipes the unsuspecting",
+            "imagePath": "/assets/heroes/vindicta/card.png",
+            "imageWebpPath": "/assets/heroes/vindicta/card.webp",
+            "portraitPath": "/assets/heroes/vindicta/portrait.png",
+            "portraitWebpPath": "/assets/heroes/vindicta/portrait.webp"
+          },
+          "icon": {
+            "slug": "vindicta-stake",
+            "name": "Stake",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Throw a stake that tethers enemies to the location where the stake lands.",
+            "imagePath": "/assets/abilities/vindicta-stake/icon.png",
+            "imageWebpPath": "/assets/abilities/vindicta-stake/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "lash-death-slam",
+          "kind": "ability",
+          "name": "Death Slam",
+          "typeLabel": "Ability",
+          "summary": "Focus on enemies to connect whips to them.",
+          "portrait": {
+            "slug": "lash",
+            "name": "Lash",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Dives down to stomp his foes",
+            "imagePath": "/assets/heroes/lash/card.png",
+            "imageWebpPath": "/assets/heroes/lash/card.webp",
+            "portraitPath": "/assets/heroes/lash/portrait.png",
+            "portraitWebpPath": "/assets/heroes/lash/portrait.webp"
+          },
+          "icon": {
+            "slug": "lash-death-slam",
+            "name": "Death Slam",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Focus on enemies to connect whips to them.",
+            "imagePath": "/assets/abilities/lash-death-slam/icon.png",
+            "imageWebpPath": "/assets/abilities/lash-death-slam/icon.webp"
+          }
+        }
       }
     },
     {
@@ -3367,6 +5014,62 @@
         "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
         "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
         "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+      },
+      "media": {
+        "source": {
+          "ref": "wraith-telekinesis",
+          "kind": "ability",
+          "name": "Telekinesis",
+          "typeLabel": "Ability",
+          "summary": "Lift an enemy hero into the air and then slam them towards the target location.",
+          "portrait": {
+            "slug": "wraith",
+            "name": "Wraith",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Melts isolated targets",
+            "imagePath": "/assets/heroes/wraith/card.png",
+            "imageWebpPath": "/assets/heroes/wraith/card.webp",
+            "portraitPath": "/assets/heroes/wraith/portrait.png",
+            "portraitWebpPath": "/assets/heroes/wraith/portrait.webp"
+          },
+          "icon": {
+            "slug": "wraith-telekinesis",
+            "name": "Telekinesis",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Lift an enemy hero into the air and then slam them towards the target location.",
+            "imagePath": "/assets/abilities/wraith-telekinesis/icon.png",
+            "imageWebpPath": "/assets/abilities/wraith-telekinesis/icon.webp"
+          }
+        },
+        "target": {
+          "ref": "seven-storm-cloud",
+          "kind": "ability",
+          "name": "Storm Cloud",
+          "typeLabel": "Ability",
+          "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+          "portrait": {
+            "slug": "seven",
+            "name": "Seven",
+            "kind": "hero",
+            "typeLabel": "Hero",
+            "summary": "Electrocutes crowds of enemies",
+            "imagePath": "/assets/heroes/seven/card.png",
+            "imageWebpPath": "/assets/heroes/seven/card.webp",
+            "portraitPath": "/assets/heroes/seven/portrait.png",
+            "portraitWebpPath": "/assets/heroes/seven/portrait.webp"
+          },
+          "icon": {
+            "slug": "seven-storm-cloud",
+            "name": "Storm Cloud",
+            "kind": "ability",
+            "typeLabel": "Ability",
+            "summary": "Channel an expanding storm cloud around you that damages all enemies within its radius.",
+            "imagePath": "/assets/abilities/seven-storm-cloud/icon.png",
+            "imageWebpPath": "/assets/abilities/seven-storm-cloud/icon.webp"
+          }
+        }
       }
     }
   ]
