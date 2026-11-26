@@ -1,6 +1,8 @@
 {
   "slug": "solomon",
   "name": "Solomon",
+  "assetId": "85",
+  "className": "hero_chessmaster",
   "abilities": [
     { "slug": "solomon-astral-ward", "name": "Astral Ward" },
     { "slug": "solomon-severed-ties", "name": "Severed Ties" },

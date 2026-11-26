@@ -5,16 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prebuild": "tsx scripts/validate-content.ts && tsx scripts/build-search-index.ts",
+    "prebuild": "tsx scripts/prebuild-assets.ts && tsx scripts/validate-content.ts && tsx scripts/build-search-index.ts",
     "start": "next start",
     "lint": "eslint",
     "test:content": "tsx scripts/test-content.ts",
     "test:heroes": "tsx scripts/test-heroes.ts",
+    "test:assets": "tsx scripts/test-assets.ts",
     "test:flags": "tsx scripts/test-flags.ts",
     "test:flag-control": "tsx scripts/test-flag-control.ts",
     "test:flag-overlay": "tsx scripts/test-flag-overlay.ts",
     "test:flag-backlog": "tsx scripts/test-flag-backlog.ts",
-    "test:flag-review": "tsx scripts/test-flag-review.ts"
+    "test:flag-review": "tsx scripts/test-flag-review.ts",
+    "sync:assets": "tsx scripts/sync-assets.ts"
   },
   "dependencies": {
     "@types/node": "^26.6.6",

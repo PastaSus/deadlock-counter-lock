@@ -1,8 +1,10 @@
 {
   "slug": "apollo",
   "name": "Apollo",
+  "assetId": "77",
+  "className": "hero_fencer",
   "abilities": [
-    { "slug": "apollo-riposte", "name": "Riposte" },
+    { "slug": "apollo-riposte", "name": "Riposte", "assetId": "2006773718", "className": "ability_fencer_riposte" },
     { "slug": "apollo-sun-charge", "name": "Sun Charge" },
     { "slug": "apollo-chariot", "name": "Chariot" },
     { "slug": "apollo-divine-intervention", "name": "Divine Intervention" }

@@ -1,4 +1,18 @@
-import { loadAllContent } from "./loaders";
+import { loadAllContent, type AllContent, type AssetProps } from "./loaders";
+import type { AssetTier } from "./schema";
+
+export interface SearchAsset {
+  slug: string;
+  name: string;
+  kind: "hero" | "ability" | "item";
+  typeLabel: string;
+  tier?: AssetTier;
+  summary: string;
+  imagePath: string;
+  imageWebpPath?: string;
+  portraitPath?: string;
+  portraitWebpPath?: string;
+}
 
 export interface SearchIndexItem {
   slug: string;
@@ -7,6 +21,9 @@ export interface SearchIndexItem {
   label: string;
   href: string;
   terms: string[];
+  asset?: SearchAsset | null;
+  sourceAsset?: SearchAsset | null;
+  targetAsset?: SearchAsset | null;
 }
 
 export interface SearchIndex {
@@ -23,9 +40,25 @@ function tokenize(text: string): string[] {
     .filter(Boolean);
 }
 
-export function buildSearchIndex(): SearchIndex {
-  const content = loadAllContent();
+function toSearchAsset(asset: AssetProps | undefined): SearchAsset | null {
+  if (!asset) return null;
+  return {
+    slug: asset.slug,
+    name: asset.name,
+    kind: asset.kind,
+    typeLabel: asset.typeLabel,
+    tier: asset.tier,
+    summary: asset.summary,
+    imagePath: asset.imagePath,
+    imageWebpPath: asset.imageWebpPath,
+    portraitPath: asset.portraitPath,
+    portraitWebpPath: asset.portraitWebpPath,
+  };
+}
 
+export function buildSearchIndex(
+  content: AllContent = loadAllContent(),
+): SearchIndex {
   const heroes: SearchIndexItem[] = content.heroes.map((hero) => ({
     slug: hero.slug,
     kind: "hero",
@@ -33,6 +66,7 @@ export function buildSearchIndex(): SearchIndex {
     label: hero.name,
     href: `/heroes/${hero.slug}`,
     terms: tokenize(hero.name),
+    asset: toSearchAsset(content.assets[hero.slug]),
   }));
 
   const abilities: SearchIndexItem[] = [];
@@ -45,6 +79,7 @@ export function buildSearchIndex(): SearchIndex {
         label: `${ability.name} (${hero.name})`,
         href: `/heroes/${hero.slug}`,
         terms: tokenize(ability.name),
+        asset: toSearchAsset(content.assets[ability.slug]),
       });
     }
   }
@@ -56,6 +91,7 @@ export function buildSearchIndex(): SearchIndex {
     label: item.name,
     href: `/items/${item.slug}`,
     terms: tokenize(item.name),
+    asset: toSearchAsset(content.assets[item.slug]),
   }));
 
   const entries: SearchIndexItem[] = content.entries.map((entry) => {
@@ -75,6 +111,8 @@ export function buildSearchIndex(): SearchIndex {
       label: `${source} vs ${target}`,
       href,
       terms,
+      sourceAsset: toSearchAsset(content.assets[entry.sourceRef]),
+      targetAsset: toSearchAsset(content.assets[entry.targetRef]),
     };
   });
 

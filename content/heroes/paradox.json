@@ -1,10 +1,12 @@
 {
   "slug": "paradox",
   "name": "Paradox",
+  "assetId": "10",
+  "className": "hero_chrono",
   "abilities": [
-    { "slug": "paradox-pulse-grenade", "name": "Pulse Grenade" },
-    { "slug": "paradox-time-wall", "name": "Time Wall" },
-    { "slug": "paradox-kinetic-carbine", "name": "Kinetic Carbine" },
-    { "slug": "paradox-paradoxical-swap", "name": "Paradoxical Swap" }
+    { "slug": "paradox-pulse-grenade", "name": "Pulse Grenade", "assetId": "58655583", "className": "citadel_ability_chrono_pulse_grenade" },
+    { "slug": "paradox-time-wall", "name": "Time Wall", "assetId": "1366719170", "className": "citadel_ability_chrono_time_wall" },
+    { "slug": "paradox-kinetic-carbine", "name": "Kinetic Carbine", "assetId": "1128670012", "className": "citadel_ability_chrono_kinetic_carbine" },
+    { "slug": "paradox-paradoxical-swap", "name": "Paradoxical Swap", "assetId": "2917891787", "className": "citadel_ability_chrono_swap" }
   ]
 }

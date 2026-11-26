@@ -1,10 +1,12 @@
 {
   "slug": "lash",
   "name": "Lash",
+  "assetId": "31",
+  "className": "hero_lash",
   "abilities": [
-    { "slug": "lash-ground-strike", "name": "Ground Strike" },
-    { "slug": "lash-flog", "name": "Flog" },
-    { "slug": "lash-grapple", "name": "Grapple" },
-    { "slug": "lash-death-slam", "name": "Death Slam" }
+    { "slug": "lash-ground-strike", "name": "Ground Strike", "assetId": "3561817145", "className": "citadel_ability_lash_down_strike" },
+    { "slug": "lash-flog", "name": "Flog", "assetId": "519124136", "className": "ability_lash_flog" },
+    { "slug": "lash-grapple", "name": "Grapple", "assetId": "2670099061", "className": "citadel_ability_lash" },
+    { "slug": "lash-death-slam", "name": "Death Slam", "assetId": "397010810", "className": "citadel_ability_lash_ultimate" }
   ]
 }

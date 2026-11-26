@@ -1,10 +1,12 @@
 {
   "slug": "abrams",
   "name": "Abrams",
+  "assetId": "6",
+  "className": "hero_atlas",
   "abilities": [
-    { "slug": "abrams-siphon-life", "name": "Siphon Life" },
-    { "slug": "abrams-shoulder-charge", "name": "Shoulder Charge" },
-    { "slug": "abrams-infernal-resilience", "name": "Infernal Resilience" },
-    { "slug": "abrams-seismic-impact", "name": "Seismic Impact" }
+    { "slug": "abrams-siphon-life", "name": "Siphon Life", "assetId": "4072270083", "className": "citadel_ability_bull_heal" },
+    { "slug": "abrams-shoulder-charge", "name": "Shoulder Charge", "assetId": "2824119765", "className": "citadel_ability_bull_charge" },
+    { "slug": "abrams-infernal-resilience", "name": "Infernal Resilience", "assetId": "715762406", "className": "citadel_ability_passive_beefy" },
+    { "slug": "abrams-seismic-impact", "name": "Seismic Impact", "assetId": "509856396", "className": "citadel_ability_bull_leap" }
   ]
 }

@@ -1,12 +1,12 @@
 [
-  { "slug": "knockdown", "name": "Knockdown" },
-  { "slug": "slowing-hex", "name": "Slowing Hex" },
-  { "slug": "suppressor", "name": "Suppressor" },
-  { "slug": "disarm", "name": "Disarm" },
-  { "slug": "counterspell", "name": "Counterspell" },
-  { "slug": "silence-glyph", "name": "Silence Glyph" },
+  { "slug": "counterspell", "name": "Counterspell", "assetId": "1414025773", "className": "upgrade_counterspell" },
   { "slug": "curse", "name": "Curse" },
-  { "slug": "metal-skin", "name": "Metal Skin" },
   { "slug": "debuff-remover", "name": "Debuff Remover" },
-  { "slug": "ethereal-shift", "name": "Ethereal Shift" }
+  { "slug": "disarm", "name": "Disarm" },
+  { "slug": "ethereal-shift", "name": "Ethereal Shift", "assetId": "2533252781", "className": "upgrade_self_bubble" },
+  { "slug": "knockdown", "name": "Knockdown", "assetId": "1254091416", "className": "upgrade_target_stun" },
+  { "slug": "metal-skin", "name": "Metal Skin", "assetId": "1378931225", "className": "upgrade_metal_skin" },
+  { "slug": "silence-glyph", "name": "Silence Glyph" },
+  { "slug": "slowing-hex", "name": "Slowing Hex", "assetId": "1813726886", "className": "upgrade_containment" },
+  { "slug": "suppressor", "name": "Suppressor", "assetId": "1925087134", "className": "upgrade_suppressor" }
 ]

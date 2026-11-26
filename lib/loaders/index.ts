@@ -9,11 +9,15 @@ import {
   heroSchema,
   itemsSchema,
   type Archetype,
+  type AssetTier,
   type Config,
   type Entry,
   type Hero,
   type Item,
+  type Manifest,
+  type ManifestRecord,
 } from "../schema";
+import { loadManifest, ManifestError } from "../assets";
 
 export type EntityKind = "hero" | "ability" | "item" | "archetype";
 
@@ -26,6 +30,28 @@ export interface RegistryEntry {
 
 export type ContentRegistry = Record<string, RegistryEntry>;
 
+export type AssetKind = "hero" | "ability" | "item";
+
+export interface AssetProps {
+  slug: string;
+  kind: AssetKind;
+  name: string;
+  typeLabel: string;
+  tier?: AssetTier;
+  summary: string;
+  description?: string;
+  imagePath: string;
+  imageWebpPath?: string;
+  portraitPath?: string;
+  portraitWebpPath?: string;
+  sourceUrl: string;
+  fetchDate: string;
+  attribution: string;
+  license: string;
+}
+
+export type ContentAssets = Record<string, AssetProps>;
+
 export interface AllContent {
   config: Config;
   heroes: Hero[];
@@ -33,6 +59,7 @@ export interface AllContent {
   archetypes: Archetype[];
   entries: Entry[];
   registry: ContentRegistry;
+  assets: ContentAssets;
 }
 
 export interface ContentIssue {
@@ -271,6 +298,121 @@ function assertReferences(entries: Entry[], contentRoot: string, registry: Conte
   }
 }
 
+const ASSET_TYPE_LABEL: Record<AssetKind, string> = {
+  hero: "Hero",
+  ability: "Ability",
+  item: "Item",
+};
+
+interface AssetStamp {
+  slug: string;
+  name: string;
+  assetId?: string;
+  className?: string;
+  summary?: string;
+}
+
+function assetTypeLabel(type: AssetKind, tier?: AssetTier): string {
+  const label = ASSET_TYPE_LABEL[type];
+  if (!tier) return label;
+  return `Tier ${tier.slice("tier-".length)} ${label.toLowerCase()}`;
+}
+
+export function buildAssetMap(
+  heroes: Hero[],
+  items: Item[],
+  manifest: Manifest,
+): ContentAssets {
+  const byStamp = new Map<string, ManifestRecord>();
+
+  for (const record of manifest.records) {
+    const key = `${record.type}:${record.assetId}`;
+    if (byStamp.has(key)) {
+      throw new ContentError(
+        `Assets manifest: duplicate record for ${record.type} assetId "${record.assetId}"`,
+      );
+    }
+    byStamp.set(key, record);
+  }
+
+  const assets: ContentAssets = {};
+
+  const resolve = (entity: AssetStamp, type: AssetKind): void => {
+    const stamped =
+      entity.assetId !== undefined || entity.className !== undefined;
+    if (!stamped) return;
+
+    if (!entity.assetId || !entity.className) {
+      throw new ContentError(
+        `${entity.slug}: incomplete asset stamp. Set both assetId and className, or neither.`,
+      );
+    }
+
+    const record = byStamp.get(`${type}:${entity.assetId}`);
+    if (!record) {
+      throw new ContentError(
+        `${entity.slug}: assetId "${entity.assetId}" has no matching record in the assets manifest. Run "npm run sync:assets" and commit the result.`,
+      );
+    }
+
+    if (record.className !== entity.className) {
+      throw new ContentError(
+        `${entity.slug}: className "${entity.className}" does not match manifest className "${record.className}" for assetId "${entity.assetId}".`,
+      );
+    }
+
+    if (assets[entity.slug]) {
+      throw new ContentError(
+        `Asset slug "${entity.slug}" resolves more than once in the manifest join.`,
+      );
+    }
+
+    const family = manifest.families[record.family];
+    if (!family) {
+      throw new ContentError(
+        `Assets manifest: record "${record.slug}" references unknown family "${record.family}".`,
+      );
+    }
+
+    const typeLabel = assetTypeLabel(type, record.tier);
+    const summary =
+      entity.summary?.trim() ||
+      record.description?.trim() ||
+      `${entity.name} (${typeLabel})`;
+
+    assets[entity.slug] = {
+      slug: entity.slug,
+      kind: type,
+      name: entity.name,
+      typeLabel,
+      tier: record.tier,
+      summary,
+      description: record.description,
+      imagePath: record.imagePath,
+      imageWebpPath: record.imageWebpPath,
+      portraitPath: record.portraitPath,
+      portraitWebpPath: record.portraitWebpPath,
+      sourceUrl: record.sourceUrl,
+      fetchDate: record.fetchDate,
+      attribution: family.attribution,
+      license: family.license,
+    };
+  };
+
+  for (const hero of heroes) {
+    resolve(hero, "hero");
+    for (const ability of hero.abilities) {
+      resolve(ability, "ability");
+    }
+  }
+
+  for (const item of items) {
+    resolve(item, "item");
+  }
+
+  return assets;
+}
+
 export function loadAllContent(contentRoot?: string): AllContent {
   const root = resolveContentRoot(contentRoot);
   const config = loadConfig(root);
@@ -282,5 +424,17 @@ export function loadAllContent(contentRoot?: string): AllContent {
 
   assertReferences(entries, root, registry);
 
-  return { config, heroes, items, archetypes, entries, registry };
+  let manifest: Manifest;
+  try {
+    manifest = loadManifest();
+  } catch (error) {
+    if (error instanceof ManifestError) {
+      throw new ContentError(error.message, { filePath: error.filePath });
+    }
+    throw error;
+  }
+
+  const assets = buildAssetMap(heroes, items, manifest);
+
+  return { config, heroes, items, archetypes, entries, registry, assets };
 }

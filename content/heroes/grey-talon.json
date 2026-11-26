@@ -1,10 +1,12 @@
 {
   "slug": "grey-talon",
   "name": "Grey Talon",
+  "assetId": "17",
+  "className": "hero_orion",
   "abilities": [
-    { "slug": "grey-talon-charged-shot", "name": "Charged Shot" },
-    { "slug": "grey-talon-rain-of-arrows", "name": "Rain of Arrows" },
-    { "slug": "grey-talon-spirit-snare", "name": "Spirit Snare" },
-    { "slug": "grey-talon-guided-owl", "name": "Guided Owl" }
+    { "slug": "grey-talon-charged-shot", "name": "Charged Shot", "assetId": "548943648", "className": "ability_charged_shot" },
+    { "slug": "grey-talon-rain-of-arrows", "name": "Rain of Arrows", "assetId": "3452399392", "className": "ability_power_jump" },
+    { "slug": "grey-talon-spirit-snare", "name": "Spirit Snare", "assetId": "512733154", "className": "ability_immobilize_trap" },
+    { "slug": "grey-talon-guided-owl", "name": "Guided Owl", "assetId": "3242902780", "className": "ability_guided_arrow" }
   ]
 }
