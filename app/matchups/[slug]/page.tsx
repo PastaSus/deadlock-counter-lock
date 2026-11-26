@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 
 import { CopyLink } from "../../../components/copy-link";
 import { AssetMediaRow } from "../../../components/asset-media-row";
+import { DeprecatedCallout } from "../../../components/deprecated-callout";
 import { FlagControl } from "../../../components/flag-control";
 import { FlagOverlayBadge } from "../../../components/flag-overlay-badge";
 import { PatchHistory } from "../../../components/patch-history";
-import { deriveBadgeState } from "../../../lib/badges";
+import { deriveBadgeState, latestPatchHistory } from "../../../lib/badges";
 import { loadAllContent } from "../../../lib/loaders";
 import type { Entry } from "../../../lib/schema";
 
@@ -60,6 +61,7 @@ export default async function GuidanceDetailPage({
   const source = content.registry[entry.sourceRef]?.name ?? entry.sourceRef;
   const target = content.registry[entry.targetRef]?.name ?? entry.targetRef;
   const badgeVariant = deriveBadgeState(entry, content.config.currentPatch);
+  const latestHistory = latestPatchHistory(entry);
   const canonicalUrl = `/matchups/${entry.slug}`;
   const kindLabel =
     entry.kind === "matchup" ? "MATCHUP" : "ARCHETYPE WARNING";
@@ -111,6 +113,10 @@ export default async function GuidanceDetailPage({
             {entry.conditions}
           </p>
         </div>
+
+        {badgeVariant === "deprecated" && latestHistory && (
+          <DeprecatedCallout row={latestHistory} />
+        )}
 
         <div className="flex items-center justify-between gap-4">
           <FlagOverlayBadge

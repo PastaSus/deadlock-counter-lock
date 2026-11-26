@@ -12,7 +12,7 @@ const STATE: Record<
   BadgeVariant,
   { icon: React.ElementType; label: string }
 > = {
-  verified: { icon: Check, label: "VERIFIED" },
+  verified: { icon: Check, label: "PATCH-VERIFIED" },
   stale: { icon: Minus, label: "STALE" },
   flagged: { icon: AlertCircle, label: "FLAGGED OUTDATED" },
   deprecated: { icon: Minus, label: "DEPRECATED" },
@@ -30,7 +30,7 @@ const VARIANT_CLASSES: Record<BadgeVariant, string> = {
 };
 
 const PATCH_PHRASE: Record<BadgeVariant, (patch: string) => string> = {
-  verified: (patch) => `verified as of patch ${patch}`,
+  verified: (patch) => `Patch-verified as of patch ${patch}`,
   stale: (patch) => `last checked against patch ${patch}`,
   flagged: (patch) => `last checked against patch ${patch}`,
   deprecated: (patch) => `last checked against patch ${patch}`,
@@ -41,6 +41,12 @@ export function Badge({ variant, patch, className }: BadgeProps) {
   const Icon = state.icon;
   const stamp = patch ? ` · ${patch}` : "";
   const patchPhrase = patch ? `, ${PATCH_PHRASE[variant](patch)}` : "";
+  const accessibleName =
+    variant === "verified"
+      ? patch
+        ? PATCH_PHRASE.verified(patch)
+        : "Patch-verified"
+      : `${state.label}${patchPhrase}`;
 
   return (
     <span
@@ -49,7 +55,7 @@ export function Badge({ variant, patch, className }: BadgeProps) {
         VARIANT_CLASSES[variant],
         className,
       ].join(" ")}
-      aria-label={`${state.label}${patchPhrase}`}
+      aria-label={accessibleName}
     >
       <Icon
         className="w-3 h-3 shrink-0"

@@ -1,6 +1,7 @@
 import type { BaseBadgeState } from "../lib/badges";
-import type { EntryMedia } from "../lib/schema";
+import type { EntryMedia, PatchHistoryEntry } from "../lib/schema";
 import { AssetMediaRow } from "./asset-media-row";
+import { DeprecatedCallout } from "./deprecated-callout";
 import { FlagOverlayBadge } from "./flag-overlay-badge";
 
 export interface EntryCardProps {
@@ -14,6 +15,7 @@ export interface EntryCardProps {
   patch?: string;
   className?: string;
   media?: EntryMedia;
+  deprecatedCallout?: PatchHistoryEntry;
 }
 
 export function EntryCard({
@@ -27,6 +29,7 @@ export function EntryCard({
   patch,
   className,
   media,
+  deprecatedCallout,
 }: EntryCardProps) {
   return (
     <article
@@ -56,6 +59,10 @@ export function EntryCard({
       </div>
 
       <p className="text-sm text-text-secondary leading-1.4 truncate">{condition}</p>
+
+      {deprecatedCallout && badgeVariant === "deprecated" && (
+        <DeprecatedCallout row={deprecatedCallout} className="mt-3" />
+      )}
 
       <footer className="mt-3 flex items-center justify-between border-t border-border pt-3">
         <FlagOverlayBadge
